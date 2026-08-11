@@ -8,20 +8,24 @@ Repositorio de clase - Corporacion Universitaria del Huila (CORHUILA).
 | **Horario** | Sabado 6:00 a. m. - 7:40 a. m. |
 | **Aula** | C4-409 |
 | **Semestre** | 2026-B |
-| **Frecuencia** | 1 sesion por semana |
 
 ## Estructura
 
-El repositorio esta organizado en semanas (`01-week`, `02-week`, ...). **Cada semana
-es una carpeta de ENTREGA**: coloca ahi tu entrega de la actividad **opcional** de esa
-semana, en tu **fork** de este repositorio.
+Cada `NN-week/` contiene:
 
-El material interactivo (OVAs) de la asignatura vive en:
-https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/
+```
+NN-week/
+|-- 01-session/   # material de clase del docente (sesion 1)
+|-- 02-session/   # material de clase del docente (sesion 2)
+\-- hu-status/    # tu entrega de la semana (en tu fork)
+```
 
-## Repo de perfil (obligatorio para detectar tu entrega)
+No borres `01-session` / `02-session`: el docente sube ahi el material de clase, y
+mantenerlas estables evita conflictos cuando actualices tu fork.
 
-Crea tu repositorio `usuario/usuario` y en su README agrega el bloque CONFIG:
+## Como entregar
+Coloca tu entrega en `NN-week/hu-status/` de tu **fork**. Ten tu **repo de perfil**
+`usuario/usuario` con el bloque CONFIG:
 
 ```
 <!-- CONFIG
@@ -30,15 +34,12 @@ GITHUB_USER: tu-usuario
 -->
 ```
 
-## Como entregar
-
 ```bash
 git clone https://github.com/<tu-usuario>/electiva-vi-ciencia-datos-2026-b-g1.git
 cd electiva-vi-ciencia-datos-2026-b-g1
-# coloca tu entrega dentro de la carpeta de la semana, por ejemplo 03-week/
-git add .
-git commit -m "Entrega semana 03"
-git push
+# edita NN-week/hu-status/README.md o agrega tus archivos ahi
+git add . && git commit -m "Entrega semana NN" && git push
 ```
 
-Guia paso a paso (PDF): https://code-corhuila.github.io/ova-web/manuales/Manual-Entrega-GitHub.pdf
+Material interactivo (OVAs): https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/
+Guia de entrega (PDF): https://code-corhuila.github.io/ova-web/manuales/Manual-Entrega-GitHub.pdf
