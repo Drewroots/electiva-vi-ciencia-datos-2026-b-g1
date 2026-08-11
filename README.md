@@ -12,27 +12,33 @@ Repositorio de clase - Corporacion Universitaria del Huila (CORHUILA).
 
 ## Estructura
 
-El repositorio esta organizado en 16 semanas (`01-week` .. `16-week`).
-Cada semana tiene la siguiente forma:
+El repositorio esta organizado en semanas (`01-week`, `02-week`, ...). **Cada semana
+es una carpeta de ENTREGA**: coloca ahi tu entrega de la actividad **opcional** de esa
+semana, en tu **fork** de este repositorio.
+
+El material interactivo (OVAs) de la asignatura vive en:
+https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/
+
+## Repo de perfil (obligatorio para detectar tu entrega)
+
+Crea tu repositorio `usuario/usuario` y en su README agrega el bloque CONFIG:
 
 ```
-NN-week/
-|-- 01-session/           # Sesion de la semana
-\-- 02-optional-activity/ # Actividad opcional de refuerzo
+<!-- CONFIG
+FULL_NAME: Tu Nombre Completo
+GITHUB_USER: tu-usuario
+-->
 ```
 
-- Las carpetas `NN-session` contienen el material trabajado en clase.
-- `optional-activity` guarda ejercicios opcionales de refuerzo, no calificables.
-
-## Como trabajar
+## Como entregar
 
 ```bash
-git clone https://github.com/code-corhuila/electiva-vi-ciencia-datos-2026-b-g1.git
+git clone https://github.com/<tu-usuario>/electiva-vi-ciencia-datos-2026-b-g1.git
 cd electiva-vi-ciencia-datos-2026-b-g1
+# coloca tu entrega dentro de la carpeta de la semana, por ejemplo 03-week/
+git add .
+git commit -m "Entrega semana 03"
+git push
 ```
 
-Antes de cada clase, actualiza tu copia local:
-
-```bash
-git pull origin main
-```
+Guia paso a paso (PDF): https://code-corhuila.github.io/ova-web/manuales/Manual-Entrega-GitHub.pdf
