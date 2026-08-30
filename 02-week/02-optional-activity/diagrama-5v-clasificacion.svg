@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="1000" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="600" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">Clasificación de datos y las 5V del Big Data</text>
+  <text x="600" y="66" text-anchor="middle" font-size="14" fill="#64748b">Caso: capacidad de streaming y curaduría regional en Spotify</text>
+
+  <!-- ===== Section A: classification ===== -->
+  <text x="40" y="106" font-size="16" font-weight="700" fill="#1e293b">1. Fuentes de datos del caso, clasificadas por estructura [1]</text>
+
+  <!-- Column 1: Estructurados -->
+  <g>
+    <rect x="40" y="126" width="360" height="260" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+    <rect x="40" y="126" width="360" height="34" rx="10" fill="#2563eb"/>
+    <rect x="40" y="142" width="360" height="18" fill="#2563eb"/>
+    <text x="220" y="149" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Estructurados</text>
+
+    <rect x="58" y="176" width="324" height="88" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1"/>
+    <text x="70" y="196" font-size="12.5" font-weight="700" fill="#1e3a8a">1. Histórico de streaming (CSV)</text>
+    <text x="70" y="213" font-size="11.5" fill="#334155">Spotify Global Streaming Data</text>
+    <text x="70" y="228" font-size="11.5" fill="#334155">2024, Kaggle [3] — tabla limpia,</text>
+    <text x="70" y="243" font-size="11.5" fill="#334155">esquema fijo por columnas</text>
+
+    <rect x="58" y="276" width="324" height="90" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1"/>
+    <text x="70" y="296" font-size="12.5" font-weight="700" fill="#1e3a8a">2. Encuestas de satisfacción</text>
+    <text x="70" y="313" font-size="11.5" fill="#334155">Formularios cerrados a usuarios</text>
+    <text x="70" y="328" font-size="11.5" fill="#334155">(escala Likert, opción múltiple),</text>
+    <text x="70" y="343" font-size="11.5" fill="#334155">campos fijos y tabulables</text>
+  </g>
+
+  <!-- Column 2: Semiestructurados -->
+  <g>
+    <rect x="420" y="126" width="360" height="260" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+    <rect x="420" y="126" width="360" height="34" rx="10" fill="#7c3aed"/>
+    <rect x="420" y="142" width="360" height="18" fill="#7c3aed"/>
+    <text x="600" y="149" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Semiestructurados</text>
+
+    <rect x="438" y="176" width="324" height="66" rx="8" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1"/>
+    <text x="450" y="194" font-size="12" font-weight="700" fill="#4c1d95">3. Eventos de reproducción (JSON)</text>
+    <text x="450" y="209" font-size="11" fill="#334155">user_id, track_id, país, dispositivo,</text>
+    <text x="450" y="223" font-size="11" fill="#334155">timestamp — en tiempo real</text>
+
+    <rect x="438" y="252" width="324" height="66" rx="8" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1"/>
+    <text x="450" y="270" font-size="12" font-weight="700" fill="#4c1d95">4. Metadatos de catálogo (API)</text>
+    <text x="450" y="285" font-size="11" fill="#334155">artista, álbum, género, duración</text>
+    <text x="450" y="299" font-size="11" fill="#334155">(JSON/XML de la API de Spotify)</text>
+
+    <rect x="438" y="328" width="324" height="38" rx="8" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1"/>
+    <text x="450" y="352" font-size="12" font-weight="700" fill="#4c1d95">5. Logs de servidores/CDN por región</text>
+  </g>
+
+  <!-- Column 3: No estructurados -->
+  <g>
+    <rect x="800" y="126" width="360" height="260" rx="10" fill="#ffffff" stroke="#e11d48" stroke-width="2"/>
+    <rect x="800" y="126" width="360" height="34" rx="10" fill="#e11d48"/>
+    <rect x="800" y="142" width="360" height="18" fill="#e11d48"/>
+    <text x="980" y="149" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">No estructurados</text>
+
+    <rect x="818" y="176" width="324" height="88" rx="8" fill="#fff1f2" stroke="#fca5a5" stroke-width="1"/>
+    <text x="830" y="196" font-size="12.5" font-weight="700" fill="#9f1239">6. Reseñas y comentarios</text>
+    <text x="830" y="213" font-size="11.5" fill="#334155">Texto libre de usuarios en redes</text>
+    <text x="830" y="228" font-size="11.5" fill="#334155">sociales sobre artistas y álbumes,</text>
+    <text x="830" y="243" font-size="11.5" fill="#334155">sin esquema predefinido</text>
+
+    <rect x="818" y="276" width="324" height="90" rx="8" fill="#fff1f2" stroke="#fca5a5" stroke-width="1"/>
+    <text x="830" y="296" font-size="12.5" font-weight="700" fill="#9f1239">7. Archivos de audio</text>
+    <text x="830" y="313" font-size="11.5" fill="#334155">Pistas de las canciones, usadas</text>
+    <text x="830" y="328" font-size="11.5" fill="#334155">para análisis de contenido y</text>
+    <text x="830" y="343" font-size="11.5" fill="#334155">etiquetado automático de género</text>
+  </g>
+
+  <!-- ===== Section B: 5V ===== -->
+  <text x="40" y="415" font-size="16" font-weight="700" fill="#1e293b">2. Las 5V del Big Data críticas para el caso [2]</text>
+
+  <!-- V card template positions: x = 40 + i*(212+15) -->
+  <!-- Volumen -->
+  <g>
+    <rect x="40" y="435" width="212" height="230" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+    <rect x="40" y="435" width="212" height="30" rx="10" fill="#2563eb"/>
+    <rect x="40" y="449" width="212" height="16" fill="#2563eb"/>
+    <text x="146" y="455" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Volumen</text>
+    <rect x="55" y="475" width="70" height="18" rx="9" fill="#dc2626"/>
+    <text x="90" y="488" text-anchor="middle" font-size="10.5" font-weight="700" fill="#ffffff">CRÍTICA</text>
+    <text x="55" y="512" font-size="11" fill="#334155">Millones de reproducciones</text>
+    <text x="55" y="527" font-size="11" fill="#334155">agregadas a nivel global,</text>
+    <text x="55" y="542" font-size="11" fill="#334155">acumuladas de forma</text>
+    <text x="55" y="557" font-size="11" fill="#334155">continua por región.</text>
+    <text x="55" y="580" font-size="11" fill="#334155">Exige almacenamiento</text>
+    <text x="55" y="595" font-size="11" fill="#334155">escalable (data lake).</text>
+  </g>
+
+  <!-- Velocidad -->
+  <g>
+    <rect x="267" y="435" width="212" height="230" rx="10" fill="#ffffff" stroke="#1DB954" stroke-width="2"/>
+    <rect x="267" y="435" width="212" height="30" rx="10" fill="#1DB954"/>
+    <rect x="267" y="449" width="212" height="16" fill="#1DB954"/>
+    <text x="373" y="455" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Velocidad</text>
+    <rect x="282" y="475" width="70" height="18" rx="9" fill="#dc2626"/>
+    <text x="317" y="488" text-anchor="middle" font-size="10.5" font-weight="700" fill="#ffffff">CRÍTICA</text>
+    <text x="282" y="512" font-size="11" fill="#334155">Los streams llegan en</text>
+    <text x="282" y="527" font-size="11" fill="#334155">tiempo real, segundo a</text>
+    <text x="282" y="542" font-size="11" fill="#334155">segundo, y determinan</text>
+    <text x="282" y="557" font-size="11" fill="#334155">cuándo escalar servidores</text>
+    <text x="282" y="580" font-size="11" fill="#334155">y CDN por región.</text>
+  </g>
+
+  <!-- Variedad -->
+  <g>
+    <rect x="494" y="435" width="212" height="230" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+    <rect x="494" y="435" width="212" height="30" rx="10" fill="#7c3aed"/>
+    <rect x="494" y="449" width="212" height="16" fill="#7c3aed"/>
+    <text x="600" y="455" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Variedad</text>
+    <rect x="509" y="475" width="70" height="18" rx="9" fill="#dc2626"/>
+    <text x="544" y="488" text-anchor="middle" font-size="10.5" font-weight="700" fill="#ffffff">CRÍTICA</text>
+    <text x="509" y="512" font-size="11" fill="#334155">Conviven datos</text>
+    <text x="509" y="527" font-size="11" fill="#334155">estructurados (CSV),</text>
+    <text x="509" y="542" font-size="11" fill="#334155">semiestructurados (logs,</text>
+    <text x="509" y="557" font-size="11" fill="#334155">JSON) y no estructurados</text>
+    <text x="509" y="572" font-size="11" fill="#334155">(audio, reseñas).</text>
+  </g>
+
+  <!-- Veracidad -->
+  <g>
+    <rect x="721" y="435" width="212" height="230" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="2.5"/>
+    <rect x="721" y="435" width="212" height="30" rx="10" fill="#dc2626"/>
+    <rect x="721" y="449" width="212" height="16" fill="#dc2626"/>
+    <text x="827" y="455" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Veracidad</text>
+    <rect x="736" y="475" width="70" height="18" rx="9" fill="#dc2626"/>
+    <text x="771" y="488" text-anchor="middle" font-size="10.5" font-weight="700" fill="#ffffff">CRÍTICA</text>
+    <text x="736" y="512" font-size="11" fill="#7f1d1d" font-weight="600">Riesgo de datos ruidosos</text>
+    <text x="736" y="527" font-size="11" fill="#7f1d1d" font-weight="600">o falsos (bots, duplicados)</text>
+    <text x="736" y="542" font-size="11" fill="#7f1d1d" font-weight="600">que distorsionan la</text>
+    <text x="736" y="557" font-size="11" fill="#7f1d1d" font-weight="600">demanda real por país.</text>
+    <text x="736" y="580" font-size="10.5" fill="#9f1239" font-style="italic">Ver reto de calidad ↓</text>
+  </g>
+
+  <!-- Valor -->
+  <g>
+    <rect x="948" y="435" width="212" height="230" rx="10" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+    <rect x="948" y="435" width="212" height="30" rx="10" fill="#d97706"/>
+    <rect x="948" y="449" width="212" height="16" fill="#d97706"/>
+    <text x="1054" y="455" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Valor</text>
+    <rect x="963" y="475" width="70" height="18" rx="9" fill="#f59e0b"/>
+    <text x="998" y="488" text-anchor="middle" font-size="10.5" font-weight="700" fill="#78350f">MEDIA</text>
+    <text x="963" y="512" font-size="11" fill="#334155">Solo genera valor si se</text>
+    <text x="963" y="527" font-size="11" fill="#334155">traduce en decisiones:</text>
+    <text x="963" y="542" font-size="11" fill="#334155">capacidad de servidores</text>
+    <text x="963" y="557" font-size="11" fill="#334155">y curaduría de contenido</text>
+    <text x="963" y="572" font-size="11" fill="#334155">por mercado.</text>
+  </g>
+
+  <!-- Arrow from Veracidad to challenge box -->
+  <line x1="827" y1="665" x2="827" y2="705" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrowRed)"/>
+
+  <!-- ===== Section C: veracity challenge ===== -->
+  <rect x="40" y="710" width="1120" height="220" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+  <text x="60" y="740" font-size="16" font-weight="700" fill="#9f1239">3. Reto de veracidad (calidad de datos) detectado</text>
+
+  <text x="60" y="770" font-size="12.5" font-weight="700" fill="#1e293b">Problema:</text>
+  <text x="60" y="788" font-size="12" fill="#334155">reproducciones infladas por bots, cuentas falsas o reconexiones automáticas del cliente, que generan</text>
+  <text x="60" y="804" font-size="12" fill="#334155">registros duplicados o duraciones de escucha inconsistentes con la duración real de la canción,</text>
+  <text x="60" y="820" font-size="12" fill="#334155">distorsionando artificialmente el volumen de streaming atribuido a un país.</text>
+
+  <text x="60" y="852" font-size="12.5" font-weight="700" fill="#1e293b">Cómo detectarlo:</text>
+  <text x="60" y="870" font-size="12" fill="#334155">1) reglas de validación: descartar reproducciones cuya duración excede la del track o se repiten en</text>
+  <text x="60" y="886" font-size="12" fill="#334155">intervalos imposibles para un mismo usuario/dispositivo; 2) detección de anomalías estadísticas: picos</text>
+  <text x="60" y="902" font-size="12" fill="#334155">atípicos de horas por país/IP en ventanas cortas de tiempo; 3) cruce de consistencia entre el conteo de</text>
+  <text x="60" y="918" font-size="12" fill="#334155">streams y métricas independientes (usuarios activos, sesiones) antes de decidir capacidad regional.</text>
+
+  <!-- Footer -->
+  <line x1="40" y1="945" x2="1160" y2="945" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="40" y="968" font-size="11.5" fill="#64748b">Elaboración propia a partir de la clasificación de datos por estructura [1] y la caracterización 5V del Big Data [2],</text>
+  <text x="40" y="984" font-size="11.5" fill="#64748b">aplicada al conjunto de datos Spotify Global Streaming Data (2024) [3].</text>
+</svg>

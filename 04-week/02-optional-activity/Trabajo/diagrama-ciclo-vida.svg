@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 900" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1300" height="900" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="650" y="34" text-anchor="middle" font-size="23" font-weight="700" fill="#0f172a">Ciclo de vida del proyecto de datos</text>
+  <text x="650" y="56" text-anchor="middle" font-size="13.5" fill="#64748b">Aplicado al caso: capacidad de streaming y curaduría regional en Spotify</text>
+
+  <!-- Connector arcs (drawn first, under the boxes) -->
+  <path d="M 770,235 Q 791,195 772,225" fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M 892,375 Q 932,440 892,505" fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M 772,655 Q 791,685 770,645" fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M 530,645 Q 509,685 528,655" fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M 408,505 Q 368,440 408,375" fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M 528,225 Q 509,195 530,235" fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Center hub -->
+  <circle cx="650" cy="440" r="78" fill="#ffffff" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4,4"/>
+  <text x="650" y="430" text-anchor="middle" font-size="13" font-weight="700" fill="#334155">Proceso</text>
+  <text x="650" y="448" text-anchor="middle" font-size="13" font-weight="700" fill="#334155">iterativo</text>
+  <text x="650" y="466" text-anchor="middle" font-size="10.5" fill="#64748b">se repite cada ciclo</text>
+
+  <!-- ===== Node 1: Pregunta ===== -->
+  <g>
+    <rect x="530" y="85" width="240" height="150" rx="12" fill="#ffffff" stroke="#4338ca" stroke-width="2.5"/>
+    <rect x="530" y="85" width="240" height="32" rx="12" fill="#4338ca"/>
+    <rect x="530" y="101" width="240" height="16" fill="#4338ca"/>
+    <text x="650" y="107" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">1 · Pregunta</text>
+    <text x="546" y="140" font-size="11" fill="#334155">¿En qué países y meses</text>
+    <text x="546" y="155" font-size="11" fill="#334155">crecerá la demanda de</text>
+    <text x="546" y="170" font-size="11" fill="#334155">streaming, para escalar</text>
+    <text x="546" y="185" font-size="11" fill="#334155">servidores y priorizar</text>
+    <text x="546" y="200" font-size="11" fill="#334155">curaduría de contenido?</text>
+    <text x="546" y="220" font-size="9.5" fill="#4338ca" font-style="italic">Pregunta de negocio [1]</text>
+  </g>
+
+  <!-- ===== Node 2: Obtener ===== -->
+  <g>
+    <rect x="772" y="225" width="240" height="150" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="2.5"/>
+    <rect x="772" y="225" width="240" height="32" rx="12" fill="#2563eb"/>
+    <rect x="772" y="241" width="240" height="16" fill="#2563eb"/>
+    <text x="892" y="247" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">2 · Obtener</text>
+    <text x="788" y="280" font-size="11" fill="#334155">Extraer el histórico CSV</text>
+    <text x="788" y="295" font-size="11" fill="#334155">de Kaggle (Spotify Global</text>
+    <text x="788" y="310" font-size="11" fill="#334155">Streaming Data 2024) [2]</text>
+    <text x="788" y="330" font-size="11" fill="#334155">e ingerir eventos de</text>
+    <text x="788" y="345" font-size="11" fill="#334155">reproducción en tiempo real</text>
+  </g>
+
+  <!-- ===== Node 3: Limpiar ===== -->
+  <g>
+    <rect x="772" y="505" width="240" height="150" rx="12" fill="#ffffff" stroke="#0891b2" stroke-width="2.5"/>
+    <rect x="772" y="505" width="240" height="32" rx="12" fill="#0891b2"/>
+    <rect x="772" y="521" width="240" height="16" fill="#0891b2"/>
+    <text x="892" y="527" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">3 · Limpiar</text>
+    <text x="788" y="560" font-size="11" fill="#334155">Eliminar duplicados y</text>
+    <text x="788" y="575" font-size="11" fill="#334155">reproducciones de bots,</text>
+    <text x="788" y="590" font-size="11" fill="#334155">validar duración de escucha</text>
+    <text x="788" y="605" font-size="11" fill="#334155">y normalizar códigos de país</text>
+  </g>
+
+  <!-- ===== Node 4: Analizar ===== -->
+  <g>
+    <rect x="530" y="645" width="240" height="150" rx="12" fill="#ffffff" stroke="#1DB954" stroke-width="2.5"/>
+    <rect x="530" y="645" width="240" height="32" rx="12" fill="#1DB954"/>
+    <rect x="530" y="661" width="240" height="16" fill="#1DB954"/>
+    <text x="650" y="667" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">4 · Analizar</text>
+    <text x="546" y="700" font-size="11" fill="#334155">Descriptiva: ranking actual</text>
+    <text x="546" y="715" font-size="11" fill="#334155">de países/artistas.</text>
+    <text x="546" y="735" font-size="11" fill="#334155">Predictiva: forecast</text>
+    <text x="546" y="750" font-size="11" fill="#334155">trimestral por país [3][4]</text>
+  </g>
+
+  <!-- ===== Node 5: Visualizar ===== -->
+  <g>
+    <rect x="288" y="505" width="240" height="150" rx="12" fill="#ffffff" stroke="#d97706" stroke-width="2.5"/>
+    <rect x="288" y="505" width="240" height="32" rx="12" fill="#d97706"/>
+    <rect x="288" y="521" width="240" height="16" fill="#d97706"/>
+    <text x="408" y="527" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">5 · Visualizar</text>
+    <text x="304" y="560" font-size="11" fill="#334155">Dashboards por región:</text>
+    <text x="304" y="575" font-size="11" fill="#334155">horas por país, artistas</text>
+    <text x="304" y="590" font-size="11" fill="#334155">top y proyección de</text>
+    <text x="304" y="605" font-size="11" fill="#334155">crecimiento trimestral</text>
+  </g>
+
+  <!-- ===== Node 6: Decidir ===== -->
+  <g>
+    <rect x="288" y="225" width="240" height="150" rx="12" fill="#ffffff" stroke="#dc2626" stroke-width="2.5"/>
+    <rect x="288" y="225" width="240" height="32" rx="12" fill="#dc2626"/>
+    <rect x="288" y="241" width="240" height="16" fill="#dc2626"/>
+    <text x="408" y="247" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">6 · Decidir</text>
+    <text x="304" y="280" font-size="11" fill="#334155">Escalar servidores/CDN</text>
+    <text x="304" y="295" font-size="11" fill="#334155">por región con antelación</text>
+    <text x="304" y="315" font-size="11" fill="#334155">y priorizar curaduría de</text>
+    <text x="304" y="330" font-size="11" fill="#334155">playlists/campañas</text>
+  </g>
+
+  <!-- Footer -->
+  <line x1="40" y1="835" x2="1260" y2="835" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="40" y="858" font-size="11.5" fill="#64748b">Elaboración propia a partir del ciclo de vida de un proyecto de datos [1], el conjunto de datos usado como caso [2],</text>
+  <text x="40" y="874" font-size="11.5" fill="#64748b">la caracterización de Big Data por sus V [3] y la clasificación de analítica de negocio [4].</text>
+</svg>

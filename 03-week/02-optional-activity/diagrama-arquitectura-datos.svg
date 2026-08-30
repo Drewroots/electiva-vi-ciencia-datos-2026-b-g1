@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 720" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1DB954"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1300" height="720" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="650" y="34" text-anchor="middle" font-size="23" font-weight="700" fill="#0f172a">Arquitectura de datos: de las fuentes al BI</text>
+  <text x="650" y="56" text-anchor="middle" font-size="13.5" fill="#64748b">Caso Spotify — capacidad de streaming y curaduría regional · arquitectura híbrida (Lambda + Lakehouse)</text>
+
+  <!-- Column headers -->
+  <text x="135" y="86" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">FUENTES</text>
+  <text x="355" y="86" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">INGESTA</text>
+  <text x="575" y="86" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">PROCESAMIENTO</text>
+  <text x="795" y="86" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">ALMACENAMIENTO</text>
+  <text x="1050" y="86" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">ANÁLISIS / BI</text>
+
+  <!-- ===== STREAMING LANE ===== -->
+  <rect x="30" y="98" width="1130" height="12" rx="6" fill="#1DB954"/>
+  <text x="45" y="107" font-size="10" font-weight="700" fill="#ffffff">RUTA EN TIEMPO REAL — STREAMING [3][4]</text>
+
+  <!-- S1 Fuentes -->
+  <rect x="40" y="120" width="190" height="112" rx="10" fill="#ffffff" stroke="#1DB954" stroke-width="2"/>
+  <text x="135" y="144" text-anchor="middle" font-size="12.5" font-weight="700" fill="#065f46">Fuentes en tiempo real</text>
+  <text x="55" y="165" font-size="10.5" fill="#334155">Eventos de reproducción:</text>
+  <text x="55" y="180" font-size="10.5" fill="#334155">usuario, canción, país,</text>
+  <text x="55" y="195" font-size="10.5" fill="#334155">dispositivo, timestamp</text>
+
+  <line x1="230" y1="176" x2="255" y2="176" stroke="#1DB954" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- S2 Ingesta: Kafka -->
+  <rect x="260" y="120" width="190" height="112" rx="10" fill="#ecfdf5" stroke="#1DB954" stroke-width="2"/>
+  <text x="355" y="144" text-anchor="middle" font-size="12.5" font-weight="700" fill="#065f46">Apache Kafka [3]</text>
+  <text x="275" y="165" font-size="10.5" fill="#334155">Mensajería distribuida de</text>
+  <text x="275" y="180" font-size="10.5" fill="#334155">alto throughput para</text>
+  <text x="275" y="195" font-size="10.5" fill="#334155">streams continuos</text>
+
+  <line x1="450" y1="176" x2="475" y2="176" stroke="#1DB954" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- S3 Procesamiento: Spark Streaming -->
+  <rect x="480" y="120" width="190" height="112" rx="10" fill="#ecfdf5" stroke="#1DB954" stroke-width="2"/>
+  <text x="575" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Spark Structured</text>
+  <text x="575" y="156" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Streaming [4]</text>
+  <text x="495" y="177" font-size="10.5" fill="#334155">Agregación casi en tiempo</text>
+  <text x="495" y="192" font-size="10.5" fill="#334155">real de horas por país</text>
+
+  <line x1="670" y1="176" x2="695" y2="176" stroke="#1DB954" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- ===== BATCH LANE ===== -->
+  <rect x="30" y="252" width="1130" height="12" rx="6" fill="#2563eb"/>
+  <text x="45" y="261" font-size="10" font-weight="700" fill="#ffffff">RUTA HISTÓRICA — BATCH [4]</text>
+
+  <!-- B1 Fuentes -->
+  <rect x="40" y="274" width="190" height="112" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <text x="135" y="298" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1e3a8a">Fuentes históricas</text>
+  <text x="55" y="319" font-size="10.5" fill="#334155">CSV Kaggle: Spotify Global</text>
+  <text x="55" y="334" font-size="10.5" fill="#334155">Streaming Data 2024</text>
+  <text x="55" y="349" font-size="10.5" fill="#334155">(&gt;500 registros)</text>
+
+  <line x1="230" y1="330" x2="255" y2="330" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- B2 Ingesta: Airflow -->
+  <rect x="260" y="274" width="190" height="112" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="355" y="298" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1e3a8a">Airflow</text>
+  <text x="275" y="319" font-size="10.5" fill="#334155">Orquestación de ETL</text>
+  <text x="275" y="334" font-size="10.5" fill="#334155">programado (diario /</text>
+  <text x="275" y="349" font-size="10.5" fill="#334155">semanal)</text>
+
+  <line x1="450" y1="330" x2="475" y2="330" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- B3 Procesamiento: Spark batch -->
+  <rect x="480" y="274" width="190" height="112" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="575" y="298" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1e3a8a">Spark (batch) [4]</text>
+  <text x="495" y="319" font-size="10.5" fill="#334155">Forecast trimestral de</text>
+  <text x="495" y="334" font-size="10.5" fill="#334155">streaming por país</text>
+  <text x="495" y="349" font-size="10.5" fill="#334155">(modelo predictivo)</text>
+
+  <line x1="670" y1="330" x2="695" y2="330" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- ===== STORAGE LAYER ===== -->
+  <rect x="700" y="120" width="200" height="112" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="800" y="144" text-anchor="middle" font-size="12.5" font-weight="700" fill="#4c1d95">Data Lake (crudo) [2]</text>
+  <text x="715" y="165" font-size="10.5" fill="#334155">Guarda datos crudos y</text>
+  <text x="715" y="180" font-size="10.5" fill="#334155">variados: streams, logs,</text>
+  <text x="715" y="195" font-size="10.5" fill="#334155">audio, texto</text>
+
+  <rect x="700" y="274" width="200" height="112" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="800" y="298" text-anchor="middle" font-size="12.5" font-weight="700" fill="#4c1d95">Data Warehouse</text>
+  <text x="800" y="314" text-anchor="middle" font-size="12.5" font-weight="700" fill="#4c1d95">(curado) [2]</text>
+  <text x="715" y="335" font-size="10.5" fill="#334155">Datos limpios y</text>
+  <text x="715" y="350" font-size="10.5" fill="#334155">modelados, listos para BI</text>
+
+  <!-- curation arrow lake -> warehouse -->
+  <line x1="800" y1="232" x2="800" y2="270" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowPurple)"/>
+  <text x="808" y="255" font-size="9.5" fill="#6d28d9" font-style="italic">curación / ETL</text>
+
+  <!-- arrows storage -> BI -->
+  <line x1="900" y1="176" x2="945" y2="220" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="900" y1="330" x2="945" y2="270" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== BI LAYER ===== -->
+  <rect x="950" y="120" width="220" height="266" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2.5"/>
+  <text x="1060" y="150" text-anchor="middle" font-size="13.5" font-weight="700" fill="#92400e">Análisis / BI</text>
+  <text x="1060" y="172" text-anchor="middle" font-size="12" font-weight="700" fill="#92400e">Power BI</text>
+  <text x="965" y="200" font-size="10.5" fill="#334155">Dashboards de capacidad</text>
+  <text x="965" y="215" font-size="10.5" fill="#334155">de servidores por región</text>
+  <text x="965" y="240" font-size="10.5" fill="#334155">Reportes de artistas/</text>
+  <text x="965" y="255" font-size="10.5" fill="#334155">álbumes top por país</text>
+  <text x="965" y="280" font-size="10.5" fill="#334155">Curaduría de playlists y</text>
+  <text x="965" y="295" font-size="10.5" fill="#334155">campañas regionales</text>
+  <line x1="965" y1="315" x2="1255" y2="315" stroke="#fde68a" stroke-width="1"/>
+  <text x="965" y="335" font-size="10" fill="#92400e" font-style="italic">Habilita la decisión de</text>
+  <text x="965" y="350" font-size="10" fill="#92400e" font-style="italic">infraestructura y contenido</text>
+  <text x="965" y="365" font-size="10" fill="#92400e" font-style="italic">definida en la Semana 1</text>
+
+  <!-- ===== Decision panels ===== -->
+  <rect x="40" y="410" width="600" height="200" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+  <rect x="40" y="410" width="600" height="34" rx="10" fill="#7c3aed"/>
+  <rect x="40" y="426" width="600" height="18" fill="#7c3aed"/>
+  <text x="340" y="433" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">¿Data Lake o Data Warehouse? → Híbrida (lakehouse)</text>
+  <text x="58" y="466" font-size="11.5" fill="#334155">El caso combina datos crudos y muy variados (audio, texto, logs, eventos</text>
+  <text x="58" y="484" font-size="11.5" fill="#334155">de streaming) con datos ya limpios que el equipo de negocio necesita</text>
+  <text x="58" y="502" font-size="11.5" fill="#334155">consultar de forma rápida y confiable. Un <tspan font-weight="700">Data Lake</tspan> es el repositorio</text>
+  <text x="58" y="520" font-size="11.5" fill="#334155">adecuado para conservar esa variedad sin perder información, mientras</text>
+  <text x="58" y="538" font-size="11.5" fill="#334155">que un <tspan font-weight="700">Data Warehouse</tspan> curado alimenta los reportes de BI con datos</text>
+  <text x="58" y="556" font-size="11.5" fill="#334155">modelados y consistentes. Por eso se justifica una arquitectura híbrida</text>
+  <text x="58" y="574" font-size="11.5" fill="#334155">(lakehouse), donde el lake alimenta al warehouse mediante un proceso</text>
+  <text x="58" y="592" font-size="11.5" fill="#334155">de curación/ETL, en línea con la literatura sobre arquitecturas de lago [2].</text>
+
+  <rect x="660" y="410" width="600" height="200" rx="10" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <rect x="660" y="410" width="600" height="34" rx="10" fill="#059669"/>
+  <rect x="660" y="426" width="600" height="18" fill="#059669"/>
+  <text x="960" y="433" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">¿Batch o streaming? → Híbrida (arquitectura Lambda)</text>
+  <text x="678" y="466" font-size="11.5" fill="#334155">Escalar servidores requiere reaccionar a los picos de demanda en</text>
+  <text x="678" y="484" font-size="11.5" fill="#334155">segundos, lo que exige una <tspan font-weight="700">ruta streaming</tspan> ingerida con una</text>
+  <text x="678" y="502" font-size="11.5" fill="#334155">herramienta de mensajería de alto rendimiento [3]. Sin embargo, decidir</text>
+  <text x="678" y="520" font-size="11.5" fill="#334155">qué artistas promocionar por trimestre y calcular el forecast regional no</text>
+  <text x="678" y="538" font-size="11.5" fill="#334155">necesita esa inmediatez y se resuelve mejor con una <tspan font-weight="700">ruta batch</tspan> sobre el</text>
+  <text x="678" y="556" font-size="11.5" fill="#334155">histórico, más simple y económica de operar [4]. Ambas rutas convergen</text>
+  <text x="678" y="574" font-size="11.5" fill="#334155">en el mismo almacenamiento y BI, evitando el sobre-diseño de forzar</text>
+  <text x="678" y="592" font-size="11.5" fill="#334155">streaming donde el batch es suficiente.</text>
+
+  <!-- Footer -->
+  <line x1="40" y1="630" x2="1260" y2="630" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="40" y="654" font-size="11" fill="#64748b">Elaboración propia a partir del ecosistema de Big Data [1], las arquitecturas de data lake [2], el diseño de Kafka</text>
+  <text x="40" y="670" font-size="11" fill="#64748b">para mensajería en tiempo real [3] y el modelo de procesamiento distribuido de Spark [4].</text>
+</svg>

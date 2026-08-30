@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1DB954"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="620" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="600" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">Pipeline de datos: de los streams a la decisión de capacidad</text>
+  <text x="600" y="66" text-anchor="middle" font-size="14" fill="#64748b">Caso: Spotify Global Streaming Data (2024) — planeación de infraestructura y curaduría regional</text>
+
+  <!-- 3Vs strip -->
+  <rect x="40" y="90" width="1120" height="34" rx="6" fill="#ecfdf5" stroke="#1DB954" stroke-width="1"/>
+  <text x="60" y="112" font-size="13" fill="#065f46" font-weight="600">Big Data — 3Vs [3]:</text>
+  <text x="200" y="112" font-size="13" fill="#065f46">Volumen (millones de reproducciones) · Velocidad (eventos por segundo) · Variedad (usuario, canción, país, dispositivo)</text>
+
+  <!-- Stage boxes -->
+  <!-- Box 1 -->
+  <g>
+    <rect x="40" y="150" width="250" height="220" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+    <rect x="40" y="150" width="250" height="34" rx="10" fill="#2563eb"/>
+    <rect x="40" y="166" width="250" height="18" fill="#2563eb"/>
+    <text x="165" y="173" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">01 · Fuentes de datos</text>
+    <text x="60" y="205" font-size="12.5" fill="#1e293b" font-weight="600">Histórico (por lotes):</text>
+    <text x="60" y="223" font-size="12" fill="#334155">Kaggle — Spotify Global</text>
+    <text x="60" y="239" font-size="12" fill="#334155">Streaming Data 2024 [2]</text>
+    <text x="60" y="255" font-size="12" fill="#334155">(&gt;500 registros, CSV limpio)</text>
+    <text x="60" y="281" font-size="12.5" fill="#1e293b" font-weight="600">Tiempo real (streaming):</text>
+    <text x="60" y="299" font-size="12" fill="#334155">Eventos de reproducción:</text>
+    <text x="60" y="315" font-size="12" fill="#334155">usuario · canción · país ·</text>
+    <text x="60" y="331" font-size="12" fill="#334155">dispositivo</text>
+    <text x="60" y="356" font-size="11" fill="#64748b" font-style="italic">Fuente primaria del análisis</text>
+  </g>
+
+  <!-- Arrow 1->2 -->
+  <line x1="290" y1="260" x2="335" y2="260" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Box 2 -->
+  <g>
+    <rect x="335" y="150" width="250" height="220" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+    <rect x="335" y="150" width="250" height="34" rx="10" fill="#7c3aed"/>
+    <rect x="335" y="166" width="250" height="18" fill="#7c3aed"/>
+    <text x="460" y="173" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">02 · Ingesta y almacenamiento</text>
+    <text x="355" y="205" font-size="12.5" fill="#1e293b" font-weight="600">ETL por lotes:</text>
+    <text x="355" y="223" font-size="12" fill="#334155">limpieza y consolidación</text>
+    <text x="355" y="239" font-size="12" fill="#334155">de tendencias históricas</text>
+    <text x="355" y="265" font-size="12.5" fill="#1e293b" font-weight="600">Buffer de eventos:</text>
+    <text x="355" y="283" font-size="12" fill="#334155">ingestión continua de</text>
+    <text x="355" y="299" font-size="12" fill="#334155">streams en tiempo real</text>
+    <text x="355" y="325" font-size="12.5" fill="#1e293b" font-weight="600">Repositorio:</text>
+    <text x="355" y="343" font-size="12" fill="#334155">data warehouse / data lake</text>
+    <text x="355" y="359" font-size="12" fill="#334155">segmentado por región</text>
+  </g>
+
+  <!-- Arrow 2->3 -->
+  <line x1="585" y1="260" x2="630" y2="260" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Box 3 -->
+  <g>
+    <rect x="630" y="150" width="250" height="220" rx="10" fill="#ffffff" stroke="#1DB954" stroke-width="2"/>
+    <rect x="630" y="150" width="250" height="34" rx="10" fill="#1DB954"/>
+    <rect x="630" y="166" width="250" height="18" fill="#1DB954"/>
+    <text x="755" y="173" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">03 · Analítica [4]</text>
+    <text x="650" y="205" font-size="12.5" fill="#1e293b" font-weight="600">Descriptiva:</text>
+    <text x="650" y="223" font-size="12" fill="#334155">ranking actual de países,</text>
+    <text x="650" y="239" font-size="12" fill="#334155">artistas y álbumes top</text>
+    <text x="650" y="265" font-size="12.5" fill="#1e293b" font-weight="600">Predictiva:</text>
+    <text x="650" y="283" font-size="12" fill="#334155">forecast trimestral de</text>
+    <text x="650" y="299" font-size="12" fill="#334155">horas de streaming por país</text>
+    <text x="650" y="325" font-size="12.5" fill="#94a3b8" font-weight="600">Prescriptiva (opcional):</text>
+    <text x="650" y="343" font-size="12" fill="#94a3b8">¿dónde invertir primero en</text>
+    <text x="650" y="359" font-size="12" fill="#94a3b8">capacidad de servidor?</text>
+  </g>
+
+  <!-- Arrow 3->4 -->
+  <line x1="880" y1="260" x2="925" y2="260" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Box 4 -->
+  <g>
+    <rect x="925" y="150" width="235" height="220" rx="10" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+    <rect x="925" y="150" width="235" height="34" rx="10" fill="#d97706"/>
+    <rect x="925" y="166" width="235" height="18" fill="#d97706"/>
+    <text x="1042" y="173" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">04 · Decisión de negocio</text>
+    <text x="945" y="205" font-size="12.5" fill="#1e293b" font-weight="600">Infraestructura:</text>
+    <text x="945" y="223" font-size="12" fill="#334155">escalar servidores/CDN</text>
+    <text x="945" y="239" font-size="12" fill="#334155">por región con antelación</text>
+    <text x="945" y="265" font-size="12.5" fill="#1e293b" font-weight="600">Contenido:</text>
+    <text x="945" y="283" font-size="12" fill="#334155">priorizar curaduría de</text>
+    <text x="945" y="299" font-size="12" fill="#334155">playlists y publicidad</text>
+    <text x="945" y="315" font-size="12" fill="#334155">por mercado</text>
+  </g>
+
+  <!-- Feedback loop -->
+  <path d="M 1042 370 C 1042 470, 165 470, 165 370" fill="none" stroke="#1DB954" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowGreen)"/>
+  <rect x="470" y="452" width="300" height="30" rx="6" fill="#ecfdf5" stroke="#1DB954" stroke-width="1"/>
+  <text x="620" y="472" text-anchor="middle" font-size="12.5" fill="#065f46" font-weight="600">Monitoreo continuo y reentrenamiento del modelo</text>
+
+  <!-- Footer -->
+  <line x1="40" y1="520" x2="1160" y2="520" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="40" y="545" font-size="11.5" fill="#64748b">Elaboración propia a partir de las etapas de un proyecto de datos [1] y la clasificación de analítica de negocio [4].</text>
+  <text x="40" y="565" font-size="11.5" fill="#64748b">Programa: Ingeniería Industrial · Asignatura: Ciencia de Datos · Semana 1 · CORHUILA, 2026-B.</text>
+</svg>
