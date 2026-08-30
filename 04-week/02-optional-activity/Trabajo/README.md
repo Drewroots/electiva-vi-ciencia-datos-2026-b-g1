@@ -1,7 +1,7 @@
 # Actividad calificable · Corte 1 — Diagnóstico de datos de un proceso
 
 **Programa:** Ingeniería Industrial · **Asignatura:** Ciencia de Datos
-**Semana del corte:** 4 · 
+**Semana del corte:** 4 · Drewroots
 
 > Caso desarrollado: **Spotify — capacidad de streaming y curaduría regional**, el mismo proceso de negocio trabajado en las actividades formativas de las Semanas 1 a 4. Este documento consolida y profundiza ese caso para responder íntegramente al enunciado de la actividad calificable.
 
