@@ -81,17 +81,17 @@ Below are two sentences, in English, explaining the difference between descripti
 
 1. *Descriptive analytics looks at historical maintenance records to explain what has already happened, such as how many failures occurred and how much they cost.*
 
-   *(Traducción: la analítica descriptiva observa los registros históricos de mantenimiento para explicar lo que ya sucedió, como cuántas fallas ocurrieron y cuánto costaron.)*
+  
 
 2. *Predictive analytics uses sensor data and machine learning models to forecast which machines are likely to fail soon, so that maintenance can be scheduled before a breakdown happens.*
 
-   *(Traducción: la analítica predictiva usa datos de sensores y modelos de machine learning para pronosticar qué máquinas tienen probabilidad de fallar pronto, para poder programar el mantenimiento antes de que ocurra una avería.)*
+  
 
 ---
 
 ## Bibliografía
 
-### Fuentes del curso (proporcionadas)
+### Fuentes del curso 
 
 - CORHUILA. (2026). *Ciencia de Datos – Semana 1: Introducción a la ciencia de datos.* https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/01-week/01-session/
 - CORHUILA. (2026). *Ciencia de Datos – Semana 2: Fundamentos de Big Data.* https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/02-week/01-session/
@@ -99,7 +99,7 @@ Below are two sentences, in English, explaining the difference between descripti
 - CORHUILA. (2026). *Ciencia de Datos – Semana 4: Aplicaciones modernas de Big Data y ciencia de datos.* https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/04-week/01-session/
 - CORHUILA. (2026). *Ciencia de Datos – Semana 5: Repaso y evaluación del Corte 1.* https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/05-week/01-session/
 
-### Referencias adicionales (máx. 3, para justificar el caso)
+### Referencias adicionales 
 
 - Advanced Factories. (2024). *Mantenimiento predictivo en la industria manufacturera con Big Data e IIoT.* https://www.advancedfactories.com/mantenimiento-predictivo-industria-manufacturera-big-data-iiot/
 - IBM. (s.f.). *Structured vs. unstructured data.* https://www.ibm.com/think/topics/structured-vs-unstructured-data
