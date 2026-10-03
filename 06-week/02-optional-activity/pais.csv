@@ -1,0 +1,21 @@
+country_id,codigo_iso,nombre,region
+1,AR,Argentina,Latinoamérica
+2,AU,Australia,Oceanía
+3,BR,Brazil,Latinoamérica
+4,CA,Canada,Norteamérica
+5,FR,France,Europa
+6,DE,Germany,Europa
+7,IN,India,Asia
+8,ID,Indonesia,Asia
+9,IT,Italy,Europa
+10,JP,Japan,Asia
+11,MX,Mexico,Latinoamérica
+12,NL,Netherlands,Europa
+13,RU,Russia,Europa
+14,ZA,South Africa,África
+15,KR,South Korea,Asia
+16,ES,Spain,Europa
+17,SE,Sweden,Europa
+18,TR,Turkey,Asia
+19,GB,United Kingdom,Europa
+20,US,United States,Norteamérica
