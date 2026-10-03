@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 980" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+<rect x="0" y="0" width="1360" height="980" fill="#f8fafc"/>
+<text x="680" y="38" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">Diagrama entidad-relación (ERD) — Caso Spotify</text>
+<text x="680" y="62" text-anchor="middle" font-size="13.5" fill="#64748b">Modelo relacional normalizado (3FN) · relación N:M USUARIO ↔ CANCIÓN resuelta con la tabla intermedia REPRODUCCION</text>
+<path d="M 670,250 L 670,330" fill="none" stroke="#475569" stroke-width="2"/>
+<line x1="661" y1="262" x2="679" y2="262" stroke="#475569" stroke-width="2.5"/><line x1="661" y1="268" x2="679" y2="268" stroke="#475569" stroke-width="2.5"/>
+<line x1="670" y1="314" x2="661" y2="330" stroke="#475569" stroke-width="2"/><line x1="670" y1="314" x2="670" y2="330" stroke="#475569" stroke-width="2"/><line x1="670" y1="314" x2="679" y2="330" stroke="#475569" stroke-width="2"/>
+<text x="682" y="288" text-anchor="start" font-size="11.5" font-style="italic" fill="#334155">ocurre en</text>
+<text x="650" y="278" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">1</text>
+<text x="650" y="310" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">N</text>
+<path d="M 520,170 L 210,170 L 210,330" fill="none" stroke="#475569" stroke-width="2"/>
+<line x1="508" y1="161" x2="508" y2="179" stroke="#475569" stroke-width="2.5"/><line x1="502" y1="161" x2="502" y2="179" stroke="#475569" stroke-width="2.5"/>
+<line x1="210" y1="314" x2="201" y2="330" stroke="#475569" stroke-width="2"/><line x1="210" y1="314" x2="210" y2="330" stroke="#475569" stroke-width="2"/><line x1="210" y1="314" x2="219" y2="330" stroke="#475569" stroke-width="2"/>
+<text x="365" y="162" text-anchor="middle" font-size="11.5" font-style="italic" fill="#334155">registra</text>
+<text x="496" y="160" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">1</text>
+<text x="224" y="310" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">N</text>
+<path d="M 360,400 L 520,400" fill="none" stroke="#475569" stroke-width="2"/>
+<line x1="372" y1="409" x2="372" y2="391" stroke="#475569" stroke-width="2.5"/><line x1="378" y1="409" x2="378" y2="391" stroke="#475569" stroke-width="2.5"/>
+<line x1="504" y1="400" x2="520" y2="409" stroke="#475569" stroke-width="2"/><line x1="504" y1="400" x2="520" y2="400" stroke="#475569" stroke-width="2"/><line x1="504" y1="400" x2="520" y2="391" stroke="#475569" stroke-width="2"/>
+<text x="440" y="392" text-anchor="middle" font-size="11.5" font-style="italic" fill="#334155">realiza</text>
+<text x="384" y="390" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">1</text>
+<text x="498" y="390" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">N</text>
+<path d="M 1000,426 L 820,426" fill="none" stroke="#475569" stroke-width="2"/>
+<line x1="988" y1="417" x2="988" y2="435" stroke="#475569" stroke-width="2.5"/><line x1="982" y1="417" x2="982" y2="435" stroke="#475569" stroke-width="2.5"/>
+<line x1="836" y1="426" x2="820" y2="417" stroke="#475569" stroke-width="2"/><line x1="836" y1="426" x2="820" y2="426" stroke="#475569" stroke-width="2"/><line x1="836" y1="426" x2="820" y2="435" stroke="#475569" stroke-width="2"/>
+<text x="910" y="418" text-anchor="middle" font-size="11.5" font-style="italic" fill="#334155">es reproducida</text>
+<text x="976" y="416" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">1</text>
+<text x="842" y="416" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">N</text>
+<path d="M 670,660 L 670,558" fill="none" stroke="#475569" stroke-width="2"/>
+<line x1="679" y1="648" x2="661" y2="648" stroke="#475569" stroke-width="2.5"/><line x1="679" y1="642" x2="661" y2="642" stroke="#475569" stroke-width="2.5"/>
+<line x1="670" y1="574" x2="679" y2="558" stroke="#475569" stroke-width="2"/><line x1="670" y1="574" x2="670" y2="558" stroke="#475569" stroke-width="2"/><line x1="670" y1="574" x2="661" y2="558" stroke="#475569" stroke-width="2"/>
+<text x="682" y="620" text-anchor="start" font-size="11.5" font-style="italic" fill="#334155">se usa en</text>
+<text x="650" y="640" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">1</text>
+<text x="650" y="588" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">N</text>
+<path d="M 1150,540 L 1150,480" fill="none" stroke="#475569" stroke-width="2"/>
+<line x1="1159" y1="528" x2="1141" y2="528" stroke="#475569" stroke-width="2.5"/><line x1="1159" y1="522" x2="1141" y2="522" stroke="#475569" stroke-width="2.5"/>
+<line x1="1150" y1="496" x2="1159" y2="480" stroke="#475569" stroke-width="2"/><line x1="1150" y1="496" x2="1150" y2="480" stroke="#475569" stroke-width="2"/><line x1="1150" y1="496" x2="1141" y2="480" stroke="#475569" stroke-width="2"/>
+<text x="1166" y="510" text-anchor="start" font-size="11.5" font-style="italic" fill="#334155">contiene</text>
+<text x="1136" y="526" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">1</text>
+<text x="1136" y="502" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">N</text>
+<path d="M 1150,750 L 1150,690" fill="none" stroke="#475569" stroke-width="2"/>
+<line x1="1159" y1="738" x2="1141" y2="738" stroke="#475569" stroke-width="2.5"/><line x1="1159" y1="732" x2="1141" y2="732" stroke="#475569" stroke-width="2.5"/>
+<line x1="1150" y1="706" x2="1159" y2="690" stroke="#475569" stroke-width="2"/><line x1="1150" y1="706" x2="1150" y2="690" stroke="#475569" stroke-width="2"/><line x1="1150" y1="706" x2="1141" y2="690" stroke="#475569" stroke-width="2"/>
+<text x="1166" y="724" text-anchor="start" font-size="11.5" font-style="italic" fill="#334155">publica</text>
+<text x="1136" y="736" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">1</text>
+<text x="1136" y="712" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">N</text>
+<rect x="520" y="100" width="300" height="150" rx="10" fill="#ffffff" stroke="#0891b2" stroke-width="2"/>
+<rect x="520" y="100" width="300" height="36" rx="10" fill="#0891b2"/>
+<rect x="520" y="126" width="300" height="10" fill="#0891b2"/>
+<text x="536" y="124" font-size="14.5" font-weight="700" fill="#ffffff">PAIS</text>
+<rect x="530" y="141" width="26" height="16" rx="4" fill="#fde68a" stroke="#d97706"/>
+<text x="543" y="153" text-anchor="middle" font-size="9.5" font-weight="700" fill="#78350f">PK</text>
+<text x="566" y="154" font-size="12.5" font-weight="700" fill="#0f172a">country_id</text>
+<text x="806" y="154" text-anchor="end" font-size="10.5" fill="#64748b">INT</text>
+<rect x="522" y="162" width="296" height="26" fill="#ecfeff"/>
+<text x="566" y="180" font-size="12.5" font-weight="500" fill="#0f172a">codigo_iso</text>
+<text x="806" y="180" text-anchor="end" font-size="10.5" fill="#64748b">CHAR(2)</text>
+<text x="566" y="206" font-size="12.5" font-weight="500" fill="#0f172a">nombre</text>
+<text x="806" y="206" text-anchor="end" font-size="10.5" fill="#64748b">VARCHAR(80)</text>
+<rect x="522" y="214" width="296" height="26" fill="#ecfeff"/>
+<text x="566" y="232" font-size="12.5" font-weight="500" fill="#0f172a">region</text>
+<text x="806" y="232" text-anchor="end" font-size="10.5" fill="#64748b">VARCHAR(40)</text>
+<rect x="60" y="330" width="300" height="150" rx="10" fill="#ffffff" stroke="#4338ca" stroke-width="2"/>
+<rect x="60" y="330" width="300" height="36" rx="10" fill="#4338ca"/>
+<rect x="60" y="356" width="300" height="10" fill="#4338ca"/>
+<text x="76" y="354" font-size="14.5" font-weight="700" fill="#ffffff">USUARIO</text>
+<rect x="70" y="371" width="26" height="16" rx="4" fill="#fde68a" stroke="#d97706"/>
+<text x="83" y="383" text-anchor="middle" font-size="9.5" font-weight="700" fill="#78350f">PK</text>
+<text x="106" y="384" font-size="12.5" font-weight="700" fill="#0f172a">user_id</text>
+<text x="346" y="384" text-anchor="end" font-size="10.5" fill="#64748b">BIGINT</text>
+<rect x="62" y="392" width="296" height="26" fill="#eef2ff"/>
+<rect x="70" y="397" width="26" height="16" rx="4" fill="#dbeafe" stroke="#2563eb"/>
+<text x="83" y="409" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e3a8a">FK</text>
+<text x="106" y="410" font-size="12.5" font-weight="500" fill="#0f172a">country_id</text>
+<text x="346" y="410" text-anchor="end" font-size="10.5" fill="#64748b">INT</text>
+<text x="106" y="436" font-size="12.5" font-weight="500" fill="#0f172a">fecha_registro</text>
+<text x="346" y="436" text-anchor="end" font-size="10.5" fill="#64748b">DATE</text>
+<rect x="62" y="444" width="296" height="26" fill="#eef2ff"/>
+<text x="106" y="462" font-size="12.5" font-weight="500" fill="#0f172a">tipo_plan</text>
+<text x="346" y="462" text-anchor="end" font-size="10.5" fill="#64748b">VARCHAR(20)</text>
+<rect x="520" y="330" width="300" height="228" rx="10" fill="#ffffff" stroke="#16a34a" stroke-width="3"/>
+<rect x="520" y="330" width="300" height="36" rx="10" fill="#16a34a"/>
+<rect x="520" y="356" width="300" height="10" fill="#16a34a"/>
+<text x="536" y="354" font-size="14.5" font-weight="700" fill="#ffffff">REPRODUCCION</text>
+<rect x="722" y="338" width="86" height="20" rx="10" fill="#ffffff"/>
+<text x="765" y="352" text-anchor="middle" font-size="11" font-weight="700" fill="#166534">Tabla N:M</text>
+<rect x="530" y="371" width="26" height="16" rx="4" fill="#fde68a" stroke="#d97706"/>
+<text x="543" y="383" text-anchor="middle" font-size="9.5" font-weight="700" fill="#78350f">PK</text>
+<text x="566" y="384" font-size="12.5" font-weight="700" fill="#0f172a">play_id</text>
+<text x="806" y="384" text-anchor="end" font-size="10.5" fill="#64748b">BIGINT</text>
+<rect x="522" y="392" width="296" height="26" fill="#f0fdf4"/>
+<rect x="530" y="397" width="26" height="16" rx="4" fill="#dbeafe" stroke="#2563eb"/>
+<text x="543" y="409" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e3a8a">FK</text>
+<text x="566" y="410" font-size="12.5" font-weight="500" fill="#0f172a">user_id</text>
+<text x="806" y="410" text-anchor="end" font-size="10.5" fill="#64748b">BIGINT</text>
+<rect x="530" y="423" width="26" height="16" rx="4" fill="#dbeafe" stroke="#2563eb"/>
+<text x="543" y="435" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e3a8a">FK</text>
+<text x="566" y="436" font-size="12.5" font-weight="500" fill="#0f172a">track_id</text>
+<text x="806" y="436" text-anchor="end" font-size="10.5" fill="#64748b">BIGINT</text>
+<rect x="522" y="444" width="296" height="26" fill="#f0fdf4"/>
+<rect x="530" y="449" width="26" height="16" rx="4" fill="#dbeafe" stroke="#2563eb"/>
+<text x="543" y="461" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e3a8a">FK</text>
+<text x="566" y="462" font-size="12.5" font-weight="500" fill="#0f172a">device_id</text>
+<text x="806" y="462" text-anchor="end" font-size="10.5" fill="#64748b">SMALLINT</text>
+<rect x="530" y="475" width="26" height="16" rx="4" fill="#dbeafe" stroke="#2563eb"/>
+<text x="543" y="487" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e3a8a">FK</text>
+<text x="566" y="488" font-size="12.5" font-weight="500" fill="#0f172a">country_id</text>
+<text x="806" y="488" text-anchor="end" font-size="10.5" fill="#64748b">INT</text>
+<rect x="522" y="496" width="296" height="26" fill="#f0fdf4"/>
+<text x="566" y="514" font-size="12.5" font-weight="500" fill="#0f172a">fecha_hora</text>
+<text x="806" y="514" text-anchor="end" font-size="10.5" fill="#64748b">TIMESTAMP</text>
+<text x="566" y="540" font-size="12.5" font-weight="500" fill="#0f172a">segundos_escuchados</text>
+<text x="806" y="540" text-anchor="end" font-size="10.5" fill="#64748b">INT</text>
+<rect x="520" y="660" width="300" height="124" rx="10" fill="#ffffff" stroke="#0891b2" stroke-width="2"/>
+<rect x="520" y="660" width="300" height="36" rx="10" fill="#0891b2"/>
+<rect x="520" y="686" width="300" height="10" fill="#0891b2"/>
+<text x="536" y="684" font-size="14.5" font-weight="700" fill="#ffffff">DISPOSITIVO</text>
+<rect x="530" y="701" width="26" height="16" rx="4" fill="#fde68a" stroke="#d97706"/>
+<text x="543" y="713" text-anchor="middle" font-size="9.5" font-weight="700" fill="#78350f">PK</text>
+<text x="566" y="714" font-size="12.5" font-weight="700" fill="#0f172a">device_id</text>
+<text x="806" y="714" text-anchor="end" font-size="10.5" fill="#64748b">SMALLINT</text>
+<rect x="522" y="722" width="296" height="26" fill="#ecfeff"/>
+<text x="566" y="740" font-size="12.5" font-weight="500" fill="#0f172a">tipo</text>
+<text x="806" y="740" text-anchor="end" font-size="10.5" fill="#64748b">VARCHAR(30)</text>
+<text x="566" y="766" font-size="12.5" font-weight="500" fill="#0f172a">sistema_operativo</text>
+<text x="806" y="766" text-anchor="end" font-size="10.5" fill="#64748b">VARCHAR(30)</text>
+<rect x="1000" y="330" width="300" height="150" rx="10" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+<rect x="1000" y="330" width="300" height="36" rx="10" fill="#d97706"/>
+<rect x="1000" y="356" width="300" height="10" fill="#d97706"/>
+<text x="1016" y="354" font-size="14.5" font-weight="700" fill="#ffffff">CANCION</text>
+<rect x="1010" y="371" width="26" height="16" rx="4" fill="#fde68a" stroke="#d97706"/>
+<text x="1023" y="383" text-anchor="middle" font-size="9.5" font-weight="700" fill="#78350f">PK</text>
+<text x="1046" y="384" font-size="12.5" font-weight="700" fill="#0f172a">track_id</text>
+<text x="1286" y="384" text-anchor="end" font-size="10.5" fill="#64748b">BIGINT</text>
+<rect x="1002" y="392" width="296" height="26" fill="#fffbeb"/>
+<rect x="1010" y="397" width="26" height="16" rx="4" fill="#dbeafe" stroke="#2563eb"/>
+<text x="1023" y="409" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e3a8a">FK</text>
+<text x="1046" y="410" font-size="12.5" font-weight="500" fill="#0f172a">album_id</text>
+<text x="1286" y="410" text-anchor="end" font-size="10.5" fill="#64748b">INT</text>
+<text x="1046" y="436" font-size="12.5" font-weight="500" fill="#0f172a">titulo</text>
+<text x="1286" y="436" text-anchor="end" font-size="10.5" fill="#64748b">VARCHAR(150)</text>
+<rect x="1002" y="444" width="296" height="26" fill="#fffbeb"/>
+<text x="1046" y="462" font-size="12.5" font-weight="500" fill="#0f172a">duracion_seg</text>
+<text x="1286" y="462" text-anchor="end" font-size="10.5" fill="#64748b">INT</text>
+<rect x="1000" y="540" width="300" height="150" rx="10" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+<rect x="1000" y="540" width="300" height="36" rx="10" fill="#d97706"/>
+<rect x="1000" y="566" width="300" height="10" fill="#d97706"/>
+<text x="1016" y="564" font-size="14.5" font-weight="700" fill="#ffffff">ALBUM</text>
+<rect x="1010" y="581" width="26" height="16" rx="4" fill="#fde68a" stroke="#d97706"/>
+<text x="1023" y="593" text-anchor="middle" font-size="9.5" font-weight="700" fill="#78350f">PK</text>
+<text x="1046" y="594" font-size="12.5" font-weight="700" fill="#0f172a">album_id</text>
+<text x="1286" y="594" text-anchor="end" font-size="10.5" fill="#64748b">INT</text>
+<rect x="1002" y="602" width="296" height="26" fill="#fffbeb"/>
+<rect x="1010" y="607" width="26" height="16" rx="4" fill="#dbeafe" stroke="#2563eb"/>
+<text x="1023" y="619" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e3a8a">FK</text>
+<text x="1046" y="620" font-size="12.5" font-weight="500" fill="#0f172a">artist_id</text>
+<text x="1286" y="620" text-anchor="end" font-size="10.5" fill="#64748b">INT</text>
+<text x="1046" y="646" font-size="12.5" font-weight="500" fill="#0f172a">titulo</text>
+<text x="1286" y="646" text-anchor="end" font-size="10.5" fill="#64748b">VARCHAR(150)</text>
+<rect x="1002" y="654" width="296" height="26" fill="#fffbeb"/>
+<text x="1046" y="672" font-size="12.5" font-weight="500" fill="#0f172a">anio_lanzamiento</text>
+<text x="1286" y="672" text-anchor="end" font-size="10.5" fill="#64748b">SMALLINT</text>
+<rect x="1000" y="750" width="300" height="124" rx="10" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+<rect x="1000" y="750" width="300" height="36" rx="10" fill="#d97706"/>
+<rect x="1000" y="776" width="300" height="10" fill="#d97706"/>
+<text x="1016" y="774" font-size="14.5" font-weight="700" fill="#ffffff">ARTISTA</text>
+<rect x="1010" y="791" width="26" height="16" rx="4" fill="#fde68a" stroke="#d97706"/>
+<text x="1023" y="803" text-anchor="middle" font-size="9.5" font-weight="700" fill="#78350f">PK</text>
+<text x="1046" y="804" font-size="12.5" font-weight="700" fill="#0f172a">artist_id</text>
+<text x="1286" y="804" text-anchor="end" font-size="10.5" fill="#64748b">INT</text>
+<rect x="1002" y="812" width="296" height="26" fill="#fffbeb"/>
+<text x="1046" y="830" font-size="12.5" font-weight="500" fill="#0f172a">nombre</text>
+<text x="1286" y="830" text-anchor="end" font-size="10.5" fill="#64748b">VARCHAR(100)</text>
+<text x="1046" y="856" font-size="12.5" font-weight="500" fill="#0f172a">genero_principal</text>
+<text x="1286" y="856" text-anchor="end" font-size="10.5" fill="#64748b">VARCHAR(40)</text>
+<rect x="60" y="520" width="380" height="104" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="74" y="542" font-size="12.5" font-weight="700" fill="#0f172a">Leyenda</text>
+<rect x="74" y="554" width="26" height="16" rx="4" fill="#fde68a" stroke="#d97706"/><text x="87" y="566" text-anchor="middle" font-size="9.5" font-weight="700" fill="#78350f">PK</text>
+<text x="108" y="567" font-size="11" fill="#334155">Clave primaria</text>
+<rect x="210" y="554" width="26" height="16" rx="4" fill="#dbeafe" stroke="#2563eb"/><text x="223" y="566" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e3a8a">FK</text>
+<text x="244" y="567" font-size="11" fill="#334155">Clave foránea</text>
+<line x1="96" y1="605" x2="96" y2="587" stroke="#475569" stroke-width="2.5"/><line x1="102" y1="605" x2="102" y2="587" stroke="#475569" stroke-width="2.5"/>
+<line x1="74" y1="596" x2="120" y2="596" stroke="#475569" stroke-width="2"/>
+<text x="128" y="600" font-size="11" fill="#334155">Lado «uno» (1)</text>
+<line x1="276" y1="596" x2="260" y2="587" stroke="#475569" stroke-width="2"/><line x1="276" y1="596" x2="260" y2="596" stroke="#475569" stroke-width="2"/><line x1="276" y1="596" x2="260" y2="605" stroke="#475569" stroke-width="2"/>
+<line x1="260" y1="596" x2="310" y2="596" stroke="#475569" stroke-width="2"/>
+<text x="322" y="600" font-size="11" fill="#334155">Lado «muchos» (N)</text>
+<rect x="60" y="640" width="380" height="110" rx="10" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
+<rect x="60" y="640" width="380" height="30" rx="10" fill="#16a34a"/>
+<rect x="60" y="660" width="380" height="10" fill="#16a34a"/>
+<text x="74" y="661" font-size="12.5" font-weight="700" fill="#ffffff">Relación N:M resuelta</text>
+<text x="74" y="692" font-size="11" fill="#334155">USUARIO ↔ CANCIÓN es N:M: un usuario escucha muchas</text>
+<text x="74" y="709" font-size="11" fill="#334155">canciones y una canción es escuchada por muchos usuarios.</text>
+<text x="74" y="726" font-size="11" fill="#334155">Se descompone en dos relaciones 1:N mediante la tabla</text>
+<text x="74" y="743" font-size="11" fill="#334155">intermedia REPRODUCCION (con FK a ambas + atributos).</text>
+<rect x="60" y="765" width="380" height="130" rx="10" fill="#ffffff" stroke="#4338ca" stroke-width="2"/>
+<rect x="60" y="765" width="380" height="30" rx="10" fill="#4338ca"/>
+<rect x="60" y="785" width="380" height="10" fill="#4338ca"/>
+<text x="74" y="786" font-size="12.5" font-weight="700" fill="#ffffff">Normalización aplicada (1FN → 3FN)</text>
+<text x="74" y="817" font-size="11" fill="#334155">No se repiten: nombre/región del país (PAIS), tipo de</text>
+<text x="74" y="834" font-size="11" fill="#334155">dispositivo (DISPOSITIVO), nombre del artista (ARTISTA),</text>
+<text x="74" y="851" font-size="11" fill="#334155">título/año del álbum (ALBUM) ni datos de la canción</text>
+<text x="74" y="868" font-size="11" fill="#334155">(CANCION) en cada reproducción: se referencian por FK.</text>
+<line x1="60" y1="920" x2="1300" y2="920" stroke="#e2e8f0" stroke-width="1"/>
+<text x="60" y="940" font-size="11" fill="#64748b">Elaboración propia con notación de pata de gallo (crow's foot) a partir del modelo entidad-relación [3] y del modelo relacional [4]; normalización según [6].</text>
+<text x="60" y="957" font-size="10.5" fill="#94a3b8" font-style="italic">Diagrama generado con asistencia de inteligencia artificial (Claude, Anthropic).</text>
+</svg>
