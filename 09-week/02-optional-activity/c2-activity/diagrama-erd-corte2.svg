@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 660" width="1180" height="660" font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">ERD Corte 2 — Spotify: streaming por país, álbum, género y plan</title>
+<desc id="d">Seis entidades: ARTISTA, ALBUM, PAIS, GENERO, PLAN y METRICA_STREAMING, con relaciones uno a muchos y claves PK/FK.</desc>
+<rect width="1180" height="660" fill="#ffffff"/>
+<text x="50" y="38" font-size="22" font-weight="700" fill="#111827">ERD · Streaming de Spotify por país, álbum, género y plan</text>
+<text x="50" y="58" font-size="13" fill="#4b5563">Notación pata de gallo (crow's foot) · 1 = uno · N = muchos (pata de gallo) · PK = clave primaria · FK = clave foránea</text>
+<line x1="190.0" y1="162" x2="190.0" y2="300" stroke="#374151" stroke-width="2"/>
+<line x1="190.0" y1="300" x2="181.0" y2="286" stroke="#374151" stroke-width="2"/>
+<line x1="190.0" y1="300" x2="190.0" y2="286" stroke="#374151" stroke-width="2"/>
+<line x1="190.0" y1="300" x2="199.0" y2="286" stroke="#374151" stroke-width="2"/>
+<text x="206.0" y="180" font-size="14" font-weight="700" fill="#111827" text-anchor="start">1</text>
+<text x="210.0" y="282" font-size="14" font-weight="700" fill="#111827" text-anchor="start">N</text>
+<text x="250.0" y="235.0" font-size="12" fill="#4b5563">publica</text>
+<polyline points="330,399 385.0,399 385.0,269 440,269" fill="none" stroke="#374151" stroke-width="2"/>
+<line x1="440" y1="269" x2="426" y2="260" stroke="#374151" stroke-width="2"/>
+<line x1="440" y1="269" x2="426" y2="269" stroke="#374151" stroke-width="2"/>
+<line x1="440" y1="269" x2="426" y2="278" stroke="#374151" stroke-width="2"/>
+<text x="344" y="391" font-size="14" font-weight="700" fill="#111827" text-anchor="start">1</text>
+<text x="410" y="257" font-size="14" font-weight="700" fill="#111827" text-anchor="middle">N</text>
+<text x="377.0" y="338.0" font-size="12" fill="#4b5563" text-anchor="end">tiene</text>
+<polyline points="850,117 810,117 810,243 740,243" fill="none" stroke="#374151" stroke-width="2"/>
+<line x1="740" y1="243" x2="754" y2="234" stroke="#374151" stroke-width="2"/>
+<line x1="740" y1="243" x2="754" y2="243" stroke="#374151" stroke-width="2"/>
+<line x1="740" y1="243" x2="754" y2="252" stroke="#374151" stroke-width="2"/>
+<text x="836" y="109" font-size="14" font-weight="700" fill="#111827" text-anchor="end">1</text>
+<text x="770" y="231" font-size="14" font-weight="700" fill="#111827" text-anchor="middle">N</text>
+<polyline points="850,295 792,295 792,295 740,295" fill="none" stroke="#374151" stroke-width="2"/>
+<line x1="740" y1="295" x2="754" y2="286" stroke="#374151" stroke-width="2"/>
+<line x1="740" y1="295" x2="754" y2="295" stroke="#374151" stroke-width="2"/>
+<line x1="740" y1="295" x2="754" y2="304" stroke="#374151" stroke-width="2"/>
+<text x="836" y="287" font-size="14" font-weight="700" fill="#111827" text-anchor="end">1</text>
+<text x="770" y="283" font-size="14" font-weight="700" fill="#111827" text-anchor="middle">N</text>
+<polyline points="850,497 774,497 774,321 740,321" fill="none" stroke="#374151" stroke-width="2"/>
+<line x1="740" y1="321" x2="754" y2="312" stroke="#374151" stroke-width="2"/>
+<line x1="740" y1="321" x2="754" y2="321" stroke="#374151" stroke-width="2"/>
+<line x1="740" y1="321" x2="754" y2="330" stroke="#374151" stroke-width="2"/>
+<text x="836" y="489" font-size="14" font-weight="700" fill="#111827" text-anchor="end">1</text>
+<text x="770" y="309" font-size="14" font-weight="700" fill="#111827" text-anchor="middle">N</text>
+<rect x="50" y="70" width="280" height="92" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+<path d="M50,104 V78 a8,8 0 0 1 8,-8 H322 a8,8 0 0 1 8,8 V104 Z" fill="#2563eb"/>
+<text x="190.0" y="92" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">ARTISTA</text>
+<text x="62" y="122" font-size="11" font-weight="700" fill="#b45309">PK</text>
+<text x="94" y="122" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">artist_id</text>
+<text x="318" y="122" font-size="11" fill="#6b7280" text-anchor="end">INT</text>
+<rect x="51" y="130" width="278" height="26" fill="#f3f4f6"/>
+<text x="94" y="148" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">nombre</text>
+<text x="318" y="148" font-size="11" fill="#6b7280" text-anchor="end">VARCHAR(100) UNIQUE</text>
+<rect x="50" y="300" width="280" height="144" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+<path d="M50,334 V308 a8,8 0 0 1 8,-8 H322 a8,8 0 0 1 8,8 V334 Z" fill="#2563eb"/>
+<text x="190.0" y="322" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">ALBUM</text>
+<text x="62" y="352" font-size="11" font-weight="700" fill="#b45309">PK</text>
+<text x="94" y="352" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">album_id</text>
+<text x="318" y="352" font-size="11" fill="#6b7280" text-anchor="end">INT</text>
+<rect x="51" y="360" width="278" height="26" fill="#f3f4f6"/>
+<text x="62" y="378" font-size="11" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="94" y="378" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">artist_id</text>
+<text x="318" y="378" font-size="11" fill="#6b7280" text-anchor="end">→ ARTISTA</text>
+<text x="94" y="404" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">titulo</text>
+<text x="318" y="404" font-size="11" fill="#6b7280" text-anchor="end">VARCHAR(150)</text>
+<rect x="51" y="412" width="278" height="26" fill="#f3f4f6"/>
+<text x="94" y="430" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">anio_lanzamiento</text>
+<text x="318" y="430" font-size="11" fill="#6b7280" text-anchor="end">SMALLINT</text>
+<rect x="440" y="170" width="300" height="326" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+<path d="M440,204 V178 a8,8 0 0 1 8,-8 H732 a8,8 0 0 1 8,8 V204 Z" fill="#0f766e"/>
+<text x="590.0" y="192" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">METRICA_STREAMING</text>
+<text x="452" y="222" font-size="11" font-weight="700" fill="#b45309">PK</text>
+<text x="484" y="222" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">metric_id</text>
+<text x="728" y="222" font-size="11" fill="#6b7280" text-anchor="end">INT</text>
+<rect x="441" y="230" width="298" height="26" fill="#f3f4f6"/>
+<text x="452" y="248" font-size="11" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="484" y="248" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">country_id</text>
+<text x="728" y="248" font-size="11" fill="#6b7280" text-anchor="end">→ PAIS</text>
+<text x="452" y="274" font-size="11" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="484" y="274" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">album_id</text>
+<text x="728" y="274" font-size="11" fill="#6b7280" text-anchor="end">→ ALBUM</text>
+<rect x="441" y="282" width="298" height="26" fill="#f3f4f6"/>
+<text x="452" y="300" font-size="11" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="484" y="300" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">genero_id</text>
+<text x="728" y="300" font-size="11" fill="#6b7280" text-anchor="end">→ GENERO</text>
+<text x="452" y="326" font-size="11" font-weight="700" fill="#1d4ed8">FK</text>
+<text x="484" y="326" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">plan_id</text>
+<text x="728" y="326" font-size="11" fill="#6b7280" text-anchor="end">→ PLAN</text>
+<rect x="441" y="334" width="298" height="26" fill="#f3f4f6"/>
+<text x="484" y="352" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">oyentes_mensuales_m</text>
+<text x="728" y="352" font-size="11" fill="#6b7280" text-anchor="end">DECIMAL</text>
+<text x="484" y="378" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">streams_totales_m</text>
+<text x="728" y="378" font-size="11" fill="#6b7280" text-anchor="end">DECIMAL</text>
+<rect x="441" y="386" width="298" height="26" fill="#f3f4f6"/>
+<text x="484" y="404" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">streams_30d_m</text>
+<text x="728" y="404" font-size="11" fill="#6b7280" text-anchor="end">DECIMAL</text>
+<text x="484" y="430" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">duracion_prom_min</text>
+<text x="728" y="430" font-size="11" fill="#6b7280" text-anchor="end">DECIMAL</text>
+<rect x="441" y="438" width="298" height="26" fill="#f3f4f6"/>
+<text x="484" y="456" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">skip_rate_pct</text>
+<text x="728" y="456" font-size="11" fill="#6b7280" text-anchor="end">DECIMAL</text>
+<text x="484" y="482" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">horas_esperadas_m</text>
+<text x="728" y="482" font-size="11" fill="#6b7280" text-anchor="end">DECIMAL</text>
+<rect x="850" y="70" width="280" height="92" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+<path d="M850,104 V78 a8,8 0 0 1 8,-8 H1122 a8,8 0 0 1 8,8 V104 Z" fill="#7c3aed"/>
+<text x="990.0" y="92" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">PAIS</text>
+<text x="862" y="122" font-size="11" font-weight="700" fill="#b45309">PK</text>
+<text x="894" y="122" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">country_id</text>
+<text x="1118" y="122" font-size="11" fill="#6b7280" text-anchor="end">INT</text>
+<rect x="851" y="130" width="278" height="26" fill="#f3f4f6"/>
+<text x="894" y="148" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">nombre</text>
+<text x="1118" y="148" font-size="11" fill="#6b7280" text-anchor="end">VARCHAR(80) UNIQUE</text>
+<rect x="850" y="248" width="280" height="92" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+<path d="M850,282 V256 a8,8 0 0 1 8,-8 H1122 a8,8 0 0 1 8,8 V282 Z" fill="#7c3aed"/>
+<text x="990.0" y="270" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">GENERO</text>
+<text x="862" y="300" font-size="11" font-weight="700" fill="#b45309">PK</text>
+<text x="894" y="300" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">genero_id</text>
+<text x="1118" y="300" font-size="11" fill="#6b7280" text-anchor="end">INT</text>
+<rect x="851" y="308" width="278" height="26" fill="#f3f4f6"/>
+<text x="894" y="326" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">nombre</text>
+<text x="1118" y="326" font-size="11" fill="#6b7280" text-anchor="end">VARCHAR(40) UNIQUE</text>
+<rect x="850" y="450" width="280" height="92" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+<path d="M850,484 V458 a8,8 0 0 1 8,-8 H1122 a8,8 0 0 1 8,8 V484 Z" fill="#7c3aed"/>
+<text x="990.0" y="472" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">PLAN</text>
+<text x="862" y="502" font-size="11" font-weight="700" fill="#b45309">PK</text>
+<text x="894" y="502" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">plan_id</text>
+<text x="1118" y="502" font-size="11" fill="#6b7280" text-anchor="end">INT</text>
+<rect x="851" y="510" width="278" height="26" fill="#f3f4f6"/>
+<text x="894" y="528" font-size="13" fill="#111827" font-family="Consolas, Menlo, monospace">nombre</text>
+<text x="1118" y="528" font-size="11" fill="#6b7280" text-anchor="end">VARCHAR(30) UNIQUE</text>
+<line x1="50" y1="590" x2="1130" y2="590" stroke="#e5e7eb"/>
+<text x="50" y="612" font-size="12" fill="#4b5563">Cardinalidades: ARTISTA 1:N ALBUM · ALBUM 1:N METRICA_STREAMING · PAIS 1:N METRICA_STREAMING · GENERO 1:N METRICA_STREAMING · PLAN 1:N METRICA_STREAMING.</text>
+<text x="50" y="630" font-size="12" fill="#4b5563">Cada fila de METRICA_STREAMING es un segmento país × álbum × género × plan (UNIQUE). Fuente: Kaggle [3]; notación según [4].</text>
+<text x="50" y="648" font-size="12" font-style="italic" fill="#4b5563">Diagrama generado con asistencia de inteligencia artificial (Claude, Anthropic).</text>
+</svg>
