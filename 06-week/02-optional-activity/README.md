@@ -4,6 +4,8 @@
 **Unidad 2:** Modelamiento, transformación y conexión de datos · **Corte 2 · Semana 6** · **Periodo:** 2026-B
 **Modalidad:** Individual/parejas · **Tipo:** Formativa (sin nota)
 
+**Julián Andrés Solano Ledesma**
+
 > Continuación del caso **Spotify — capacidad de streaming y curaduría regional** del Corte 1. Aquí se traduce el inventario de datos y la pregunta de negocio en un **modelo entidad-relación (ERD)** con claves PK/FK, una relación N:M resuelta con tabla intermedia, una decisión relacional/NoSQL justificada y la normalización aplicada.
 
 ---
@@ -30,15 +32,17 @@ Un ERD representa las **entidades** (los "objetos" del dominio), sus **atributos
 
 ### 2.1 Entidades y atributos
 
-| Entidad | PK | FK | Atributos | Rol en el modelo |
+| Entidad | PK | FK (clave foránea) | Atributos | Rol en el modelo |
 |---|---|---|---|---|
-| **PAIS** | `country_id` | — | `codigo_iso`, `nombre`, `region` | Catálogo geográfico; unidad de análisis de la demanda |
+| **PAIS** | `country_id` | Ninguna (catálogo independiente) | `codigo_iso`, `nombre`, `region` | Catálogo geográfico; unidad de análisis de la demanda |
 | **USUARIO** | `user_id` | `country_id` → PAIS | `fecha_registro`, `tipo_plan` | Oyente (identificador seudonimizado) |
-| **DISPOSITIVO** | `device_id` | — | `tipo`, `sistema_operativo` | Catálogo de dispositivos de reproducción |
-| **ARTISTA** | `artist_id` | — | `nombre`, `genero_principal` | Catálogo musical |
+| **DISPOSITIVO** | `device_id` | Ninguna (catálogo independiente) | `tipo`, `sistema_operativo` | Catálogo de dispositivos de reproducción |
+| **ARTISTA** | `artist_id` | Ninguna (catálogo independiente) | `nombre`, `genero_principal` | Catálogo musical |
 | **ALBUM** | `album_id` | `artist_id` → ARTISTA | `titulo`, `anio_lanzamiento` | Catálogo musical |
 | **CANCION** | `track_id` | `album_id` → ALBUM | `titulo`, `duracion_seg` | Catálogo musical |
 | **REPRODUCCION** | `play_id` | `user_id`, `track_id`, `device_id`, `country_id` | `fecha_hora`, `segundos_escuchados` | **Tabla de hechos e intermedia N:M**: un evento de escucha |
+
+> **¿Por qué hay entidades sin FK?** Una FK existe solo cuando la tabla *depende* de otra. `PAIS`, `DISPOSITIVO` y `ARTISTA` son catálogos raíz: no necesitan referenciar a nadie, y son las demás tablas las que las referencian. Por eso su columna FK dice "Ninguna" y no se deja en blanco [4].
 
 ### 2.2 Relaciones y cardinalidades
 
@@ -151,14 +155,14 @@ ORDER BY p.nombre, horas DESC;
 
 **Decisión: enfoque relacional para el núcleo curado del caso, y almacenamiento NoSQL únicamente para los eventos crudos de reproducción en la ingesta** (persistencia políglota, coherente con la arquitectura *lakehouse* de la Semana 3).
 
-Las bases relacionales organizan los datos en tablas con esquema fijo, mientras que las NoSQL usan documentos o pares clave-valor con estructura flexible; las primeras encajan con datos estructurados y las segundas con datos de forma variable [1]. Los almacenes NoSQL se caracterizan por escalar horizontalmente las operaciones simples sobre muchos servidores, distribuir y replicar los datos, ofrecer una interfaz sencilla en lugar de SQL, usar un modelo de concurrencia más débil que las transacciones ACID y permitir añadir atributos dinámicamente [5]. Contrastado con el caso:
+Las bases relacionales organizan los datos en tablas con esquema fijo, mientras que las NoSQL usan documentos o pares clave-valor con estructura flexible; las primeras encajan con datos estructurados y las segundas con datos de forma variable [1]. La literatura comparativa señala que los sistemas relacionales destacan cuando se requiere alta exactitud y consistencia mediante las propiedades ACID, mientras que los NoSQL ofrecen flexibilidad de esquema y escalado horizontal para grandes volúmenes de datos de tipos diversos [5]. Contrastado con el caso:
 
 | Criterio | Relacional (SQL) | NoSQL | Decisión para el caso |
 |---|---|---|---|
-| **Esquema** | Fijo y declarado [4] | Flexible, atributos dinámicos [5] | Catálogo, usuarios y hechos tienen esquema estable → **relacional**; el JSON crudo del streaming varía → **NoSQL** |
-| **Integridad** | PK/FK, restricciones, transacciones ACID | Concurrencia más débil que ACID [5] | Un conteo de horas confiable exige integridad referencial → **relacional** |
-| **Consultas** | Joins y agregaciones nativas | Orientado a operaciones simples por clave/documento [5] | La pregunta de negocio es agregar por país, artista y periodo → **relacional** |
-| **Escritura masiva** | Escala con particionado/índices | Escala horizontal de operaciones simples [5] | Ingesta de eventos por segundo → **NoSQL/streaming** (ruta Kafka de la Semana 3) |
+| **Esquema** | Fijo y declarado | Flexible, admite datos de forma variable [5] | Catálogo, usuarios y hechos tienen esquema estable → **relacional**; el JSON crudo del streaming varía → **NoSQL** |
+| **Integridad** | PK/FK, restricciones, transacciones ACID [4], [5] | Prioriza flexibilidad y escalado sobre las garantías ACID estrictas [5] | Un conteo de horas confiable exige integridad referencial → **relacional** |
+| **Consultas** | Joins y agregaciones nativas | Orientado a acceder a documentos o pares clave-valor completos | La pregunta de negocio es agregar por país, artista y periodo → **relacional** |
+| **Escritura masiva** | Escala con particionado/índices | Escalado horizontal sobre muchos servidores [5] | Ingesta de eventos por segundo → **NoSQL/streaming** (ruta Kafka de la Semana 3) |
 | **Tipo de dato** | Estructurado | Semiestructurado/variable | Alineado con el inventario de la Semana 2 |
 
 En síntesis, el modelo curado (ERD de la Figura 1) vive en un motor relacional porque el negocio necesita **integridad y análisis por joins**; los eventos JSON se aceptan tal como llegan en el lago y se cargan, ya limpios, a `REPRODUCCION`. Elegir una tecnología por moda y sin esta justificación es precisamente uno de los errores que conviene evitar [1].
@@ -167,7 +171,7 @@ En síntesis, el modelo curado (ERD de la Figura 1) vive en un motor relacional 
 
 ## 4. Normalización aplicada
 
-La normalización organiza las tablas para **evitar datos repetidos** e inconsistencias [1]. El criterio práctico que la resume es que cada atributo no clave debe aportar un hecho sobre *la clave, toda la clave y nada más que la clave* [6].
+La normalización organiza las tablas para **evitar datos repetidos** e inconsistencias [1]. El criterio práctico que la resume es que cada atributo no clave debe depender de la clave completa y no de otro atributo no clave; cuando esto no se cumple aparecen redundancia y anomalías de actualización, inserción y borrado [6].
 
 ### 4.1 El problema de partida: una tabla plana
 
@@ -255,10 +259,10 @@ El archivo de origen es [`Cleaned_Spotify_2024_Global_Streaming_Data.csv`](Clean
 
 [2] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
 
-[3] P. P.-S. Chen, "The entity-relationship model—Toward a unified view of data," *ACM Transactions on Database Systems*, vol. 1, no. 1, pp. 9–36, 1976.
+[3] A. Watt and N. Eng, "Chapter 8: The Entity Relationship Data Model," in *Database Design*, 2nd ed. Victoria, BC, Canada: BCcampus, 2014. [Online]. Disponible: https://opentextbc.ca/dbdesign01/chapter/chapter-8-entity-relationship-model/
 
-[4] E. F. Codd, "A relational model of data for large shared data banks," *Communications of the ACM*, vol. 13, no. 6, pp. 377–387, 1970.
+[4] A. Watt and N. Eng, "Chapter 9: Integrity Rules and Constraints," in *Database Design*, 2nd ed. Victoria, BC, Canada: BCcampus, 2014. [Online]. Disponible: https://opentextbc.ca/dbdesign01/chapter/chapter-9-integrity-rules-and-constraints/
 
-[5] R. Cattell, "Scalable SQL and NoSQL data stores," *ACM SIGMOD Record*, vol. 39, no. 4, pp. 12–27, 2011.
+[5] S. Abdellaoui, W. Abbaoui, L. Meziane, B. El Bhiri, and S. Ziti, "SQL and NoSQL databases: A comparative study with perspectives on IA-based migration approach," *Engineering Proceedings*, vol. 112, no. 1, Art. no. 72, 2025, doi: 10.3390/engproc2025112072. [Online]. Disponible: https://www.mdpi.com/2673-4591/112/1/72
 
-[6] W. Kent, "A simple guide to five normal forms in relational database theory," *Communications of the ACM*, vol. 26, no. 2, pp. 120–125, 1983.
+[6] R. Elmasri and S. B. Navathe, "Chapter 10: Functional dependencies and normalization for relational databases," lecture slides, CS 448 Database Systems, Purdue University, West Lafayette, IN, USA, 2014. [Online]. Disponible: https://www.cs.purdue.edu/homes/bb/cs448_Spring2014/lecture-files/pdf/ch10-Functional%20Dependencies%20and%20Normalization%20for%20Relational%20Databases.pdf
