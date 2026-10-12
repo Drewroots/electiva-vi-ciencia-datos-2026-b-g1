@@ -1,0 +1,16 @@
+artist_id,mbid,nombre,tipo,pais_iso,genero_principal,coincidencia_pct
+1,f4fdbb4c-e4b7-47a0-b83b-d91bbfcfa387,Ariana Grande,Person,US,pop,100
+2,48646387-1664-4c9a-9139-9bfd091b823c,BLACKPINK,Group,KR,k-pop,100
+3,0d79fe8e-ba27-4859-bb8c-2f255f346853,BTS,Group,KR,k-pop,100
+4,89aa5ecb-59ad-46f5-b3eb-2d424e941f19,Bad Bunny,Person,PR,reggaeton,100
+5,f4abc0b5-3f7a-4eff-8f78-ac078dbce533,Billie Eilish,Person,US,electropop,100
+6,5df62a88-cac9-490a-b62c-c7c88f4020f4,Doja Cat,Person,US,hip hop,100
+7,9fff2f8a-21e6-47de-a2b8-7f449929d43f,Drake,Person,CA,hip hop,100
+8,6f1a58bf-9b1b-49cf-a44a-6cefad7ae04f,Dua Lipa,Person,GB,dance-pop,100
+9,b8a7c51f-362c-4dcb-a259-bc6e0095f0a6,Ed Sheeran,Person,GB,pop,100
+10,de22adae-f8ac-414f-b653-b0162611bd60,KAROL G,Person,CO,reggaeton,100
+11,6925db17-f35e-42f3-a4eb-84ee6bf5d4b0,Olivia Rodrigo,Person,US,pop,100
+12,b1e26560-60e5-4236-bbdb-9aa5a8d5ee19,Post Malone,Person,US,hip hop,100
+13,272989c8-5535-492d-a25c-9f58803e027f,SZA,Person,US,contemporary r&b,100
+14,20244d07-534f-4eff-b4d4-930878889970,Taylor Swift,Person,US,pop,100
+15,c8b03190-306c-4120-bb0b-6f2ebfc06ea9,The Weeknd,Person,CA,r&b,100

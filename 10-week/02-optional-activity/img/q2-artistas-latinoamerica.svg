@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="645.12pt" height="399.079125pt" viewBox="0 0 645.12 399.079125" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-12T09:30:01.284737</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.6, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M -0 399.079125 
+L 645.12 399.079125 
+L 645.12 0 
+L -0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 78.29 375.176 
+L 637.92 375.176 
+L 637.92 51.616 
+L 78.29 51.616 
+z
+" style="fill: #fcfcfb"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 78.29 375.176 
+L 78.29 51.616 
+" clip-path="url(#pdb05ab4752)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="m43afe7e597" d="M 0 0 
+L 0 3.5 
+" style="stroke: #52514e; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m43afe7e597" x="78.29" y="375.176" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="78.29" y="389.579125" transform="rotate(-0 78.29 389.579125)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 191.438547 375.176 
+L 191.438547 51.616 
+" clip-path="url(#pdb05ab4752)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m43afe7e597" x="191.438547" y="375.176" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="191.438547" y="389.579125" transform="rotate(-0 191.438547 389.579125)">200</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 304.587095 375.176 
+L 304.587095 51.616 
+" clip-path="url(#pdb05ab4752)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m43afe7e597" x="304.587095" y="375.176" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="304.587095" y="389.579125" transform="rotate(-0 304.587095 389.579125)">400</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 417.735642 375.176 
+L 417.735642 51.616 
+" clip-path="url(#pdb05ab4752)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m43afe7e597" x="417.735642" y="375.176" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="417.735642" y="389.579125" transform="rotate(-0 417.735642 389.579125)">600</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 530.88419 375.176 
+L 530.88419 51.616 
+" clip-path="url(#pdb05ab4752)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m43afe7e597" x="530.88419" y="375.176" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="530.88419" y="389.579125" transform="rotate(-0 530.88419 389.579125)">800</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_11"/>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="75.584285" transform="rotate(-0 74.79 75.584285)">Ariana Grande</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_12"/>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="95.800468" transform="rotate(-0 74.79 95.800468)">Ed Sheeran</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_13"/>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="116.069775" transform="rotate(-0 74.79 116.069775)">Taylor Swift</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_14"/>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="136.20627" transform="rotate(-0 74.79 136.20627)">Doja Cat</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_15"/>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="156.449015" transform="rotate(-0 74.79 156.449015)">BTS</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_16"/>
+     <g id="text_11">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="176.665198" transform="rotate(-0 74.79 176.665198)">The Weeknd</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_17"/>
+     <g id="text_12">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="196.88138" transform="rotate(-0 74.79 196.88138)">Bad Bunny</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_18"/>
+     <g id="text_13">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="217.097562" transform="rotate(-0 74.79 217.097562)">Dua Lipa</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_19"/>
+     <g id="text_14">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="237.313745" transform="rotate(-0 74.79 237.313745)">BLACKPINK</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_20"/>
+     <g id="text_15">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="257.529927" transform="rotate(-0 74.79 257.529927)">Billie Eilish</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_21"/>
+     <g id="text_16">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="277.74611" transform="rotate(-0 74.79 277.74611)">Drake</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_22"/>
+     <g id="text_17">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="297.962292" transform="rotate(-0 74.79 297.962292)">Karol G</text>
+     </g>
+    </g>
+    <g id="ytick_13">
+     <g id="line2d_23"/>
+     <g id="text_18">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="318.178475" transform="rotate(-0 74.79 318.178475)">SZA</text>
+     </g>
+    </g>
+    <g id="ytick_14">
+     <g id="line2d_24"/>
+     <g id="text_19">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="338.394657" transform="rotate(-0 74.79 338.394657)">Post Malone</text>
+     </g>
+    </g>
+    <g id="ytick_15">
+     <g id="line2d_25"/>
+     <g id="text_20">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #0b0b0b" x="74.79" y="358.61084" transform="rotate(-0 74.79 358.61084)">Olivia Rodrigo</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 78.29 77.442173 
+L 577.959643 77.442173 
+L 577.959643 66.323273 
+L 78.29 66.323273 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 78.29 97.658356 
+L 521.351425 97.658356 
+L 521.351425 86.539455 
+L 78.29 86.539455 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 78.29 117.874538 
+L 495.581843 117.874538 
+L 495.581843 106.755638 
+L 78.29 106.755638 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 78.29 138.09072 
+L 466.112304 138.09072 
+L 466.112304 126.97182 
+L 78.29 126.97182 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 78.29 158.306903 
+L 463.90025 158.306903 
+L 463.90025 147.188002 
+L 78.29 147.188002 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 78.29 178.523085 
+L 455.87236 178.523085 
+L 455.87236 167.404185 
+L 78.29 167.404185 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 78.29 198.739268 
+L 451.612317 198.739268 
+L 451.612317 187.620367 
+L 78.29 187.620367 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #eb6834; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 78.29 218.95545 
+L 449.468152 218.95545 
+L 449.468152 207.83655 
+L 78.29 207.83655 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 78.29 239.171633 
+L 422.759438 239.171633 
+L 422.759438 228.052732 
+L 78.29 228.052732 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 78.29 259.387815 
+L 325.293279 259.387815 
+L 325.293279 248.268915 
+L 78.29 248.268915 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 78.29 279.603998 
+L 316.722277 279.603998 
+L 316.722277 268.485097 
+L 78.29 268.485097 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 78.29 299.82018 
+L 263.808358 299.82018 
+L 263.808358 288.70128 
+L 78.29 288.70128 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #eb6834; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 78.29 320.036362 
+L 253.574072 320.036362 
+L 253.574072 308.917462 
+L 78.29 308.917462 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 78.29 340.252545 
+L 246.128898 340.252545 
+L 246.128898 329.133644 
+L 78.29 329.133644 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 78.29 360.468727 
+L 170.40989 360.468727 
+L 170.40989 349.349827 
+L 78.29 349.349827 
+z
+" clip-path="url(#pdb05ab4752)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_18">
+    <path d="M 78.29 375.176 
+L 637.92 375.176 
+" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 9.5px; font-family: 'Segoe UI'; text-anchor: start; fill: #0b0b0b" x="583.61707" y="74.306707" transform="rotate(-0 583.61707 74.306707)">883</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 9.5px; font-family: 'Segoe UI'; text-anchor: start; fill: #0b0b0b" x="457.269745" y="195.603802" transform="rotate(-0 457.269745 195.603802)">660</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 9.5px; font-family: 'Segoe UI'; text-anchor: start; fill: #0b0b0b" x="269.465786" y="296.684714" transform="rotate(-0 269.465786 296.684714)">328</text>
+   </g>
+   <g id="text_24">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Segoe UI'; text-anchor: start; fill: #0b0b0b" x="78.29" y="41.616" transform="rotate(-0 78.29 41.616)">Streams de los últimos 30 días en Argentina, Brasil y México (M)</text>
+   </g>
+   <g id="legend_1">
+    <g id="patch_19">
+     <path d="M 428.093437 348.921312 
+L 448.093437 348.921312 
+L 448.093437 341.921312 
+L 428.093437 341.921312 
+z
+" style="fill: #eb6834; stroke: #eb6834; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_25">
+     <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: start; fill: #0b0b0b" x="456.093437" y="348.921312" transform="rotate(-0 456.093437 348.921312)">Reggaetón (género según MusicBrainz)</text>
+    </g>
+    <g id="patch_20">
+     <path d="M 428.093437 363.822875 
+L 448.093437 363.822875 
+L 448.093437 356.822875 
+L 428.093437 356.822875 
+z
+" style="fill: #2a78d6; stroke: #2a78d6; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_26">
+     <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: start; fill: #0b0b0b" x="456.093437" y="363.822875" transform="rotate(-0 456.093437 363.822875)">Otros géneros</text>
+    </g>
+   </g>
+  </g>
+  <g id="text_27">
+   <text style="font-weight: 700; font-size: 12.5px; font-family: 'Segoe UI'; text-anchor: start; fill: #0b0b0b" x="7.2" y="16.453906" transform="rotate(-0 7.2 16.453906)">Q2 · En Latinoamérica, el reggaetón no lidera la demanda reciente</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pdb05ab4752">
+   <rect x="78.29" y="51.616" width="559.63" height="323.56"/>
+  </clipPath>
+ </defs>
+</svg>

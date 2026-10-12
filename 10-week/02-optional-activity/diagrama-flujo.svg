@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 590" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+<title>Flujo del mini-proyecto: modelo, extraer, limpiar, cargar y analizar</title>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+<rect width="1400" height="590" fill="#f8fafc"/>
+<text x="700.0" y="38" text-anchor="middle" font-size="23" font-weight="700" fill="#0f172a">Mini-proyecto · flujo extraer → limpiar → cargar → analizar</text>
+<text x="700.0" y="61" text-anchor="middle" font-size="13.5" font-weight="400" fill="#64748b">Caso Spotify · cierre del Corte 2 · cada etapa reutiliza el trabajo de una semana anterior · pipeline_spotify.py</text>
+<rect x="40" y="96" width="300" height="280" rx="12" fill="#ffffff" stroke="#0369a1" stroke-width="2"/>
+<path d="M40,108 a12,12 0 0 1 12,-12 h276 a12,12 0 0 1 12,12 v32 h-300 z" fill="#0369a1"/>
+<text x="56" y="124" text-anchor="start" font-size="15" font-weight="700" fill="#ffffff">1 · EXTRAER</text>
+<text x="324" y="124" text-anchor="end" font-size="11.5" font-weight="700" fill="#ffffff">Semana 8</text>
+<circle cx="62" cy="162" r="4" fill="#0369a1"/>
+<text x="74" y="166" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">CSV de Kaggle [2]</text>
+<text x="74" y="196" text-anchor="start" font-size="12" font-weight="400" fill="#475569">500 filas × 12 columnas</text>
+<line x1="56" y1="214" x2="324" y2="214" stroke="#e2e8f0"/>
+<circle cx="62" cy="232" r="4" fill="#0369a1"/>
+<text x="74" y="236" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">API MusicBrainz [5]</text>
+<text x="74" y="266" text-anchor="start" font-size="12" font-weight="400" fill="#475569">15 artistas · género</text>
+<text x="74" y="292" text-anchor="start" font-size="12" font-weight="400" fill="#475569">coincidencia 100 % · caché</text>
+<line x1="340" y1="236.0" x2="376" y2="236.0" stroke="#475569" stroke-width="2.4" marker-end="url(#ar)"/>
+<rect x="380" y="96" width="300" height="280" rx="12" fill="#ffffff" stroke="#b45309" stroke-width="2"/>
+<path d="M380,108 a12,12 0 0 1 12,-12 h276 a12,12 0 0 1 12,12 v32 h-300 z" fill="#b45309"/>
+<text x="396" y="124" text-anchor="start" font-size="15" font-weight="700" fill="#ffffff">2 · LIMPIAR</text>
+<text x="664" y="124" text-anchor="end" font-size="11.5" font-weight="700" fill="#ffffff">Semana 9</text>
+<circle cx="402" cy="162" r="4" fill="#b45309"/>
+<text x="414" y="166" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">limpieza_spotify.py [6]</text>
+<text x="414" y="196" text-anchor="start" font-size="12" font-weight="400" fill="#475569">formatos · tipos · duplicados</text>
+<text x="414" y="222" text-anchor="start" font-size="12" font-weight="400" fill="#475569">faltantes · 0 en el CSV real</text>
+<circle cx="402" cy="244" r="4" fill="#b45309"/>
+<text x="414" y="248" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">368 años unificados</text>
+<circle cx="402" cy="274" r="4" fill="#b45309"/>
+<text x="414" y="278" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">2 filas imposibles fuera</text>
+<text x="414" y="308" text-anchor="start" font-size="12" font-weight="400" fill="#475569">500 → 498 filas</text>
+<line x1="680" y1="236.0" x2="716" y2="236.0" stroke="#475569" stroke-width="2.4" marker-end="url(#ar)"/>
+<rect x="720" y="96" width="300" height="280" rx="12" fill="#ffffff" stroke="#6d28d9" stroke-width="2"/>
+<path d="M720,108 a12,12 0 0 1 12,-12 h276 a12,12 0 0 1 12,12 v32 h-300 z" fill="#6d28d9"/>
+<text x="736" y="124" text-anchor="start" font-size="15" font-weight="700" fill="#ffffff">3 · CARGAR</text>
+<text x="1004" y="124" text-anchor="end" font-size="11.5" font-weight="700" fill="#ffffff">Semana 6</text>
+<circle cx="742" cy="162" r="4" fill="#6d28d9"/>
+<text x="754" y="166" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">ERD: 6 tablas · PK/FK [3]</text>
+<text x="754" y="196" text-anchor="start" font-size="12" font-weight="400" fill="#475569">esquema-spotify.sql</text>
+<line x1="736" y1="214" x2="1004" y2="214" stroke="#e2e8f0"/>
+<circle cx="742" cy="232" r="4" fill="#6d28d9"/>
+<text x="754" y="236" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">SQLite: spotify.db [8]</text>
+<text x="754" y="266" text-anchor="start" font-size="12" font-weight="400" fill="#475569">0 violaciones de FK</text>
+<text x="754" y="292" text-anchor="start" font-size="12" font-weight="400" fill="#475569">género de la API en artista</text>
+<line x1="1020" y1="236.0" x2="1056" y2="236.0" stroke="#475569" stroke-width="2.4" marker-end="url(#ar)"/>
+<rect x="1060" y="96" width="300" height="280" rx="12" fill="#ffffff" stroke="#15803d" stroke-width="2"/>
+<path d="M1060,108 a12,12 0 0 1 12,-12 h276 a12,12 0 0 1 12,12 v32 h-300 z" fill="#15803d"/>
+<text x="1076" y="124" text-anchor="start" font-size="15" font-weight="700" fill="#ffffff">4 · ANALIZAR</text>
+<text x="1344" y="124" text-anchor="end" font-size="11.5" font-weight="700" fill="#ffffff">Semana 7</text>
+<circle cx="1082" cy="162" r="4" fill="#15803d"/>
+<text x="1094" y="166" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">SQL: filtro + agregación</text>
+<text x="1094" y="196" text-anchor="start" font-size="12" font-weight="400" fill="#475569">verificado en pandas [7]</text>
+<line x1="1076" y1="214" x2="1344" y2="214" stroke="#e2e8f0"/>
+<circle cx="1082" cy="232" r="4" fill="#15803d"/>
+<text x="1094" y="236" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">Q1 · WHERE plan = Premium</text>
+<circle cx="1082" cy="262" r="4" fill="#15803d"/>
+<text x="1094" y="266" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">Q2 · WHERE región = Latam</text>
+<text x="1094" y="296" text-anchor="start" font-size="12" font-weight="400" fill="#475569">GROUP BY región / artista</text>
+<rect x="40" y="406" width="1320" height="96" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="60" y="434" text-anchor="start" font-size="14" font-weight="700" fill="#0f172a">Datos listos para analizar</text>
+<text x="60" y="464" text-anchor="start" font-size="12.5" font-weight="700" fill="#0f172a" font-family="Consolas, 'Courier New', monospace">datos/spotify.db</text>
+<text x="60" y="484" text-anchor="start" font-size="11.5" font-weight="400" fill="#475569">base SQLite con las 6 tablas del ERD</text>
+<text x="390" y="464" text-anchor="start" font-size="12.5" font-weight="700" fill="#0f172a" font-family="Consolas, 'Courier New', monospace">datos/spotify_limpio.csv</text>
+<text x="390" y="484" text-anchor="start" font-size="11.5" font-weight="400" fill="#475569">498 filas limpias, tipos correctos</text>
+<text x="720" y="464" text-anchor="start" font-size="12.5" font-weight="700" fill="#0f172a" font-family="Consolas, 'Courier New', monospace">datos/catalogo_musicbrainz.csv</text>
+<text x="720" y="484" text-anchor="start" font-size="11.5" font-weight="400" fill="#475569">caché de la API (15 artistas)</text>
+<text x="1050" y="464" text-anchor="start" font-size="12.5" font-weight="700" fill="#0f172a" font-family="Consolas, 'Courier New', monospace">img/q1-…svg · img/q2-…svg</text>
+<text x="1050" y="484" text-anchor="start" font-size="11.5" font-weight="400" fill="#475569">gráficos de las dos respuestas</text>
+<line x1="40" y1="532" x2="1360" y2="532" stroke="#e2e8f0"/>
+<text x="40" y="558" text-anchor="start" font-size="12" font-weight="400" fill="#334155">Decisiones que alimenta: Q1 → capacidad de servidores y CDN por región (Infraestructura) · Q2 → curaduría de artistas en Latinoamérica (Contenido).</text>
+<text x="40" y="578" text-anchor="start" font-size="10.5" font-weight="400" fill="#94a3b8">[n] = referencia del README de la Semana 10. Cifras obtenidas al ejecutar mini-proyecto-spotify.ipynb.</text>
+</svg>
