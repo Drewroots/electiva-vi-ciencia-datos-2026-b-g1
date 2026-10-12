@@ -1,0 +1,4 @@
+artist_id,mbid,nombre,tipo,pais_iso,anio_inicio,genero_principal
+1,f4fdbb4c-e4b7-47a0-b83b-d91bbfcfa387,Ariana Grande,Person,US,1993,pop
+2,48646387-1664-4c9a-9139-9bfd091b823c,BLACKPINK,Group,KR,2016,k-pop
+3,0d79fe8e-ba27-4859-bb8c-2f255f346853,BTS,Group,KR,2013,k-pop
