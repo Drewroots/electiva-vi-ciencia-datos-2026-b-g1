@@ -6,263 +6,218 @@
 
 **Julián Andrés Solano Ledesma**
 
-> Continuación del caso **Spotify — capacidad de streaming y curaduría regional** del Corte 1. Aquí se traduce el inventario de datos y la pregunta de negocio en un **modelo entidad-relación (ERD)** con claves PK/FK, una relación N:M resuelta con tabla intermedia, una decisión relacional/NoSQL justificada y la normalización aplicada.
+> Continuación del caso **Spotify — capacidad de streaming y curaduría regional** del Corte 1. Aquí se convierte el dataset de Kaggle *Spotify Global Streaming Data (2024)* [2] en un **modelo entidad-relación (ERD)**. El modelo tiene claves PK/FK y una relación N:M resuelta con una tabla intermedia. Además se justifica la decisión relacional frente a NoSQL y se muestra, con los datos reales, dónde se aplicó la normalización.
 
 ---
 
-## 1. Punto de partida: qué debe poder responder el modelo
+## 1. Punto de partida: qué debe responder el modelo
 
-Un error frecuente al modelar es diseñar tablas sin conocer las preguntas de negocio que deben contestar [1]. Por eso el ERD se deriva directamente de la pregunta del Corte 1: *¿en qué países y momentos del año aumentará la demanda de streaming, para escalar infraestructura y priorizar contenido por región?* Esa pregunta exige que el modelo permita, como mínimo:
+Modelar sin saber qué preguntas se responderán con los datos es un error común [1]. Por eso el ERD se deriva de la pregunta de negocio del Corte 1: *¿en qué países y en qué momentos aumentará la demanda de streaming, para escalar la infraestructura y priorizar el contenido por región?* El modelo debe permitir, como mínimo:
 
-- sumar **horas de escucha por país y periodo** (decisión de capacidad de servidores/CDN);
-- identificar **artistas y álbumes más escuchados por país** (decisión de curaduría);
-- distinguir el **dispositivo** desde el que se reproduce (variedad de datos identificada en la Semana 2).
+- sumar **streams y horas de escucha por país**, para la decisión de capacidad;
+- identificar los **artistas y álbumes más escuchados por país**, para la decisión de curaduría;
+- comparar el comportamiento por **género** y por **plan** (Free/Premium), por ejemplo el *skip rate*.
 
-El modelo es un **diseño objetivo** para el caso; el conjunto de datos de Kaggle [2] reporta horas escuchadas, países y artistas/álbumes top (información agregada), por lo que se usaría para calibrar y validar el modelo, mientras que los eventos de reproducción individuales (JSON, tiempo real) poblarían la tabla de hechos.
+El dataset [2] es un archivo plano de **500 filas × 12 columnas**, sin celdas nulas ni filas duplicadas. Cada fila es una observación de métricas de un álbum en un país, para un plan y un género.
 
 ---
 
 ## 2. Diagrama entidad-relación (ERD)
 
-![ERD del caso Spotify con PK/FK y relación N:M resuelta con REPRODUCCION](./diagrama-erd-spotify.svg)
+![ERD del caso Spotify con 6 entidades, PK/FK y la relación N:M PAIS–ALBUM resuelta con METRICA_STREAMING](./diagrama-erd-spotify.svg)
 
 *Fig. 1. ERD del caso Spotify en notación de pata de gallo. Diagrama generado con asistencia de inteligencia artificial (Claude, Anthropic), a partir del modelo diseñado en este documento.*
 
-Un ERD representa las **entidades** (los "objetos" del dominio), sus **atributos** y las **relaciones** entre ellas [3]; en el modelo relacional cada entidad se vuelve una tabla identificada por una **clave primaria (PK)** y vinculada a otras mediante **claves foráneas (FK)** [4].
+El modelo entidad-relación representa el dominio con **entidades**, sus **atributos** y las **relaciones** entre ellas [3]. Al pasarlo al modelo relacional, cada entidad se convierte en una tabla identificada por una **clave primaria (PK)**. Las tablas se enlazan mediante **claves foráneas (FK)**: columnas que toman sus valores de la PK de otra tabla [4].
 
-### 2.1 Entidades y atributos
+### 2.1 Entidades
 
-| Entidad | PK | FK (clave foránea) | Atributos | Rol en el modelo |
+| Entidad | PK | FK | Atributos | Origen en el CSV |
 |---|---|---|---|---|
-| **PAIS** | `country_id` | Ninguna (catálogo independiente) | `codigo_iso`, `nombre`, `region` | Catálogo geográfico; unidad de análisis de la demanda |
-| **USUARIO** | `user_id` | `country_id` → PAIS | `fecha_registro`, `tipo_plan` | Oyente (identificador seudonimizado) |
-| **DISPOSITIVO** | `device_id` | Ninguna (catálogo independiente) | `tipo`, `sistema_operativo` | Catálogo de dispositivos de reproducción |
-| **ARTISTA** | `artist_id` | Ninguna (catálogo independiente) | `nombre`, `genero_principal` | Catálogo musical |
-| **ALBUM** | `album_id` | `artist_id` → ARTISTA | `titulo`, `anio_lanzamiento` | Catálogo musical |
-| **CANCION** | `track_id` | `album_id` → ALBUM | `titulo`, `duracion_seg` | Catálogo musical |
-| **REPRODUCCION** | `play_id` | `user_id`, `track_id`, `device_id`, `country_id` | `fecha_hora`, `segundos_escuchados` | **Tabla de hechos e intermedia N:M**: un evento de escucha |
+| **PAIS** | `country_id` | Ninguna | `codigo_iso`, `nombre`, `region` | `Country` (20 valores). El código ISO y la región se agregan para analizar por zona |
+| **ARTISTA** | `artist_id` | Ninguna | `nombre`, `genero_principal` | `Artist` (15 valores) |
+| **ALBUM** | `album_id` | `artist_id` → ARTISTA | `titulo`, `anio_lanzamiento` | `Album`, `Release Year` (15 álbumes) |
+| **GENERO** | `genero_id` | Ninguna | `nombre` | `Genre` (10 valores) |
+| **PLAN_SUSCRIPCION** | `plan_id` | Ninguna | `nombre` | `Platform Type` (Free, Premium) |
+| **METRICA_STREAMING** | `metric_id` | `country_id`, `album_id`, `genero_id`, `plan_id` | `oyentes_mensuales_m`, `streams_totales_m`, `horas_totales_m`, `duracion_prom_min`, `streams_30d_m`, `skip_rate_pct` | Las 6 columnas numéricas. **Tabla intermedia** de la relación N:M |
 
-> **¿Por qué hay entidades sin FK?** Una FK existe solo cuando la tabla *depende* de otra. `PAIS`, `DISPOSITIVO` y `ARTISTA` son catálogos raíz: no necesitan referenciar a nadie, y son las demás tablas las que las referencian. Por eso su columna FK dice "Ninguna" y no se deja en blanco [4].
+> **¿Por qué hay entidades sin FK?** Una FK existe solo cuando una tabla *depende* de otra. PAIS, ARTISTA, GENERO y PLAN_SUSCRIPCION son catálogos raíz: no referencian a nadie, y son las demás tablas las que los referencian [4].
 
 ### 2.2 Relaciones y cardinalidades
 
-Las relaciones pueden ser 1:1, 1:N o N:M; esta última no se implementa directamente sino con una tabla intermedia [1].
+Cada cardinalidad se comprobó sobre los datos en [`normalizacion-spotify.ipynb`](./normalizacion-spotify.ipynb).
 
-| Relación | Cardinalidad | Lectura |
-|---|---|---|
-| PAIS — USUARIO | 1:N | Un país registra muchos usuarios; cada usuario tiene un país de registro |
-| PAIS — REPRODUCCION | 1:N | Una reproducción ocurre en un país (donde se consume el servicio) |
-| USUARIO — REPRODUCCION | 1:N | Un usuario realiza muchas reproducciones |
-| DISPOSITIVO — REPRODUCCION | 1:N | Un dispositivo (tipo/SO) se usa en muchas reproducciones |
-| CANCION — REPRODUCCION | 1:N | Una canción es reproducida muchas veces |
-| ARTISTA — ALBUM | 1:N | Un artista publica muchos álbumes |
-| ALBUM — CANCION | 1:N | Un álbum contiene muchas canciones |
-| **USUARIO — CANCION** | **N:M** | Resuelta con la tabla intermedia **REPRODUCCION** |
-
-> **Decisión de diseño:** `REPRODUCCION` lleva su propio `country_id`. El país de *registro* del usuario no siempre coincide con el país desde donde *reproduce*, y la capacidad de servidores depende de dónde ocurre el consumo, no de dónde se registró la cuenta.
+| Relación | Cardinalidad | Lectura | Evidencia en el CSV |
+|---|---|---|---|
+| ARTISTA — ALBUM | 1:N | Un artista publica álbumes; cada álbum tiene un solo artista | `Album → Artist` se cumple en los 15 álbumes. Hoy hay 1 álbum por artista, pero el modelo admite varios |
+| ALBUM — METRICA_STREAMING | 1:N | Un álbum se mide en muchas observaciones | Cada álbum aparece en 14 a 19 países |
+| PAIS — METRICA_STREAMING | 1:N | Un país registra muchas observaciones | Cada país tiene de 10 a 15 álbumes distintos |
+| GENERO — METRICA_STREAMING | 1:N | Cada observación se clasifica en un género | 10 géneros repartidos en las 500 filas |
+| PLAN_SUSCRIPCION — METRICA_STREAMING | 1:N | Cada observación pertenece a un plan | 2 planes: Free y Premium |
+| **PAIS — ALBUM** | **N:M** | Un país escucha muchos álbumes y un álbum se escucha en muchos países | 244 combinaciones distintas país–álbum. **Se resuelve con METRICA_STREAMING** |
 
 ### 2.3 La relación N:M y su tabla intermedia
 
-Un usuario escucha muchas canciones y una canción es escuchada por muchos usuarios: **USUARIO ↔ CANCION es N:M**. Se descompone en dos relaciones 1:N (USUARIO—REPRODUCCION y CANCION—REPRODUCCION) mediante `REPRODUCCION`, que contiene las FK hacia ambas entidades y además **atributos propios de la relación** (`fecha_hora`, `segundos_escuchados`) que no pertenecen ni al usuario ni a la canción. Se eligió una PK sustituta (`play_id`) porque el mismo usuario puede escuchar la misma canción varias veces, incluso en el mismo minuto, y la combinación (usuario, canción) no identifica un evento de forma única.
+Una relación N:M no se puede guardar directamente en una tabla: se resuelve con una **tabla intermedia** [1]. En el modelo entidad-relación, la relación misma puede tener atributos propios, y al pasarla a tablas se convierte en una tabla con las claves de ambas entidades [3].
 
-### 2.4 Esquema SQL del modelo
+**METRICA_STREAMING** cumple ese papel:
+
+- divide la relación PAIS ↔ ALBUM en dos relaciones 1:N (PAIS—METRICA y ALBUM—METRICA);
+- guarda la FK de cada lado (`country_id`, `album_id`);
+- guarda además los atributos que pertenecen a la *combinación* y no a una sola entidad: oyentes, streams, horas, duración y *skip rate*. Los streams de *Guts* en Brasil no son un dato del álbum ni del país, sino de los dos juntos.
+
+**¿Por qué una clave sustituta (`metric_id`)?** La combinación natural (país, álbum, plan) se repite en **158 filas**, e incluso añadiendo el género quedan 26 repeticiones. Ninguna combinación de columnas identifica una fila de forma única. Por eso `metric_id` toma el número de fila del CSV original, lo que además permite rastrear cada registro hasta su fuente.
+
+### 2.4 Esquema SQL
+
+El script completo, con PK, FK, `UNIQUE` y `CHECK`, está en [`esquema-spotify.sql`](./esquema-spotify.sql). Este es el núcleo de la relación N:M:
 
 ```sql
-CREATE TABLE pais (
-  country_id  INT PRIMARY KEY,
-  codigo_iso  CHAR(2)     NOT NULL UNIQUE,
-  nombre      VARCHAR(80) NOT NULL,
-  region      VARCHAR(40) NOT NULL
-);
-
-CREATE TABLE dispositivo (
-  device_id          SMALLINT PRIMARY KEY,
-  tipo               VARCHAR(30) NOT NULL,
-  sistema_operativo  VARCHAR(30) NOT NULL,
-  UNIQUE (tipo, sistema_operativo)
-);
-
-CREATE TABLE usuario (
-  user_id         BIGINT PRIMARY KEY,
-  country_id      INT         NOT NULL REFERENCES pais (country_id),
-  fecha_registro  DATE        NOT NULL,
-  tipo_plan       VARCHAR(20) NOT NULL
-);
-
-CREATE TABLE artista (
-  artist_id         INT PRIMARY KEY,
-  nombre            VARCHAR(100) NOT NULL,
-  genero_principal  VARCHAR(40)
-);
-
 CREATE TABLE album (
-  album_id          INT PRIMARY KEY,
+  album_id          INT          PRIMARY KEY,
   artist_id         INT          NOT NULL REFERENCES artista (artist_id),
   titulo            VARCHAR(150) NOT NULL,
-  anio_lanzamiento  SMALLINT
+  anio_lanzamiento  SMALLINT     NOT NULL CHECK (anio_lanzamiento BETWEEN 1900 AND 2100),
+  UNIQUE (artist_id, titulo)
 );
 
-CREATE TABLE cancion (
-  track_id      BIGINT PRIMARY KEY,
-  album_id      INT          NOT NULL REFERENCES album (album_id),
-  titulo        VARCHAR(150) NOT NULL,
-  duracion_seg  INT          NOT NULL CHECK (duracion_seg > 0)
+-- Tabla intermedia de la relación N:M  PAIS <-> ALBUM
+CREATE TABLE metrica_streaming (
+  metric_id      INT           PRIMARY KEY,             -- fila del CSV original
+  country_id     INT           NOT NULL REFERENCES pais (country_id),
+  album_id       INT           NOT NULL REFERENCES album (album_id),
+  genero_id      INT           NOT NULL REFERENCES genero (genero_id),
+  plan_id        SMALLINT      NOT NULL REFERENCES plan_suscripcion (plan_id),
+  streams_30d_m  DECIMAL(10,2) NOT NULL CHECK (streams_30d_m >= 0),
+  skip_rate_pct  DECIMAL(5,2)  NOT NULL CHECK (skip_rate_pct BETWEEN 0 AND 100)
+  -- ... más las otras 4 medidas numéricas
 );
-
--- Tabla intermedia de la relación N:M USUARIO <-> CANCION
-CREATE TABLE reproduccion (
-  play_id              BIGINT PRIMARY KEY,
-  user_id              BIGINT    NOT NULL REFERENCES usuario (user_id),
-  track_id             BIGINT    NOT NULL REFERENCES cancion (track_id),
-  device_id            SMALLINT  NOT NULL REFERENCES dispositivo (device_id),
-  country_id           INT       NOT NULL REFERENCES pais (country_id),
-  fecha_hora           TIMESTAMP NOT NULL,
-  segundos_escuchados  INT       NOT NULL CHECK (segundos_escuchados >= 0)
-);
-
-CREATE INDEX idx_reproduccion_pais_fecha ON reproduccion (country_id, fecha_hora);
-```
-
-El esquema se verificó cargándolo en una base SQLite con claves foráneas activas: las restricciones `FOREIGN KEY` y `CHECK` rechazan, respectivamente, una reproducción que apunta a una canción inexistente y una con segundos negativos. La regla "`segundos_escuchados` no puede superar `duracion_seg`" involucra dos tablas, por lo que se valida en la etapa de limpieza del ciclo de vida (reto de **veracidad** de la Semana 2), no con un `CHECK`.
-
-**Consultas que el modelo habilita** (horas por país y mes, y artistas más escuchados por país):
-
-```sql
--- Demanda por país y mes -> decisión de capacidad (PostgreSQL)
-SELECT p.nombre AS pais,
-       date_trunc('month', r.fecha_hora)        AS mes,
-       ROUND(SUM(r.segundos_escuchados) / 3600.0, 1) AS horas
-FROM reproduccion r
-JOIN pais p ON p.country_id = r.country_id
-GROUP BY p.nombre, date_trunc('month', r.fecha_hora)
-ORDER BY mes, horas DESC;
-
--- Artistas top por país -> decisión de curaduría
-SELECT p.nombre AS pais, a.nombre AS artista,
-       ROUND(SUM(r.segundos_escuchados) / 3600.0, 1) AS horas
-FROM reproduccion r
-JOIN pais    p  ON p.country_id = r.country_id
-JOIN cancion c  ON c.track_id   = r.track_id
-JOIN album   al ON al.album_id  = c.album_id
-JOIN artista a  ON a.artist_id  = al.artist_id
-GROUP BY p.nombre, a.nombre
-ORDER BY p.nombre, horas DESC;
 ```
 
 ---
 
 ## 3. ¿Relacional o NoSQL?
 
-**Decisión: enfoque relacional para el núcleo curado del caso, y almacenamiento NoSQL únicamente para los eventos crudos de reproducción en la ingesta** (persistencia políglota, coherente con la arquitectura *lakehouse* de la Semana 3).
+**Decisión: modelo relacional** (PostgreSQL en producción, SQLite para la validación local).
 
-Las bases relacionales organizan los datos en tablas con esquema fijo, mientras que las NoSQL usan documentos o pares clave-valor con estructura flexible; las primeras encajan con datos estructurados y las segundas con datos de forma variable [1]. La literatura comparativa señala que los sistemas relacionales destacan cuando se requiere alta exactitud y consistencia mediante las propiedades ACID, mientras que los NoSQL ofrecen flexibilidad de esquema y escalado horizontal para grandes volúmenes de datos de tipos diversos [5]. Contrastado con el caso:
+Las bases relacionales organizan los datos en tablas con esquema fijo e integridad, mientras que las NoSQL usan documentos o pares clave-valor con estructura flexible y escalan horizontalmente [1]. El modelo relacional separa la estructura lógica de los datos de su almacenamiento físico y expresa los vínculos entre tablas mediante claves [4]. Los sistemas NoSQL, en cambio, están pensados para repartir operaciones simples sobre muchos servidores y para admitir esquemas cambiantes. A cambio, suelen relajar las garantías de consistencia de las transacciones [6].
 
-| Criterio | Relacional (SQL) | NoSQL | Decisión para el caso |
+| Criterio | Relacional | NoSQL | Qué pide el caso |
 |---|---|---|---|
-| **Esquema** | Fijo y declarado | Flexible, admite datos de forma variable [5] | Catálogo, usuarios y hechos tienen esquema estable → **relacional**; el JSON crudo del streaming varía → **NoSQL** |
-| **Integridad** | PK/FK, restricciones, transacciones ACID [4], [5] | Prioriza flexibilidad y escalado sobre las garantías ACID estrictas [5] | Un conteo de horas confiable exige integridad referencial → **relacional** |
-| **Consultas** | Joins y agregaciones nativas | Orientado a acceder a documentos o pares clave-valor completos | La pregunta de negocio es agregar por país, artista y periodo → **relacional** |
-| **Escritura masiva** | Escala con particionado/índices | Escalado horizontal sobre muchos servidores [5] | Ingesta de eventos por segundo → **NoSQL/streaming** (ruta Kafka de la Semana 3) |
-| **Tipo de dato** | Estructurado | Semiestructurado/variable | Alineado con el inventario de la Semana 2 |
+| **Estructura del dato** | Esquema fijo y declarado [4] | Esquema flexible, cada documento puede variar [6] | 12 columnas estables, sin nulos y con tipos fijos → **relacional** |
+| **Integridad** | PK, FK y restricciones `CHECK` | La aplicación debe garantizar la coherencia [6] | La normalización detectó años contradictorios (sección 4.3); las FK y los `CHECK` impiden que vuelva a pasar → **relacional** |
+| **Consultas** | `JOIN` y agregaciones nativas | Acceso eficiente a un documento o clave completos [6] | Las preguntas del negocio son agregaciones por país, artista, género y plan → **relacional** |
+| **Transacciones** | Propiedades ACID: atomicidad, consistencia, aislamiento y durabilidad [7] | Garantías más débiles a cambio de escalabilidad [6] | Una recarga del catálogo debe aplicarse completa o no aplicarse → **relacional** |
+| **Escala** | Suficiente para miles o millones de filas en un servidor | Escalado horizontal en muchos nodos [6] | 500 filas y 6 tablas: no hay un problema de escala que justifique NoSQL |
 
-En síntesis, el modelo curado (ERD de la Figura 1) vive en un motor relacional porque el negocio necesita **integridad y análisis por joins**; los eventos JSON se aceptan tal como llegan en el lago y se cargan, ya limpios, a `REPRODUCCION`. Elegir una tecnología por moda y sin esta justificación es precisamente uno de los errores que conviene evitar [1].
+En síntesis, los datos son **estructurados, estables y se consultan cruzando tablas**: es el escenario para el que fue diseñado el modelo relacional [4]. Elegir NoSQL sin necesidad es otro de los errores comunes del modelamiento [1]. NoSQL solo tendría sentido en una fase posterior, si se ingirieran los eventos individuales de reproducción en JSON a gran escala. Aun así, quedaría como capa de ingesta previa y no reemplazaría este modelo curado.
 
 ---
 
 ## 4. Normalización aplicada
 
-La normalización organiza las tablas para **evitar datos repetidos** e inconsistencias [1]. El criterio práctico que la resume es que cada atributo no clave debe depender de la clave completa y no de otro atributo no clave; cuando esto no se cumple aparecen redundancia y anomalías de actualización, inserción y borrado [6].
+La normalización organiza las tablas para que **cada dato viva en un solo lugar**, reduciendo la redundancia y los errores de actualización [1]. Su regla práctica es que todo atributo que no sea clave debe describir *la clave, toda la clave y nada más que la clave*. Cuando esto no se cumple aparecen la redundancia y las anomalías de actualización, inserción y borrado [5].
 
-### 4.1 El problema de partida: una tabla plana
+### 4.1 El punto de partida: una tabla plana
 
-Si todo se guardara en una única tabla de reproducciones:
+El CSV [2] guarda todo en una sola tabla. Los nombres de país, artista, álbum, género y plan se repiten en cada una de las 500 filas, es decir, **2 500 celdas de texto** para apenas **62 valores distintos**.
 
-`reproduccion_plana(play_id, user_id, pais_nombre, region, dispositivo_tipo, dispositivo_so, track_titulo, duracion_seg, album_titulo, anio, artista_nombre, genero, fecha_hora, segundos_escuchados)`
+### 4.2 Dependencias funcionales encontradas en los datos
 
-el nombre de un artista, el título de un álbum o el nombre y región de un país se repetirían en **millones de filas**, con tres anomalías: **actualización** (corregir el nombre de un artista obligaría a modificar todas sus reproducciones), **inserción** (no se podría registrar una canción o un artista nuevo sin una reproducción) y **borrado** (eliminar la última reproducción de una canción borraría también sus datos).
+Antes de separar tablas se comprobó qué depende de qué. `X → Y` significa que cada valor de `X` tiene un único valor de `Y`. El resultado decide dónde vive cada atributo [5]:
 
-### 4.2 Dónde se aplicó cada forma normal [6]
+| Dependencia | ¿Se cumple? | Consecuencia en el modelo |
+|---|:---:|---|
+| `Album → Artist` | Sí (15/15) | El artista se guarda una vez en ALBUM (`artist_id`) y no en cada fila |
+| `Album → Release Year` | **No: cada álbum tiene 6 años distintos** | Es una anomalía. El año pertenece al álbum, así que se corrige y se guarda una sola vez en ALBUM (ver 4.3) |
+| `Album → Genre` | No (9–10 géneros por álbum) | El género **no** es atributo del álbum: queda como FK en METRICA_STREAMING |
+| `Artist → Genre` | No | Por eso `genero_principal` de ARTISTA queda vacío: los datos no asignan un género único por artista |
+| `Album → Monthly Listeners` | No | Los oyentes son una medida de cada observación: se quedan en METRICA_STREAMING |
 
-| Forma normal | Qué exige | Cómo se aplicó en el ERD |
+### 4.3 La anomalía que la normalización hace visible
+
+En la tabla plana, el álbum *1989 (Taylor's Version)* aparece con los años 2018, 2019, 2020, 2021, 2022 y 2023, y **lo mismo ocurre con los 15 álbumes**. Es justamente la anomalía de actualización que describe la teoría: si un dato del álbum se copia en cada fila, nada impide que las copias se contradigan [5].
+
+Al normalizar, el año pasa a vivir **una sola vez** en ALBUM, y la contradicción ya no puede repetirse. Para elegir ese único valor se aplicó una regla reproducible: el **año más frecuente** de cada álbum, y en caso de empate el menor. Es una decisión de limpieza documentada, no una verificación del año real. Ninguno de los 6 valores del archivo puede tomarse como cierto sin una fuente de catálogo. Del mismo modo, los géneros del CSV no siempre corresponden a la discografía real: Taylor Swift aparece, por ejemplo, como K-pop. El modelo representa lo que dicen los datos, sin corregirlos por fuera de ellos.
+
+### 4.4 Formas normales aplicadas
+
+| Forma normal | Qué exige [5] | Cómo se aplicó |
 |---|---|---|
-| **1FN** | Valores atómicos, sin listas ni grupos repetidos | Cada reproducción es **una fila**; no se guardan varios artistas, canciones o dispositivos en una misma celda |
-| **2FN** | Ningún atributo depende solo de *parte* de la clave | `titulo` y `duracion_seg` dependen solo de la canción, no del evento de escucha → se trasladan a **CANCION**; análogamente `tipo`/`sistema_operativo` a **DISPOSITIVO** |
-| **3FN** | Sin dependencias transitivas entre atributos no clave | Se rompe la cadena reproducción → canción → álbum → artista (en **CANCION**, **ALBUM**, **ARTISTA**) y usuario → país → región (en **USUARIO** y **PAIS**) |
+| **1FN** | Valores atómicos, sin listas ni grupos repetidos | El CSV ya la cumple: cada celda tiene un solo valor. Se conserva una observación por fila en METRICA_STREAMING |
+| **2FN** | Ningún atributo depende solo de *una parte* de la clave | Del identificador natural (país, álbum, plan), el título, el artista y el año dependen **solo del álbum** → pasan a ALBUM. El nombre del país depende solo del país → pasa a PAIS |
+| **3FN** | Sin dependencias transitivas entre atributos no clave | La cadena observación → álbum → artista se rompe: METRICA referencia al álbum, y el artista vive en ARTISTA, enlazado desde ALBUM. Género y plan pasan a sus propios catálogos |
 
-### 4.3 Qué se evitó repetir
+### 4.5 Qué se evitó repetir
 
-| Dato | Vive solo en | Lo demás lo referencia por |
-|---|---|---|
-| Nombre y región del país | `PAIS` | `country_id` (en `USUARIO` y `REPRODUCCION`) |
-| Tipo y sistema operativo del dispositivo | `DISPOSITIVO` | `device_id` |
-| Título y duración de la canción | `CANCION` | `track_id` |
-| Título y año del álbum | `ALBUM` | `album_id` |
-| Nombre y género del artista | `ARTISTA` | `artist_id` |
+| Dato | Veces en el CSV plano | Vive solo en | Veces que se guarda | Se referencia por |
+|---|---:|---|---:|---|
+| Nombre del país | 500 | `pais` | 20 | `country_id` |
+| Nombre del artista | 500 | `artista` | 15 | `artist_id` (desde `album`) |
+| Título del álbum | 500 | `album` | 15 | `album_id` |
+| Año de lanzamiento | 500 (con contradicciones) | `album` | 15 | `album_id` |
+| Nombre del género | 500 | `genero` | 10 | `genero_id` |
+| Tipo de plan | 500 | `plan_suscripcion` | 2 | `plan_id` |
 
-**Matiz importante:** la normalización protege la capa transaccional/curada. En la capa analítica de la arquitectura (*data warehouse* de la Semana 3) puede ser razonable materializar una tabla agregada de demanda por país y día para acelerar el forecast; esa tabla se **deriva** de las tablas normalizadas y se regenera desde ellas, de modo que no se vuelve una segunda fuente de verdad que mantener a mano.
+Las 2 500 celdas de texto repetidas pasan a 62 valores, cada uno guardado una sola vez. METRICA_STREAMING conserva sus 500 filas, pero ya solo con FK numéricas y las 6 medidas.
+
+### 4.6 Verificación con los datos
+
+El cuaderno [`normalizacion-spotify.ipynb`](./normalizacion-spotify.ipynb) usa pandas [8] para separar las tablas y las carga en SQLite [9] con el esquema del ERD:
+
+- **Integridad:** `PRAGMA foreign_key_check` reporta **0 violaciones**, y la FK rechaza una métrica que apunta a un álbum inexistente.
+- **Descomposición sin pérdida:** al unir las 6 tablas con `JOIN` se reconstruyen **las 500 filas idénticas** al CSV original en las 11 columnas restantes. La única que cambia es `Release Year`, porque ahora tiene un valor por álbum. Normalizar quitó redundancia sin perder información.
+
+| Tabla | Filas |
+|---|---:|
+| `pais` | 20 |
+| `genero` | 10 |
+| `plan_suscripcion` | 2 |
+| `artista` | 15 |
+| `album` | 15 |
+| `metrica_streaming` | 500 |
 
 ---
 
-## 5. Trazabilidad con el Corte 1 y supuestos
+## 5. Archivos de la entrega
 
-| Fuente del inventario (Semana 2) | Tipo | Dónde encaja en el modelo |
-|---|---|---|
-| Histórico CSV de Kaggle [2] | Estructurado | Datos agregados para calibrar/validar horas por país y artistas/álbumes top |
-| Eventos de reproducción (JSON) | Semiestructurado | Alimentan `REPRODUCCION` (y `USUARIO`, `DISPOSITIVO`) tras la limpieza |
-| Metadatos de catálogo (API) | Semiestructurado | Pueblan `CANCION`, `ALBUM`, `ARTISTA` |
-| Logs de servidores/CDN | Semiestructurado | Fuera del ERD núcleo; tabla de métricas por región enlazable a `PAIS` |
-| Encuestas de satisfacción | Estructurado | Fuera del ERD núcleo; enlazables a `USUARIO` |
-| Reseñas y audio | No estructurado | No van en tablas relacionales: objetos en el lago, referenciados por `track_id` |
+```
+06-week/02-optional-activity/
+├── README.md                                  ← este documento
+├── diagrama-erd-spotify.svg                   ← Fig. 1: ERD con PK/FK y la relación N:M
+├── esquema-spotify.sql                        ← CREATE TABLE con PK, FK, UNIQUE y CHECK
+├── normalizacion-spotify.ipynb                ← dependencias, normalización y validación
+├── Spotify_2024_Global_Streaming_Data.csv     ← dataset original de Kaggle [2]
+└── datos-normalizados/                        ← un CSV por tabla del modelo
+    ├── pais.csv · genero.csv · plan_suscripcion.csv
+    └── artista.csv · album.csv · metrica_streaming.csv
+```
 
-**Supuestos y límites del diseño**
+**Cómo reproducirlo**
 
-- `user_id` es un identificador **seudonimizado**: el modelo no almacena datos personales, en línea con la mitigación ética planteada en la Semana 4.
-- Las colaboraciones entre varios artistas en una misma canción requerirían una **segunda tabla intermedia** (`CANCION_ARTISTA`, con PK compuesta `track_id` + `artist_id`); se omitió para mantener el modelo mínimo y legible.
-- El conjunto de Kaggle no tiene granularidad de evento, por lo que `REPRODUCCION` se poblaría con los eventos de la ruta de streaming, no con ese archivo.
-
----
-
-## 6. Implementación reproducible: SQL, notebook y CSV
-
-Para demostrar que el diseño funciona con datos reales, se incluyen tres artefactos que parten del CSV original de Kaggle [2] (500 filas, una sola tabla plana):
-
-| Archivo | Qué contiene |
-|---|---|
-| [`esquema-spotify.sql`](esquema-spotify.sql) | Script `CREATE TABLE` con PK, FK, `UNIQUE` y `CHECK`. La Parte A reproduce el ERD de la Fig. 1; la Parte B agrega `genero`, `plan_suscripcion` y `metrica_streaming` para cargar el CSV agregado. |
-| [`normalizacion-spotify.ipynb`](normalizacion-spotify.ipynb) | Cuaderno con pandas que carga el CSV, comprueba las dependencias funcionales [6], separa las tablas, exporta los CSV y valida las PK, FK y restricciones cargándolos en SQLite con el `.sql` anterior. |
-| [`datos-normalizados/`](datos-normalizados/) | Un CSV por tabla resultante: [`pais`](datos-normalizados/pais.csv), [`genero`](datos-normalizados/genero.csv), [`plan_suscripcion`](datos-normalizados/plan_suscripcion.csv), [`artista`](datos-normalizados/artista.csv), [`album`](datos-normalizados/album.csv) y [`metrica_streaming`](datos-normalizados/metrica_streaming.csv). |
-
-El archivo de origen es [`Cleaned_Spotify_2024_Global_Streaming_Data.csv`](Cleaned_Spotify_2024_Global_Streaming_Data.csv).
-
-**Resultado de la normalización (500 filas de origen)**
-
-| Tabla | Filas | Qué dejó de repetirse |
-|---|---|---|
-| `pais` | 20 | Nombre del país en cada fila; se agregan código ISO y región |
-| `genero` | 10 | Texto del género |
-| `plan_suscripcion` | 2 | Texto Free/Premium |
-| `artista` | 15 | Nombre del artista |
-| `album` | 15 | Título y año del álbum, con FK a `artista` |
-| `metrica_streaming` | 500 | Solo claves foráneas y las seis medidas numéricas |
-
-**Hallazgo de la revisión de dependencias:** en estos datos `álbum → artista` y `álbum → año de lanzamiento` se cumplen, por eso viven en `album`. En cambio, el género **no** depende del álbum (un mismo álbum aparece con varios géneros), así que `genero_id` se guarda en `metrica_streaming` como atributo de la observación país × álbum × plan.
-
-**Cómo reproducirlo:** coloque los cuatro archivos de arriba (`.csv` de origen, `.sql`, `.ipynb`) en la misma carpeta y ejecute el cuaderno (`pip install pandas jupyter`). Al terminar, el cuaderno imprime "Violaciones de FK: ninguna" si el diseño es consistente.
-
-**Alcance:** el CSV es agregado, por lo que `usuario`, `cancion`, `reproduccion` y `dispositivo` quedan creadas pero vacías; se poblarían con los eventos de la ruta de streaming (sección 5).
+```bash
+pip install pandas jupyter
+jupyter notebook normalizacion-spotify.ipynb   # ejecutar todas las celdas
+```
 
 ---
 
-## 7. Referencias (formato IEEE)
+## 6. Referencias (formato IEEE)
 
 [1] Corporación Universitaria del Huila (CORHUILA), "Ciencia de Datos · Semana 6 · Modelamiento de datos," Objeto Virtual de Aprendizaje (OVA), Neiva, Colombia, 2026. [Online]. Disponible: https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/06-week/01-session/
 
 [2] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
 
-[3] A. Watt and N. Eng, "Chapter 8: The Entity Relationship Data Model," in *Database Design*, 2nd ed. Victoria, BC, Canada: BCcampus, 2014. [Online]. Disponible: https://opentextbc.ca/dbdesign01/chapter/chapter-8-entity-relationship-model/
+[3] P. P.-S. Chen, "The entity-relationship model—Toward a unified view of data," *ACM Transactions on Database Systems*, vol. 1, no. 1, pp. 9–36, 1976, doi: 10.1145/320434.320440.
 
-[4] A. Watt and N. Eng, "Chapter 9: Integrity Rules and Constraints," in *Database Design*, 2nd ed. Victoria, BC, Canada: BCcampus, 2014. [Online]. Disponible: https://opentextbc.ca/dbdesign01/chapter/chapter-9-integrity-rules-and-constraints/
+[4] E. F. Codd, "A relational model of data for large shared data banks," *Communications of the ACM*, vol. 13, no. 6, pp. 377–387, 1970, doi: 10.1145/362384.362685.
 
-[5] S. Abdellaoui, W. Abbaoui, L. Meziane, B. El Bhiri, and S. Ziti, "SQL and NoSQL databases: A comparative study with perspectives on IA-based migration approach," *Engineering Proceedings*, vol. 112, no. 1, Art. no. 72, 2025, doi: 10.3390/engproc2025112072. [Online]. Disponible: https://www.mdpi.com/2673-4591/112/1/72
+[5] W. Kent, "A simple guide to five normal forms in relational database theory," *Communications of the ACM*, vol. 26, no. 2, pp. 120–125, 1983, doi: 10.1145/358024.358054.
 
-[6] R. Elmasri and S. B. Navathe, "Chapter 10: Functional dependencies and normalization for relational databases," lecture slides, CS 448 Database Systems, Purdue University, West Lafayette, IN, USA, 2014. [Online]. Disponible: https://www.cs.purdue.edu/homes/bb/cs448_Spring2014/lecture-files/pdf/ch10-Functional%20Dependencies%20and%20Normalization%20for%20Relational%20Databases.pdf
+[6] R. Cattell, "Scalable SQL and NoSQL data stores," *ACM SIGMOD Record*, vol. 39, no. 4, pp. 12–27, 2011, doi: 10.1145/1978915.1978919.
+
+[7] T. Haerder and A. Reuter, "Principles of transaction-oriented database recovery," *ACM Computing Surveys*, vol. 15, no. 4, pp. 287–317, 1983, doi: 10.1145/289.291.
+
+[8] W. McKinney, "Data structures for statistical computing in Python," in *Proc. 9th Python in Science Conf. (SciPy)*, Austin, TX, USA, 2010, pp. 56–61, doi: 10.25080/Majora-92bf1922-00a.
+
+[9] K. P. Gaffney, M. Prammer, L. Brasfield, D. R. Hipp, D. Kennedy, and J. M. Patel, "SQLite: Past, present, and future," *Proceedings of the VLDB Endowment*, vol. 15, no. 12, pp. 3535–3547, 2022, doi: 10.14778/3554821.3554842.
