@@ -12,7 +12,7 @@
 
 ## 1. Pipeline ETL del caso
 
-Un proceso ETL **extrae** los datos de sus fuentes, los **transforma** (limpia, une y calcula) y los **carga** en el almacén donde se analizan [1]. Es la columna vertebral de la preparación de datos [1]: de ella depende que lo que llega al análisis sea correcto y consistente. Un **pipeline** encadena esos pasos para que corran solos, y la **orquestación** decide el orden, el horario y qué hacer si algo falla [1].
+Un proceso ETL **extrae** los datos de sus fuentes, los **transforma** (limpia, une y calcula) y los **carga** en el almacén donde se analizan [1]. Es la columna vertebral de la preparación de datos [1] y una pieza crítica de todo data warehouse, porque de ella depende que lo que llega al análisis sea correcto y consistente [6]. Un **pipeline** encadena esos pasos para que corran solos, y la **orquestación** decide el orden, el horario y qué hacer si algo falla [1].
 
 ![Pipeline ETL del caso Spotify con herramienta por etapa, ruta batch y ruta streaming](./diagrama-pipeline-etl.svg)
 
@@ -27,33 +27,34 @@ El caso tiene dos decisiones con urgencias distintas, por eso el pipeline tiene 
 
 | Etapa | Ruta batch | Ruta streaming | Qué hace en el caso |
 |---|---|---|---|
-| **1. Fuentes** | Histórico CSV *Spotify Global Streaming Data (2024)* de Kaggle [2] (500 filas agregadas, normalizado en la [Semana 6](../../06-week/02-optional-activity/README.md)) y API de catálogo **MusicBrainz** [5] | Eventos de reproducción en JSON (`user_id`, `track_id`, país, dispositivo, `timestamp`, `segundos_escuchados`) | Reúne los datos estructurados y semiestructurados del inventario del Corte 1 |
-| **2. Extraer** | **Python** (`pandas.read_csv`, `requests`) [1] | **Apache Kafka** [3] | Batch: lee el CSV y pide el catálogo a la API en JSON. Streaming: recibe cada evento con baja latencia y lo conserva para que otros procesos lo vuelvan a leer [3] |
-| **3. Transformar** | **Python (pandas) + dbt** [1] | **Spark Structured Streaming** [4] | Limpia, normaliza y valida (ver 1.2). Spark agrega las horas por país en ventanas de 1 minuto [4] |
+| **1. Fuentes** | Histórico CSV *Spotify Global Streaming Data (2024)* de Kaggle [2] (500 filas agregadas, normalizado en la [Semana 6](../../06-week/02-optional-activity/README.md)) y API REST de catálogo **MusicBrainz** [5], [7] | Eventos de reproducción en JSON (`user_id`, `track_id`, país, dispositivo, `timestamp`, `segundos_escuchados`) | Reúne los datos estructurados y semiestructurados del inventario del Corte 1 |
+| **2. Extraer** | **Python** (`pandas.read_csv`, `requests`) [1], [8] | **Apache Kafka** [3] | Batch: lee el CSV y pide el catálogo a la API en JSON. Streaming: recibe cada evento con baja latencia y lo conserva para que otros procesos lo vuelvan a leer [3] |
+| **3. Transformar** | **Python (pandas) + dbt** [1], [8] | **Spark Structured Streaming** [4] | Limpia, normaliza y valida (ver 1.2). Spark agrega las horas por país en ventanas de 1 minuto [4] |
 | **4. Cargar** | **PostgreSQL** (Data Warehouse), carga incremental (*upsert*) en las tablas de la Semana 6 | PostgreSQL, tabla `demanda_minuto` (*append*), y copia cruda de los eventos en el **Data Lake** | Solo entra al almacén lo que pasó la validación. El lago guarda el original para auditoría y reproceso |
 | **5. BI** | **Power BI** [1]: tablero de forecast y curaduría (diario) | **Power BI**: tablero de capacidad en vivo (cada minuto) | Entrega cada respuesta al equipo que decide: Contenido o Infraestructura |
 | **Orquestación** | **Apache Airflow** [1]: DAG diario a las 02:00, 3 reintentos y alerta si una fuente falla | No aplica: el flujo corre de forma continua | Airflow decide *qué corre y cuándo*; Kafka *transporta* los eventos. Las dos herramientas se complementan [1] |
 
 ### 1.2 Reglas de transformación
 
-Transformar no es solo cambiar el formato: es limpiar, unir y calcular [1], y es el paso donde se garantiza la calidad antes de cargar. El riesgo contrario, *cargar datos sin transformarlos ni validarlos*, es un error común [1].
+Transformar no es solo cambiar el formato: es limpiar, unir y calcular [1]. Es el paso donde se depuran los errores, se homogeneizan los valores y se concilian datos de varias fuentes antes de cargar [6]. El riesgo contrario, *cargar datos sin transformarlos ni validarlos*, es un error común [1].
 
 | Regla | Ruta | Problema que evita |
 |---|---|---|
 | Eliminar registros duplicados y con campos clave nulos | Ambas | Contar dos veces la misma reproducción o métrica |
 | `segundos_escuchados ≤ duracion_seg` de la canción | Streaming | Reproducciones infladas por bots: el reto de **veracidad** de la Semana 2 |
 | Nombre de país → código ISO y región | Batch | Que "USA", "United States" y "US" se cuenten como tres países distintos |
+| Un solo año de lanzamiento por álbum (el más frecuente; si hay empate, el menor) | Batch | El CSV [2] trae 6 años distintos para cada álbum. La Semana 6 fijó esta regla y el pipeline la vuelve a aplicar en cada recarga |
 | Normalizar a 3FN según el modelo de la Semana 6 | Batch | Repetir nombres de artistas o álbumes y crear anomalías de actualización |
 | Completar `genero_principal` del artista con la API | Batch | La columna que quedó vacía en la tabla `artista` (ver sección 3) |
 | Validar PK, FK y `CHECK` antes de cargar | Batch | Filas huérfanas o valores imposibles en el Data Warehouse |
 
-Antes de transformar, la ruta batch guarda una copia de lo extraído en un área de preparación (*staging*). Así un fallo en la transformación no obliga a extraer de nuevo. En la ruta streaming, la copia cruda al Data Lake sigue la variante **ELT**: los datos se cargan primero y se transforman después, en la consolidación nocturna [1].
+Antes de transformar, la ruta batch guarda una copia de lo extraído en un área de preparación (*staging*) [6]. Así un fallo en la transformación no obliga a extraer de nuevo. En la ruta streaming, la copia cruda al Data Lake sigue la variante **ELT**: los datos se cargan primero y se transforman después, en la consolidación nocturna [1].
 
 ---
 
 ## 2. ¿Qué parte es batch y qué parte es streaming?
 
-**Criterio:** cada parte se decide por la **velocidad con la que hay que tomar la decisión** que alimenta, no por el volumen de datos ni por la herramienta de moda. El streaming solo se justifica donde la latencia importa. Usar Kafka cuando bastaba un ETL por lotes es uno de los errores más comunes [1].
+**Criterio:** cada parte se decide por la **velocidad con la que hay que tomar la decisión** que alimenta, no por el volumen de datos ni por la herramienta de moda. Elegir entre lotes y flujo continuo es, en el fondo, un equilibrio entre exactitud, latencia y costo [9]. El streaming solo se justifica donde la latencia importa. Usar Kafka cuando bastaba un ETL por lotes es uno de los errores más comunes [1].
 
 | Parte del pipeline | Modo | Plazo de la decisión | Justificación |
 |---|---|---|---|
@@ -68,9 +69,9 @@ Antes de transformar, la ruta batch guarda una copia de lo extraído en un área
 
 ## 3. (Opcional) Consumo de una API pública con Python
 
-**API elegida: MusicBrainz**, una base abierta de metadatos musicales que mantiene su comunidad y se ofrece como servicio web [5]. Corresponde a la fuente *"Metadatos de catálogo musical (API)"* del inventario del Corte 1, responde en JSON por HTTP y no requiere clave. Una API entrega datos bajo demanda, normalmente en JSON, mediante peticiones HTTP [1].
+**API elegida: MusicBrainz**, una base abierta de metadatos musicales que mantiene su comunidad y se ofrece como servicio web [5]. Corresponde a la fuente *"Metadatos de catálogo musical (API)"* del inventario del Corte 1, responde en JSON por HTTP y no requiere clave. Una API entrega datos bajo demanda, normalmente en JSON, mediante peticiones HTTP [1]. MusicBrainz sigue el estilo arquitectónico REST: cada recurso, como un artista, tiene su propia URL y se consulta con una petición HTTP `GET` estándar que no depende de peticiones anteriores [7].
 
-El cuaderno [`consumo-api-musicbrainz.ipynb`](./consumo-api-musicbrainz.ipynb) ejecuta un mini-ETL sobre los 3 primeros artistas de la tabla `artista` de la Semana 6:
+El cuaderno [`consumo-api-musicbrainz.ipynb`](./consumo-api-musicbrainz.ipynb) usa `requests` y pandas [8] para ejecutar un mini-ETL sobre los 3 primeros artistas de la tabla `artista` de la Semana 6:
 
 ```python
 import requests
@@ -136,3 +137,11 @@ El cuaderno lee `../../06-week/02-optional-activity/datos-normalizados/artista.c
 [4] M. Armbrust *et al.*, "Structured Streaming: A declarative API for real-time applications in Apache Spark," in *Proc. 2018 Int. Conf. Management of Data (SIGMOD)*, Houston, TX, USA, 2018, pp. 601–613, doi: 10.1145/3183713.3190664.
 
 [5] A. Swartz, "MusicBrainz: A semantic Web service," *IEEE Intelligent Systems*, vol. 17, no. 1, pp. 76–77, 2002, doi: 10.1109/5254.988466.
+
+[6] P. Vassiliadis, "A survey of extract–transform–load technology," *International Journal of Data Warehousing and Mining*, vol. 5, no. 3, pp. 1–27, 2009, doi: 10.4018/jdwm.2009070101.
+
+[7] R. T. Fielding, "Architectural styles and the design of network-based software architectures," Ph.D. dissertation, Dept. Inf. Comput. Sci., Univ. California, Irvine, CA, USA, 2000. [Online]. Disponible: https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm
+
+[8] W. McKinney, "Data structures for statistical computing in Python," in *Proc. 9th Python in Science Conf. (SciPy)*, Austin, TX, USA, 2010, pp. 56–61, doi: 10.25080/Majora-92bf1922-00a.
+
+[9] T. Akidau *et al.*, "The dataflow model: A practical approach to balancing correctness, latency, and cost in massive-scale, unbounded, out-of-order data processing," *Proceedings of the VLDB Endowment*, vol. 8, no. 12, pp. 1792–1803, 2015, doi: 10.14778/2824032.2824076.
