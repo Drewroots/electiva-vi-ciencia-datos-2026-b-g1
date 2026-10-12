@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" font-family="Segoe UI, Arial, sans-serif">
+<defs>
+<marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#475569"/></marker>
+<linearGradient id="h" x1="0" x2="1"><stop offset="0" stop-color="#14532d"/><stop offset="1" stop-color="#1DB954"/></linearGradient>
+</defs>
+<rect width="1100" height="640" fill="#f8fafc"/>
+<rect width="1100" height="64" fill="url(#h)"/>
+<text x="30" y="30" font-size="22" font-weight="700" fill="#fff">Semana 7 · De las tablas a las respuestas: SQL y pandas</text>
+<text x="30" y="52" font-size="13" fill="#e2fbe9">Caso Spotify · Modelo normalizado (Semana 6) · SQLite + pandas</text>
+
+<!-- tables -->
+<text x="30" y="98" font-size="14" font-weight="700" fill="#0f172a">1 · Tablas de origen</text>
+<g font-size="13">
+<rect x="30" y="110" width="200" height="56" rx="8" fill="#fff" stroke="#1DB954" stroke-width="2"/><text x="130" y="134" text-anchor="middle" font-weight="700" fill="#14532d">metrica_streaming</text><text x="130" y="152" text-anchor="middle" fill="#475569">500 filas · hechos</text>
+<rect x="30" y="182" width="200" height="40" rx="8" fill="#fff" stroke="#94a3b8"/><text x="130" y="207" text-anchor="middle" fill="#0f172a">pais (20)</text>
+<rect x="30" y="234" width="200" height="40" rx="8" fill="#fff" stroke="#94a3b8"/><text x="130" y="259" text-anchor="middle" fill="#0f172a">album (15)</text>
+<rect x="30" y="286" width="200" height="40" rx="8" fill="#fff" stroke="#94a3b8"/><text x="130" y="311" text-anchor="middle" fill="#0f172a">artista (15)</text>
+</g>
+
+<!-- queries -->
+<text x="300" y="98" font-size="14" font-weight="700" fill="#0f172a">2 · Consultas SQL</text>
+<g font-size="13">
+<rect x="300" y="110" width="330" height="120" rx="10" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+<rect x="300" y="110" width="330" height="28" rx="10" fill="#2563eb"/><text x="315" y="129" fill="#fff" font-weight="700">Q1 · WHERE — filtrar</text>
+<text x="315" y="160" fill="#0f172a" font-family="Consolas, monospace">WHERE skip_rate_pct &gt; 30</text>
+<text x="315" y="180" fill="#0f172a" font-family="Consolas, monospace">  AND streams_30d_m &gt; 150</text>
+<text x="315" y="206" fill="#475569">¿Dónde hay mucha demanda y mucho abandono?</text>
+
+<rect x="300" y="246" width="330" height="120" rx="10" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="300" y="246" width="330" height="28" rx="10" fill="#7c3aed"/><text x="315" y="265" fill="#fff" font-weight="700">Q2 · JOIN — combinar</text>
+<text x="315" y="296" fill="#0f172a" font-family="Consolas, monospace">metrica JOIN pais, album,</text>
+<text x="315" y="316" fill="#0f172a" font-family="Consolas, monospace">artista ON claves PK–FK</text>
+<text x="315" y="342" fill="#475569">¿Qué país–artista lidera los streams?</text>
+
+<rect x="300" y="382" width="330" height="120" rx="10" fill="#fff" stroke="#ea580c" stroke-width="2"/>
+<rect x="300" y="382" width="330" height="28" rx="10" fill="#ea580c"/><text x="315" y="401" fill="#fff" font-weight="700">Q3 · GROUP BY — agregar</text>
+<text x="315" y="432" fill="#0f172a" font-family="Consolas, monospace">GROUP BY country_id</text>
+<text x="315" y="452" fill="#0f172a" font-family="Consolas, monospace">COUNT · SUM · AVG</text>
+<text x="315" y="478" fill="#475569">¿Capacidad y abandono por país?</text>
+</g>
+
+<!-- pandas -->
+<text x="720" y="98" font-size="14" font-weight="700" fill="#0f172a">3 · Resultados y réplica en pandas</text>
+<rect x="720" y="382" width="350" height="120" rx="10" fill="#fff" stroke="#ea580c" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="735" y="410" font-size="13" font-weight="700" fill="#ea580c">m.groupby('country_id').agg(...)</text>
+<text x="735" y="436" font-size="13" fill="#0f172a">split → apply → combine</text>
+<text x="735" y="458" font-size="13" fill="#0f172a">assert_frame_equal(SQL, pandas)</text>
+<text x="735" y="484" font-size="13" fill="#475569">Mismo resultado en 20 países</text>
+
+<!-- results -->
+<rect x="720" y="110" width="350" height="256" rx="10" fill="#fff" stroke="#cbd5e1"/>
+<text x="735" y="136" font-size="14" font-weight="700" fill="#0f172a">Hallazgos (datos reales)</text>
+<g font-size="13" fill="#0f172a">
+<text x="735" y="166">Q1 · 24 de 500 registros cumplen ambos</text><text x="735" y="184" fill="#475569">filtros (demanda alta + skip &gt; 30 %).</text>
+<text x="735" y="218">Q2 · Máximo: Italy · Taylor Swift ·</text><text x="735" y="236" fill="#475569">1989 (Taylor's Version), 200.00 M.</text>
+<text x="735" y="270">Q3 · Mayor skip promedio: Indonesia</text><text x="735" y="288" fill="#475569">(23.03 %); mayor volumen: Italy</text><text x="735" y="306" fill="#475569">(3 227.25 M streams en 30 días).</text>
+</g>
+
+<!-- arrows -->
+<g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#a)">
+<path d="M230,138 L298,170"/><path d="M230,300 L298,310"/><path d="M230,160 L298,440"/>
+<path d="M630,440 L718,440"/><path d="M630,170 L718,170" stroke-dasharray="4 4"/>
+</g>
+
+<!-- footer -->
+<rect x="30" y="530" width="1040" height="60" rx="8" fill="#fff" stroke="#e2e8f0"/>
+<text x="45" y="556" font-size="12" fill="#334155">Referencias: [1] Watt y Eng, Database Design · [2] McKinney (2010) · [3] Wickham (2011) · [4] Abdellaoui et al. (2025) · [5] Kumar y Prabhu (2018)</text>
+<text x="45" y="576" font-size="12" font-style="italic" fill="#64748b">Diagrama generado con asistencia de inteligencia artificial (Claude, Anthropic).</text>
+<text x="1070" y="620" text-anchor="end" font-size="11" fill="#94a3b8">Julián Andrés Solano Ledesma · CORHUILA · 2026-B</text>
+</svg>
