@@ -1,142 +1,206 @@
-# Semana 7 · Consultas SQL y pandas — Caso Spotify
+# Semana 7 — Consultas SQL y pandas
 
-**Asignatura:** Ciencia de Datos · Unidad 2 · Corte 2 · Periodo 2026-B
-**Autor:** Julián Andrés Solano Ledesma · CORHUILA · jasolano-2024a@corhuila.edu.co
-**Tipo de actividad:** formativa (opcional, sin nota)
+**Programa:** Ingeniería Industrial · **Asignatura:** Ciencia de Datos
+**Unidad 2:** Modelamiento, transformación y conexión de datos · **Corte 2 · Semana 7** · **Periodo:** 2026-B
+**Modalidad:** Individual/parejas · **Tipo:** Formativa (sin nota)
+
+**Julián Andrés Solano Ledesma**
+
+> Continuación del caso **Spotify — capacidad de streaming y curaduría regional**. Sobre el modelo normalizado de la [Semana 6](../../06-week/02-optional-activity/README.md), construido a partir del dataset *Spotify Global Streaming Data (2024)* de Kaggle [2], se escriben **tres consultas SQL**: una con `WHERE`, una con `JOIN` y una con `GROUP BY`. La consulta de agregación se reproduce en **pandas** y se explica qué responde cada una.
 
 ---
 
-## 1. Contexto y objetivo
+## 1. Herramientas y datos
 
-Esta entrega continúa el caso **Spotify — capacidad de streaming y curación regional** (dataset de Kaggle *Spotify Global Streaming Data 2024*, 500 registros). Sobre el modelo normalizado construido en la Semana 6 se escriben **tres consultas SQL** (`WHERE`, `JOIN`, `GROUP BY`) y se **reproduce en pandas** la consulta de agregación, explicando qué pregunta responde cada una.
+**SQL** es el lenguaje para consultar bases relacionales. Con pocas cláusulas se resuelve la mayoría de preguntas: `WHERE` filtra filas, `JOIN` combina tablas por sus claves y `GROUP BY` agrupa para agregar con `COUNT`, `SUM` o `AVG` [1]. Nació como un lenguaje *declarativo*: el usuario describe qué datos quiere, no cómo recorrerlos [4]. El sistema elige por su cuenta la forma más eficiente de ejecutar la consulta [9]. Las uniones se apoyan en el modelo relacional, donde las tablas se vinculan mediante claves [3].
 
-SQL es el lenguaje declarativo estándar para consultar bases relacionales: `SELECT` proyecta columnas, `WHERE` filtra filas, `JOIN` combina tablas mediante claves y `GROUP BY` con funciones de agregado resume grupos [1]. pandas ofrece el análogo en Python mediante `groupby`, basado en el patrón *split–apply–combine* [2], [3]. Se usa SQL cuando el dato vive en un motor relacional y pandas cuando el análisis continúa en Python; ambos conviven con alternativas NoSQL según la estructura del dato [4], [5].
+**pandas** es la librería de Python para datos tabulares: carga CSV, Excel o SQL y permite filtrar, agrupar y analizar con pocas líneas [1]. Su estructura central es el `DataFrame`, una tabla en memoria con columnas etiquetadas [5]. Su operación `groupby` sigue la estrategia *dividir–aplicar–combinar*: separa los datos en grupos, aplica una función a cada uno y une los resultados [6].
 
-![Diagrama de la Semana 7: tablas, consultas SQL y réplica en pandas](diagrama-consultas.svg)
-
-*Figura 1. De las tablas a las respuestas. Diagrama generado con asistencia de inteligencia artificial (Claude, Anthropic).*
-
-## 2. Datos y esquema usado
+**Motor:** SQLite en memoria, una base de datos embebida que no necesita servidor y se ejecuta dentro del propio proceso de Python [7]. Las tablas se cargan con el esquema de la Semana 6, con sus PK, FK y `CHECK`.
 
 | Tabla | Filas | Papel en las consultas |
 |---|---:|---|
-| `metrica_streaming` | 500 | Tabla de hechos: `streams_30d_m`, `skip_rate_pct`, claves a país, álbum, género y plan |
-| `pais` | 20 | Dimensión geográfica (`country_id`, `nombre`, `region`) |
-| `album` | 15 | Une cada métrica con su artista (`artist_id`) |
+| `metrica_streaming` | 500 | Tabla de hechos: `streams_30d_m`, `skip_rate_pct` y las FK a país, álbum, género y plan |
+| `pais` | 20 | Nombre y región del país |
+| `album` | 15 | Título del álbum y FK al artista |
 | `artista` | 15 | Nombre del artista |
+| `plan_suscripcion` | 2 | Free / Premium |
 
-Las tablas están en [`datos/`](datos/) y su diseño (PK, FK, restricciones) en el [esquema de la Semana 6](../06-week/esquema-spotify.sql). Motor: SQLite en memoria.
+**Revisión previa:** antes de consultar se comprobaron los tipos y los nulos, porque analizar sin revisarlos es un error común [1]. Las 6 tablas tienen **0 nulos** y las medidas están en `float64`.
 
-## 3. Consultas SQL
+![Tres consultas SQL sobre el modelo de la Semana 6 y su equivalente en pandas](./diagrama-consultas.svg)
 
-El código completo está en [`consultas-spotify.sql`](consultas-spotify.sql) y se ejecuta en [`consultas-sql-pandas.ipynb`](consultas-sql-pandas.ipynb).
+*Fig. 1. De las tablas a las respuestas. Diagrama generado con asistencia de inteligencia artificial (Claude, Anthropic), a partir de las consultas y resultados de este documento.*
 
-### Q1 · `WHERE` — filtro
+---
+
+## 2. Consultas SQL
+
+Las tres consultas están en [`consultas-spotify.sql`](./consultas-spotify.sql). El cuaderno [`consultas-sql-pandas.ipynb`](./consultas-sql-pandas.ipynb) las lee directamente de ese archivo y las ejecuta.
+
+### Q1 · `WHERE` — filtrar filas
 
 ```sql
-SELECT metric_id, country_id, streams_30d_m, skip_rate_pct
+SELECT metric_id, country_id, album_id, streams_30d_m, skip_rate_pct
 FROM   metrica_streaming
 WHERE  skip_rate_pct > 30
   AND  streams_30d_m > 150
 ORDER  BY skip_rate_pct DESC;
 ```
 
-**Qué responde:** ¿en qué registros país–álbum hay a la vez **alta demanda** (> 150 M streams en 30 días) y **alto abandono** (*skip rate* > 30 %)?
-**Resultado:** 24 de 500 registros (4,8 %). El mayor abandono es el registro 133 (país 6) con 39,14 % y 163,39 M streams. Son los puntos donde la curación regional es más urgente.
+**Qué responde:** ¿qué registros país–álbum tienen **a la vez** alta demanda reciente (más de 150 M de streams en 30 días) y alto abandono (*skip rate* mayor al 30 %)?
 
-### Q2 · `JOIN` — combinación de tablas
+**Resultado:** **24 de 500 registros (4,8 %)**. El de mayor abandono es el registro 14, *SOS* de SZA en Germany, con **39,14 %** de *skip* y 163,39 M de streams.
+
+**Para qué sirve:** son los puntos donde mucha gente escucha pero abandona pronto. Ahí la **curaduría regional** puede actuar primero: revisar en qué playlists y en qué posición aparece ese contenido.
+
+### Q2 · `JOIN` — combinar tablas por sus claves
 
 ```sql
-SELECT p.nombre AS pais, ar.nombre AS artista, al.titulo AS album, m.streams_30d_m
+SELECT p.nombre AS pais, ar.nombre AS artista, al.titulo AS album,
+       ps.nombre AS plan, m.streams_30d_m
 FROM   metrica_streaming m
-JOIN   pais    p  ON p.country_id = m.country_id
-JOIN   album   al ON al.album_id  = m.album_id
-JOIN   artista ar ON ar.artist_id = al.artist_id
+JOIN   pais             p  ON p.country_id = m.country_id
+JOIN   album            al ON al.album_id  = m.album_id
+JOIN   artista          ar ON ar.artist_id = al.artist_id
+JOIN   plan_suscripcion ps ON ps.plan_id   = m.plan_id
 ORDER  BY m.streams_30d_m DESC
 LIMIT  10;
 ```
 
-**Qué responde:** ¿qué combinaciones país–artista–álbum concentran la mayor demanda reciente? Cada `JOIN` declara su condición `ON` sobre claves PK–FK; omitirla produciría un producto cartesiano [1].
-**Resultado:** el máximo es Italy · Taylor Swift · *1989 (Taylor's Version)* con 200,00 M, seguido de Brazil · Ed Sheeran (199,91 M) y Argentina · Ariana Grande (198,06 M).
+**Qué responde:** ¿qué combinaciones país–artista–álbum concentran más streams en los últimos 30 días?
 
-### Q3 · `GROUP BY` — agregación
+La tabla de hechos solo guarda claves numéricas, porque así lo dejó la normalización. El `JOIN` recupera los nombres siguiendo cada relación PK–FK del ERD [3]. Cada `JOIN` lleva su condición `ON`: si se olvida, el resultado es un producto cartesiano con todas las combinaciones posibles [1].
+
+**Resultado (top 5 de 10):**
+
+| # | País | Artista | Álbum | Plan | Streams 30 d (M) |
+|---:|---|---|---|---|---:|
+| 1 | Italy | Taylor Swift | *1989 (Taylor's Version)* | Free | 200,00 |
+| 2 | Brazil | Ed Sheeran | *Autumn Variations* | Free | 199,91 |
+| 3 | Argentina | Ariana Grande | *Eternal Sunshine* | Free | 198,06 |
+| 4 | India | BTS | *Proof* | Premium | 197,84 |
+| 5 | South Korea | SZA | *SOS* | Premium | 197,83 |
+
+**Para qué sirve:** muestra qué contenido destacar en cada mercado. De los 10 registros con más demanda, **8 son del plan Free**, una pista para Marketing sobre dónde están los oyentes que podrían pasar a Premium.
+
+### Q3 · `GROUP BY` — agrupar y agregar
 
 ```sql
-SELECT country_id,
-       COUNT(*)                     AS n_registros,
-       ROUND(SUM(streams_30d_m), 2) AS streams_30d_total_m,
-       ROUND(AVG(skip_rate_pct), 2) AS skip_rate_prom_pct
-FROM   metrica_streaming
-GROUP  BY country_id
-ORDER  BY skip_rate_prom_pct DESC;
+SELECT p.nombre                       AS pais,
+       COUNT(*)                       AS n_registros,
+       ROUND(SUM(m.streams_30d_m), 2) AS streams_30d_total_m,
+       ROUND(AVG(m.streams_30d_m), 2) AS streams_30d_prom_m,
+       ROUND(AVG(m.skip_rate_pct), 2) AS skip_rate_prom_pct
+FROM   metrica_streaming m
+JOIN   pais p ON p.country_id = m.country_id
+GROUP  BY p.nombre
+ORDER  BY streams_30d_total_m DESC;
 ```
 
-**Qué responde:** ¿cuánta capacidad (streams en 30 días) y cuánto abandono promedio tiene cada país?
-**Resultado (top 5 por abandono):**
+**Qué responde:** ¿cuánta demanda reciente acumula cada país y cuánto abandono promedio tiene?
 
-| País | Registros | Streams 30 d (M) | Skip prom. (%) |
-|---|---:|---:|---:|
-| Indonesia | 25 | 2 197,80 | 23,03 |
-| Japan | 23 | 2 471,66 | 22,76 |
-| Argentina | 27 | 2 834,22 | 22,62 |
-| Italy | 34 | 3 227,25 | 22,37 |
-| South Africa | 32 | 3 024,99 | 22,07 |
+`GROUP BY` reduce las 500 observaciones a una fila por país. Cada función de agregado resume su grupo en un solo valor: `COUNT` cuenta, `SUM` suma y `AVG` promedia [8].
 
-Italy es el país con mayor volumen (3 227,25 M) y Indonesia el de mayor abandono promedio; la diferencia entre países es moderada (rango del promedio ≈ 20–23 %), por lo que el abandono no distingue por sí solo a un mercado.
+**Resultado (top 5 de 20 países):**
 
-## 4. Equivalente en pandas
+| País | Registros | Streams 30 d total (M) | Promedio por registro (M) | Skip prom. (%) |
+|---|---:|---:|---:|---:|
+| Italy | 34 | 3 227,25 | 94,92 | 22,37 |
+| South Korea | 31 | 3 171,34 | 102,30 | 20,97 |
+| Brazil | 30 | 3 063,11 | 102,10 | 20,59 |
+| South Africa | 32 | 3 024,99 | 94,53 | 22,07 |
+| Sweden | 30 | 3 023,20 | 100,77 | 21,79 |
+
+**Cómo leerlo:**
+
+- **Italy** lidera la demanda total, que es lo que importa para la **capacidad de servidores** de la pregunta de negocio. Pero buena parte de esa ventaja viene de tener más registros (34): la correlación entre número de registros y demanda total es de **0,94**.
+- Por eso la consulta incluye también el **promedio por registro**, que lidera **United Kingdom** con 110,70 M. Comparar solo sumas favorecería a los países con más filas en el dataset.
+- El *skip rate* promedio solo varía entre **16,06 % (Germany) y 23,03 % (Indonesia)**. El abandono por sí solo no distingue a un mercado de otro.
+
+---
+
+## 3. Equivalente en pandas de la consulta `GROUP BY`
 
 ```python
-m = pd.read_csv('datos/metrica_streaming.csv')
-p3 = (m.groupby('country_id')
-        .agg(n_registros=('metric_id', 'count'),
-             streams_30d_total_m=('streams_30d_m', 'sum'),
-             skip_rate_prom_pct=('skip_rate_pct', 'mean'))
-        .round(2)
-        .sort_values('skip_rate_prom_pct', ascending=False)
-        .reset_index())
+m = pd.read_csv("datos/metrica_streaming.csv")
+p = pd.read_csv("datos/pais.csv")
+
+q3_pandas = (
+    m.merge(p, on="country_id")                       # JOIN pais
+     .groupby("nombre")                               # GROUP BY p.nombre
+     .agg(n_registros=("metric_id", "count"),         # COUNT(*)
+          streams_30d_total_m=("streams_30d_m", "sum"),
+          streams_30d_prom_m=("streams_30d_m", "mean"),
+          skip_rate_prom_pct=("skip_rate_pct", "mean"))
+     .round(2)                                        # ROUND(..., 2)
+     .sort_values("streams_30d_total_m", ascending=False)   # ORDER BY ... DESC
+     .reset_index()
+     .rename(columns={"nombre": "pais"})
+)
 ```
 
-`groupby` divide los datos por `country_id`, aplica `count`, `sum` y `mean` a cada grupo y recombina el resultado [2], [3]. La equivalencia se **verifica por código** con `pd.testing.assert_frame_equal` entre la salida SQL y la de pandas: coinciden en los 20 países.
+`groupby("nombre")` divide los datos por país, `agg` aplica `count`, `sum` y `mean` a cada grupo, y pandas une los resultados en una sola tabla: es la estrategia *dividir–aplicar–combinar* [6].
+
+**Verificación por código:** `pd.testing.assert_frame_equal(q3_sql, q3_pandas)` confirma que SQL y pandas devuelven **el mismo resultado en los 20 países y las 5 columnas**.
 
 | SQL | pandas |
 |---|---|
-| `WHERE` | indexación booleana `m[m.skip_rate_pct > 30]` |
+| `JOIN ... ON` | `merge(..., on=...)` |
+| `WHERE` | filtro booleano: `m[m["skip_rate_pct"] > 30]` |
 | `GROUP BY` | `groupby(...)` |
-| `COUNT / SUM / AVG` | `count / sum / mean` en `agg` |
+| `COUNT` / `SUM` / `AVG` | `count` / `sum` / `mean` dentro de `agg` |
 | `ORDER BY ... DESC` | `sort_values(..., ascending=False)` |
 
-## 5. Limitaciones
+**¿Cuándo usar cada uno?** Si los datos viven en una base relacional, conviene filtrar y agrupar en SQL antes de traerlos a Python. Así el motor optimiza la consulta [9] y no se transfiere la tabla completa, que es otro error común [1]. pandas conviene cuando el análisis continúa en Python, por ejemplo con limpieza, gráficos o modelos.
 
-El dataset es de 500 filas agregadas por país–álbum y no incluye usuarios individuales, por lo que los hallazgos describen patrones de mercado, no comportamiento personal. Los umbrales de Q1 (30 % y 150 M) son criterios de ejemplo, no estándares de la industria.
+---
 
-## 6. Cómo reproducir
+## 4. Limitaciones
+
+- El dataset [2] tiene 500 filas **agregadas** por país, álbum, plan y género, sin usuarios individuales. Los resultados describen patrones de mercado, no el comportamiento de una persona.
+- Los umbrales de Q1 (30 % y 150 M) son criterios de ejemplo para el caso, no estándares de la industria.
+
+---
+
+## 5. Archivos de la entrega
+
+```
+07-week/02-optional-activity/
+├── README.md                    ← este documento
+├── diagrama-consultas.svg       ← Fig. 1: consultas, resultados y equivalente en pandas
+├── consultas-spotify.sql        ← Q1 (WHERE), Q2 (JOIN), Q3 (GROUP BY)
+├── consultas-sql-pandas.ipynb   ← ejecución en SQLite + réplica en pandas + verificación
+└── datos/                       ← tablas normalizadas de la Semana 6 (6 CSV)
+```
+
+**Cómo reproducirlo**
 
 ```bash
 pip install pandas jupyter
-jupyter notebook consultas-sql-pandas.ipynb   # Ejecutar todas las celdas
-# o ejecutar consultas-spotify.sql en SQLite tras cargar los CSV de datos/
+jupyter notebook consultas-sql-pandas.ipynb   # ejecutar todas las celdas
 ```
 
-## 7. Estructura de la entrega
+El cuaderno carga el esquema desde `../../06-week/02-optional-activity/esquema-spotify.sql`, así que debe ejecutarse desde esta carpeta del repositorio.
 
-```
-07-week/
-├── README.md
-├── diagrama-consultas.svg
-├── consultas-spotify.sql
-├── consultas-sql-pandas.ipynb
-└── datos/            (pais, album, artista, genero, plan_suscripcion, metrica_streaming)
-```
+---
 
-## Referencias
+## 6. Referencias (formato IEEE)
 
-[1] A. Watt y N. Eng, *Database Design*, 2.ª ed. Victoria, BC, Canadá: BCcampus, 2014, cap. «SQL DML». [En línea]. Disponible: https://opentextbc.ca/dbdesign01/chapter/chapter-sql-dml/
+[1] Corporación Universitaria del Huila (CORHUILA), "Ciencia de Datos · Semana 7 · Herramientas y lenguajes (SQL, NoSQL, Python)," Objeto Virtual de Aprendizaje (OVA), Neiva, Colombia, 2026. [Online]. Disponible: https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/07-week/01-session/
 
-[2] W. McKinney, «Data structures for statistical computing in Python», en *Proc. 9th Python in Science Conf. (SciPy)*, 2010, pp. 56–61, doi: 10.25080/Majora-92bf1922-00a. [En línea]. Disponible: https://proceedings.scipy.org/articles/Majora-92bf1922-00a
+[2] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
 
-[3] H. Wickham, «The split-apply-combine strategy for data analysis», *J. Stat. Softw.*, vol. 40, n.º 1, pp. 1–29, 2011, doi: 10.18637/jss.v040.i01. [En línea]. Disponible: https://www.jstatsoft.org/article/view/v040i01
+[3] E. F. Codd, "A relational model of data for large shared data banks," *Communications of the ACM*, vol. 13, no. 6, pp. 377–387, 1970, doi: 10.1145/362384.362685.
 
-[4] A. Abdellaoui *et al.*, «SQL and NoSQL databases: A comparative study with perspectives on IA-based migration approach», *Eng. Proc.*, vol. 112, n.º 1, art. 72, 2025, doi: 10.3390/engproc2025112072. [En línea]. Disponible: https://www.mdpi.com/2673-4591/112/1/72
+[4] D. D. Chamberlin and R. F. Boyce, "SEQUEL: A structured English query language," in *Proc. 1974 ACM SIGFIDET Workshop on Data Description, Access and Control*, Ann Arbor, MI, USA, 1974, pp. 249–264, doi: 10.1145/800296.811515.
 
-[5] A. Kumar y B. Prabhu, «Comparison of NoSQL database and traditional database – An emphatic analysis», *Int. J. Informatics Visualization (JOIV)*, vol. 2, n.º 2, pp. 51–55, 2018. [En línea]. Disponible: https://joiv.org/index.php/joiv/article/view/58
+[5] W. McKinney, "Data structures for statistical computing in Python," in *Proc. 9th Python in Science Conf. (SciPy)*, Austin, TX, USA, 2010, pp. 56–61, doi: 10.25080/Majora-92bf1922-00a.
+
+[6] H. Wickham, "The split-apply-combine strategy for data analysis," *Journal of Statistical Software*, vol. 40, no. 1, pp. 1–29, 2011, doi: 10.18637/jss.v040.i01.
+
+[7] K. P. Gaffney, M. Prammer, L. Brasfield, D. R. Hipp, D. Kennedy, and J. M. Patel, "SQLite: Past, present, and future," *Proceedings of the VLDB Endowment*, vol. 15, no. 12, pp. 3535–3547, 2022, doi: 10.14778/3554821.3554842.
+
+[8] J. Gray *et al.*, "Data cube: A relational aggregation operator generalizing group-by, cross-tab, and sub-totals," *Data Mining and Knowledge Discovery*, vol. 1, no. 1, pp. 29–53, 1997, doi: 10.1023/A:1009726021843.
+
+[9] P. G. Selinger, M. M. Astrahan, D. D. Chamberlin, R. A. Lorie, and T. G. Price, "Access path selection in a relational database management system," in *Proc. 1979 ACM SIGMOD Int. Conf. Management of Data*, Boston, MA, USA, 1979, pp. 23–34, doi: 10.1145/582095.582099.
