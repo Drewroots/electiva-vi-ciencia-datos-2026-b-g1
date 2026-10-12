@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="784.670757pt" height="338.4075pt" viewBox="0 0 784.670757 338.4075" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-12T09:45:11.626056</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.6, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M -0 338.4075 
+L 784.670757 338.4075 
+L 784.670757 0 
+L -0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 42.889063 318.004375 
+L 777.470757 318.004375 
+L 777.470757 28.224375 
+L 42.889063 28.224375 
+z
+" style="fill: #fcfcfb"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="76.27914" y="328.9075" transform="rotate(-0 76.27914 328.9075)">2016</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="139.014089" y="328.9075" transform="rotate(-0 139.014089 328.9075)">2017</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="201.577632" y="328.9075" transform="rotate(-0 201.577632 328.9075)">2018</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4"/>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="264.141174" y="328.9075" transform="rotate(-0 264.141174 328.9075)">2019</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5"/>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="326.704717" y="328.9075" transform="rotate(-0 326.704717 328.9075)">2020</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6"/>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="389.439667" y="328.9075" transform="rotate(-0 389.439667 328.9075)">2021</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_7"/>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="452.003209" y="328.9075" transform="rotate(-0 452.003209 328.9075)">2022</text>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_8"/>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="514.566752" y="328.9075" transform="rotate(-0 514.566752 328.9075)">2023</text>
+     </g>
+    </g>
+    <g id="xtick_9">
+     <g id="line2d_9"/>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="577.130295" y="328.9075" transform="rotate(-0 577.130295 328.9075)">2024</text>
+     </g>
+    </g>
+    <g id="xtick_10">
+     <g id="line2d_10"/>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="639.865244" y="328.9075" transform="rotate(-0 639.865244 328.9075)">2025</text>
+     </g>
+    </g>
+    <g id="xtick_11">
+     <g id="line2d_11"/>
+     <g id="text_11">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="702.428787" y="328.9075" transform="rotate(-0 702.428787 328.9075)">2026</text>
+     </g>
+    </g>
+    <g id="xtick_12">
+     <g id="line2d_12"/>
+     <g id="text_12">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="764.992329" y="328.9075" transform="rotate(-0 764.992329 328.9075)">2027</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_13">
+      <path d="M 42.889063 318.004375 
+L 777.470757 318.004375 
+" clip-path="url(#pe36cae7249)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14"/>
+     <g id="text_13">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #52514e" x="39.389063" y="321.705938" transform="rotate(-0 39.389063 321.705938)">0.0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_15">
+      <path d="M 42.889063 283.939695 
+L 777.470757 283.939695 
+" clip-path="url(#pe36cae7249)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16"/>
+     <g id="text_14">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #52514e" x="39.389063" y="287.641258" transform="rotate(-0 39.389063 287.641258)">2.5</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_17">
+      <path d="M 42.889063 249.875016 
+L 777.470757 249.875016 
+" clip-path="url(#pe36cae7249)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_18"/>
+     <g id="text_15">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #52514e" x="39.389063" y="253.576578" transform="rotate(-0 39.389063 253.576578)">5.0</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_19">
+      <path d="M 42.889063 215.810336 
+L 777.470757 215.810336 
+" clip-path="url(#pe36cae7249)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_20"/>
+     <g id="text_16">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #52514e" x="39.389063" y="219.511898" transform="rotate(-0 39.389063 219.511898)">7.5</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_21">
+      <path d="M 42.889063 181.745656 
+L 777.470757 181.745656 
+" clip-path="url(#pe36cae7249)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_22"/>
+     <g id="text_17">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #52514e" x="39.389063" y="185.447219" transform="rotate(-0 39.389063 185.447219)">10.0</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_23">
+      <path d="M 42.889063 147.680977 
+L 777.470757 147.680977 
+" clip-path="url(#pe36cae7249)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_24"/>
+     <g id="text_18">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #52514e" x="39.389063" y="151.382539" transform="rotate(-0 39.389063 151.382539)">12.5</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_25">
+      <path d="M 42.889063 113.616297 
+L 777.470757 113.616297 
+" clip-path="url(#pe36cae7249)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_26"/>
+     <g id="text_19">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #52514e" x="39.389063" y="117.317859" transform="rotate(-0 39.389063 117.317859)">15.0</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_27">
+      <path d="M 42.889063 79.551617 
+L 777.470757 79.551617 
+" clip-path="url(#pe36cae7249)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_28"/>
+     <g id="text_20">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #52514e" x="39.389063" y="83.25318" transform="rotate(-0 39.389063 83.25318)">17.5</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_29">
+      <path d="M 42.889063 45.486938 
+L 777.470757 45.486938 
+" clip-path="url(#pe36cae7249)" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_30"/>
+     <g id="text_21">
+      <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: end; fill: #52514e" x="39.389063" y="49.1885" transform="rotate(-0 39.389063 49.1885)">20.0</text>
+     </g>
+    </g>
+    <g id="text_22">
+     <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: middle; fill: #52514e" x="14.748438" y="173.114375" transform="rotate(-90 14.748438 173.114375)">Miles de visitas por día</text>
+    </g>
+   </g>
+   <g id="line2d_31">
+    <path d="M 76.27914 268.703245 
+L 81.592755 269.403615 
+L 86.563557 271.480198 
+L 91.877173 268.930797 
+L 97.019382 269.182876 
+L 102.332998 273.38237 
+L 107.475207 277.046367 
+L 112.788823 272.514402 
+L 118.102439 263.484536 
+L 123.244648 266.43045 
+L 128.558264 265.013359 
+L 133.700473 262.953127 
+L 139.014089 262.876823 
+L 144.327705 261.619155 
+L 149.1271 259.449916 
+L 154.440716 258.26719 
+L 159.582925 264.764006 
+L 164.896541 266.965947 
+L 170.03875 270.060382 
+L 175.352366 267.423776 
+L 180.665982 268.632391 
+L 185.808191 265.115553 
+L 191.121807 263.385068 
+L 196.264016 260.747099 
+L 201.577632 259.414489 
+L 206.891248 262.190079 
+L 211.690643 249.379034 
+L 217.004259 230.560342 
+L 222.146468 262.884998 
+L 227.460084 270.270221 
+L 232.602293 266.846039 
+L 248.371733 263.218832 
+L 253.685349 257.451 
+L 258.827558 255.390769 
+L 264.141174 259.70472 
+L 269.45479 252.342661 
+L 274.254185 253.894648 
+L 279.567801 255.048759 
+L 284.71001 262.056545 
+L 290.023626 266.183822 
+L 295.165835 264.659087 
+L 300.479451 263.769317 
+L 305.793067 260.64218 
+L 310.935276 255.788644 
+L 316.248892 252.955825 
+L 321.391101 236.580252 
+L 326.704717 256.671601 
+L 332.018333 253.641207 
+L 336.989135 258.987999 
+L 342.302751 243.169724 
+L 347.44496 229.169141 
+L 352.758576 244.445106 
+L 357.900785 239.408983 
+L 363.214401 243.537623 
+L 368.528017 231.293414 
+L 373.670226 241.330231 
+L 378.983842 235.09367 
+L 384.126051 223.447637 
+L 389.439667 239.588845 
+L 394.753283 229.220919 
+L 399.552678 238.154041 
+L 404.866294 222.570131 
+L 410.008503 257.83525 
+L 415.322119 267.566848 
+L 420.464327 213.579781 
+L 425.777943 224.466852 
+L 431.091559 216.325394 
+L 436.233768 224.150732 
+L 441.547384 220.027543 
+L 446.689593 216.634701 
+L 452.003209 177.89226 
+L 457.316825 173.551057 
+L 462.11622 206.544743 
+L 467.429836 220.738814 
+L 472.572045 224.717568 
+L 477.885661 209.832666 
+L 483.02787 215.461514 
+L 488.341486 219.854495 
+L 493.655102 216.088304 
+L 498.797311 59.272232 
+L 509.253136 179.374755 
+L 514.566752 180.505702 
+L 519.880368 191.850603 
+L 524.679763 209.925322 
+L 529.993379 242.007437 
+L 535.135588 232.710505 
+L 540.449204 239.013833 
+L 545.591413 239.263187 
+L 550.905029 243.630279 
+L 556.218645 243.818316 
+L 561.360854 243.647992 
+L 566.67447 246.051596 
+L 571.816679 241.982911 
+L 577.130295 250.853353 
+L 582.44391 245.434344 
+L 592.728328 231.048148 
+L 597.870537 239.387182 
+L 603.184153 255.479337 
+L 608.326362 258.677329 
+L 613.639978 258.246751 
+L 618.953594 256.837836 
+L 624.095803 256.600746 
+L 629.409419 250.425501 
+L 634.551628 245.089609 
+L 639.865244 248.190858 
+L 645.17886 246.987693 
+L 649.978255 236.933163 
+L 655.291871 260.668069 
+L 660.43408 272.195556 
+L 665.747696 276.59535 
+L 670.889905 265.396246 
+L 676.203521 262.834582 
+L 681.517137 256.641624 
+L 686.659346 255.439822 
+L 691.972962 260.741648 
+L 697.115171 248.468826 
+L 702.428787 258.369384 
+L 707.742403 266.58306 
+L 712.541798 272.25006 
+L 717.855414 273.427335 
+L 722.997623 250.657141 
+L 728.311239 269.999066 
+L 733.453448 276.024426 
+L 738.767064 279.767453 
+L 744.08068 284.011912 
+L 744.08068 284.011912 
+" clip-path="url(#pe36cae7249)" style="fill: none; stroke: #2a78d6; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_32">
+    <path d="M 107.475207 268.801352 
+L 112.788823 268.234515 
+L 118.102439 267.408788 
+L 123.244648 266.463152 
+L 128.558264 265.833637 
+L 139.014089 264.82396 
+L 144.327705 264.321165 
+L 149.1271 264.32389 
+L 154.440716 264.483313 
+L 164.896541 264.201257 
+L 170.03875 263.964167 
+L 175.352366 263.844259 
+L 180.665982 263.447747 
+L 185.808191 261.873958 
+L 191.121807 260.64218 
+L 201.577632 260.704859 
+L 211.690643 260.241579 
+L 222.146468 259.658392 
+L 227.460084 259.188299 
+L 232.602293 258.977098 
+L 237.915909 258.57786 
+L 243.229525 258.355758 
+L 248.371733 259.564373 
+L 253.685349 260.550886 
+L 274.254185 259.684281 
+L 284.71001 258.723657 
+L 295.165835 256.841924 
+L 300.479451 256.769707 
+L 305.793067 257.036774 
+L 310.935276 256.753356 
+L 316.248892 254.887974 
+L 321.391101 252.612453 
+L 332.018333 248.759057 
+L 336.989135 246.693375 
+L 342.302751 244.86887 
+L 352.758576 242.230902 
+L 357.900785 240.971871 
+L 363.214401 239.241385 
+L 373.670226 235.630529 
+L 378.983842 235.965726 
+L 384.126051 238.124064 
+L 389.439667 238.010969 
+L 394.753283 236.140137 
+L 399.552678 234.721684 
+L 410.008503 232.038749 
+L 415.322119 231.127179 
+L 420.464327 228.272558 
+L 425.777943 223.382233 
+L 431.091559 219.745488 
+L 441.547384 216.896318 
+L 446.689593 213.111051 
+L 452.003209 210.783752 
+L 462.11622 210.467632 
+L 467.429836 203.587929 
+L 472.572045 192.568686 
+L 477.885661 186.866259 
+L 483.02787 185.423279 
+L 493.655102 187.197368 
+L 498.797311 188.224758 
+L 504.110927 189.444274 
+L 509.253136 190.992173 
+L 514.566752 193.200927 
+L 519.880368 195.182129 
+L 524.679763 197.328203 
+L 529.993379 206.165944 
+L 535.135588 219.08327 
+L 540.449204 226.92496 
+L 545.591413 232.465239 
+L 550.905029 237.629445 
+L 556.218645 241.049538 
+L 561.360854 241.779885 
+L 566.67447 241.601386 
+L 571.816679 242.566098 
+L 582.44391 245.479309 
+L 587.414713 246.630696 
+L 592.728328 247.71259 
+L 597.870537 248.434761 
+L 603.184153 248.746793 
+L 618.953594 248.720904 
+L 624.095803 249.892729 
+L 629.409419 252.493908 
+L 634.551628 254.740814 
+L 639.865244 255.900376 
+L 645.17886 256.371831 
+L 649.978255 256.554418 
+L 655.291871 256.498552 
+L 660.43408 256.880076 
+L 670.889905 258.015111 
+L 676.203521 259.256428 
+L 681.517137 261.544212 
+L 686.659346 263.547215 
+L 691.972962 263.18068 
+L 697.115171 262.008855 
+L 702.428787 262.176453 
+L 707.742403 263.325114 
+L 712.541798 265.171419 
+L 712.541798 265.171419 
+" clip-path="url(#pe36cae7249)" style="fill: none; stroke: #eb6834; stroke-width: 2.8; stroke-linecap: square"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 42.889062 318.004375 
+L 777.470757 318.004375 
+" style="fill: none; stroke: #e7e6e2; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 378.45029 166.186185 
+Q 429.754516 175.623621 481.058743 185.061057 
+" style="fill: none; stroke: #52514e; stroke-width: 0.8; stroke-linecap: round"/>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 9.5px; font-family: 'Segoe UI'; fill: #0b0b0b" transform="translate(274.254185 153.241804)">Máximo de la tendencia</text>
+    <text style="font-size: 9.5px; font-family: 'Segoe UI'; fill: #0b0b0b" transform="translate(274.254185 164.032023)">jul 2022: 9,7 mil/día</text>
+   </g>
+   <g id="patch_5">
+    <path d="M 587.072743 103.819889 
+Q 543.828072 81.99673 500.583401 60.173572 
+" style="fill: none; stroke: #52514e; stroke-width: 0.8; stroke-linecap: round"/>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 9.5px; font-family: 'Segoe UI'; fill: #0b0b0b" transform="translate(545.591413 113.892432)">Oct 2022: pico atípico</text>
+    <text style="font-size: 9.5px; font-family: 'Segoe UI'; fill: #0b0b0b" transform="translate(545.591413 124.516994)">(3 semanas, ~3 veces lo normal)</text>
+   </g>
+   <g id="text_25">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Segoe UI'; text-anchor: start; fill: #0b0b0b" x="42.889063" y="16.224375" transform="rotate(-0 42.889063 16.224375)">Visitas al artículo «Spotify» en Wikipedia: promedio diario por mes y media móvil de 12 meses</text>
+   </g>
+   <g id="legend_1">
+    <g id="line2d_33">
+     <path d="M 51.889063 41.1275 
+L 61.889063 41.1275 
+L 71.889063 41.1275 
+" style="fill: none; stroke: #2a78d6; stroke-width: 1.5; stroke-linecap: square"/>
+    </g>
+    <g id="text_26">
+     <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: start; fill: #0b0b0b" x="79.889063" y="44.6275" transform="rotate(-0 79.889063 44.6275)">Promedio diario del mes</text>
+    </g>
+    <g id="line2d_34">
+     <path d="M 51.889063 55.830625 
+L 61.889063 55.830625 
+L 71.889063 55.830625 
+" style="fill: none; stroke: #eb6834; stroke-width: 2.8; stroke-linecap: square"/>
+    </g>
+    <g id="text_27">
+     <text style="font-size: 10px; font-family: 'Segoe UI'; text-anchor: start; fill: #0b0b0b" x="79.889063" y="59.330625" transform="rotate(-0 79.889063 59.330625)">Media móvil 2x12 (tendencia)</text>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pe36cae7249">
+   <rect x="42.889063" y="28.224375" width="734.581694" height="289.78"/>
+  </clipPath>
+ </defs>
+</svg>
