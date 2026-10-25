@@ -6,17 +6,17 @@
 
 **Julián Andrés Solano Ledesma**
 
-> Continuación del caso **Spotify — capacidad de streaming y curaduría regional**. Sobre el modelo normalizado de la [Semana 6](../../06-week/02-optional-activity/README.md), construido a partir del dataset *Spotify Global Streaming Data (2024)* de Kaggle [2], se escriben **tres consultas SQL**: una con `WHERE`, una con `JOIN` y una con `GROUP BY`. La consulta de agregación se reproduce en **pandas** y se explica qué responde cada una.
+> Continuación del caso **Spotify — capacidad de streaming y curaduría regional**. Sobre el modelo normalizado de la [Semana 6](../../06-week/02-optional-activity/README.md), construido a partir del dataset *Spotify Global Streaming Data (2024)* de Kaggle [1], se escriben **tres consultas SQL**: una con `WHERE`, una con `JOIN` y una con `GROUP BY`. La consulta de agregación se reproduce en **pandas** y se explica qué responde cada una.
 
 ---
 
 ## 1. Herramientas y datos
 
-**SQL** es el lenguaje para consultar bases relacionales. Con pocas cláusulas se resuelve la mayoría de preguntas: `WHERE` filtra filas, `JOIN` combina tablas por sus claves y `GROUP BY` agrupa para agregar con `COUNT`, `SUM` o `AVG` [1]. Nació como un lenguaje *declarativo*: el usuario describe qué datos quiere, no cómo recorrerlos [4]. El sistema elige por su cuenta la forma más eficiente de ejecutar la consulta [9]. Las uniones se apoyan en el modelo relacional, donde las tablas se vinculan mediante claves [3].
+**SQL** es el lenguaje para consultar bases relacionales. Con pocas cláusulas se resuelve la mayoría de preguntas: `WHERE` filtra filas, `JOIN` combina tablas por sus claves y `GROUP BY` agrupa para agregar con `COUNT`, `SUM` o `AVG` [2]. Nació como un lenguaje *declarativo*: el usuario describe qué datos quiere, no cómo recorrerlos [3]. El sistema elige por su cuenta la forma más eficiente de ejecutar la consulta [4]. Las uniones se apoyan en el modelo relacional, donde las tablas se vinculan mediante claves [5].
 
-**pandas** es la librería de Python para datos tabulares: carga CSV, Excel o SQL y permite filtrar, agrupar y analizar con pocas líneas [1]. Su estructura central es el `DataFrame`, una tabla en memoria con columnas etiquetadas [5]. Su operación `groupby` sigue la estrategia *dividir–aplicar–combinar*: separa los datos en grupos, aplica una función a cada uno y une los resultados [6].
+**pandas** es la librería de Python para datos tabulares: carga CSV, Excel o SQL y permite filtrar, agrupar y analizar con pocas líneas [2]. Su estructura central es el `DataFrame`, una tabla en memoria con columnas etiquetadas [6]. Su operación `groupby` sigue la estrategia *dividir–aplicar–combinar*: separa los datos en grupos, aplica una función a cada uno y une los resultados [7].
 
-**Motor:** SQLite en memoria, una base de datos embebida que no necesita servidor y se ejecuta dentro del propio proceso de Python [7]. Las tablas se cargan con el esquema de la Semana 6, con sus PK, FK y `CHECK`.
+**Motor:** SQLite en memoria, una base de datos embebida que no necesita servidor y se ejecuta dentro del propio proceso de Python [8]. Las tablas se cargan con el esquema de la Semana 6, con sus PK, FK y `CHECK`.
 
 | Tabla | Filas | Papel en las consultas |
 |---|---:|---|
@@ -26,7 +26,7 @@
 | `artista` | 15 | Nombre del artista |
 | `plan_suscripcion` | 2 | Free / Premium |
 
-**Revisión previa:** antes de consultar se comprobaron los tipos y los nulos, porque analizar sin revisarlos es un error común [1]. Las 6 tablas tienen **0 nulos** y las medidas están en `float64`.
+**Revisión previa:** antes de consultar se comprobaron los tipos y los nulos, porque analizar sin revisarlos es un error común [2]. Las 6 tablas tienen **0 nulos** y las medidas están en `float64`.
 
 ![Tres consultas SQL sobre el modelo de la Semana 6 y su equivalente en pandas](./diagrama-consultas.svg)
 
@@ -70,7 +70,7 @@ LIMIT  10;
 
 **Qué responde:** ¿qué combinaciones país–artista–álbum concentran más streams en los últimos 30 días?
 
-La tabla de hechos solo guarda claves numéricas, porque así lo dejó la normalización. El `JOIN` recupera los nombres siguiendo cada relación PK–FK del ERD [3]. Cada `JOIN` lleva su condición `ON`: si se olvida, el resultado es un producto cartesiano con todas las combinaciones posibles [1].
+La tabla de hechos solo guarda claves numéricas, porque así lo dejó la normalización. El `JOIN` recupera los nombres siguiendo cada relación PK–FK del ERD [5]. Cada `JOIN` lleva su condición `ON`: si se olvida, el resultado es un producto cartesiano con todas las combinaciones posibles [2].
 
 **Resultado (top 5 de 10):**
 
@@ -100,7 +100,7 @@ ORDER  BY streams_30d_total_m DESC;
 
 **Qué responde:** ¿cuánta demanda reciente acumula cada país y cuánto abandono promedio tiene?
 
-`GROUP BY` reduce las 500 observaciones a una fila por país. Cada función de agregado resume su grupo en un solo valor: `COUNT` cuenta, `SUM` suma y `AVG` promedia [8].
+`GROUP BY` reduce las 500 observaciones a una fila por país. Cada función de agregado resume su grupo en un solo valor: `COUNT` cuenta, `SUM` suma y `AVG` promedia [9].
 
 **Resultado (top 5 de 20 países):**
 
@@ -140,7 +140,7 @@ q3_pandas = (
 )
 ```
 
-`groupby("nombre")` divide los datos por país, `agg` aplica `count`, `sum` y `mean` a cada grupo, y pandas une los resultados en una sola tabla: es la estrategia *dividir–aplicar–combinar* [6].
+`groupby("nombre")` divide los datos por país, `agg` aplica `count`, `sum` y `mean` a cada grupo, y pandas une los resultados en una sola tabla: es la estrategia *dividir–aplicar–combinar* [7].
 
 **Verificación por código:** `pd.testing.assert_frame_equal(q3_sql, q3_pandas)` confirma que SQL y pandas devuelven **el mismo resultado en los 20 países y las 5 columnas**.
 
@@ -152,13 +152,13 @@ q3_pandas = (
 | `COUNT` / `SUM` / `AVG` | `count` / `sum` / `mean` dentro de `agg` |
 | `ORDER BY ... DESC` | `sort_values(..., ascending=False)` |
 
-**¿Cuándo usar cada uno?** Si los datos viven en una base relacional, conviene filtrar y agrupar en SQL antes de traerlos a Python. Así el motor optimiza la consulta [9] y no se transfiere la tabla completa, que es otro error común [1]. pandas conviene cuando el análisis continúa en Python, por ejemplo con limpieza, gráficos o modelos.
+**¿Cuándo usar cada uno?** Si los datos viven en una base relacional, conviene filtrar y agrupar en SQL antes de traerlos a Python. Así el motor optimiza la consulta [4] y no se transfiere la tabla completa, que es otro error común [2]. pandas conviene cuando el análisis continúa en Python, por ejemplo con limpieza, gráficos o modelos.
 
 ---
 
 ## 4. Limitaciones
 
-- El dataset [2] tiene 500 filas **agregadas** por país, álbum, plan y género, sin usuarios individuales. Los resultados describen patrones de mercado, no el comportamiento de una persona.
+- El dataset [1] tiene 500 filas **agregadas** por país, álbum, plan y género, sin usuarios individuales. Los resultados describen patrones de mercado, no el comportamiento de una persona.
 - Los umbrales de Q1 (30 % y 150 M) son criterios de ejemplo para el caso, no estándares de la industria.
 
 ---
@@ -187,20 +187,20 @@ El cuaderno carga el esquema desde `../../06-week/02-optional-activity/esquema-s
 
 ## 6. Referencias (formato IEEE)
 
-[1] Corporación Universitaria del Huila (CORHUILA), "Ciencia de Datos · Semana 7 · Herramientas y lenguajes (SQL, NoSQL, Python)," Objeto Virtual de Aprendizaje (OVA), Neiva, Colombia, 2026. [Online]. Disponible: https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/07-week/01-session/
+[1] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
 
-[2] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
+[2] Corporación Universitaria del Huila (CORHUILA), "Ciencia de Datos · Semana 7 · Herramientas y lenguajes (SQL, NoSQL, Python)," Objeto Virtual de Aprendizaje (OVA), Neiva, Colombia, 2026. [Online]. Disponible: https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/07-week/01-session/
 
-[3] E. F. Codd, "A relational model of data for large shared data banks," *Communications of the ACM*, vol. 13, no. 6, pp. 377–387, 1970, doi: 10.1145/362384.362685.
+[3] D. D. Chamberlin and R. F. Boyce, "SEQUEL: A structured English query language," in *Proc. 1974 ACM SIGFIDET Workshop on Data Description, Access and Control*, Ann Arbor, MI, USA, 1974, pp. 249–264, doi: 10.1145/800296.811515.
 
-[4] D. D. Chamberlin and R. F. Boyce, "SEQUEL: A structured English query language," in *Proc. 1974 ACM SIGFIDET Workshop on Data Description, Access and Control*, Ann Arbor, MI, USA, 1974, pp. 249–264, doi: 10.1145/800296.811515.
+[4] P. G. Selinger, M. M. Astrahan, D. D. Chamberlin, R. A. Lorie, and T. G. Price, "Access path selection in a relational database management system," in *Proc. 1979 ACM SIGMOD Int. Conf. Management of Data*, Boston, MA, USA, 1979, pp. 23–34, doi: 10.1145/582095.582099.
 
-[5] W. McKinney, "Data structures for statistical computing in Python," in *Proc. 9th Python in Science Conf. (SciPy)*, Austin, TX, USA, 2010, pp. 56–61, doi: 10.25080/Majora-92bf1922-00a.
+[5] E. F. Codd, "A relational model of data for large shared data banks," *Communications of the ACM*, vol. 13, no. 6, pp. 377–387, 1970, doi: 10.1145/362384.362685.
 
-[6] H. Wickham, "The split-apply-combine strategy for data analysis," *Journal of Statistical Software*, vol. 40, no. 1, pp. 1–29, 2011, doi: 10.18637/jss.v040.i01.
+[6] W. McKinney, "Data structures for statistical computing in Python," in *Proc. 9th Python in Science Conf. (SciPy)*, Austin, TX, USA, 2010, pp. 56–61, doi: 10.25080/Majora-92bf1922-00a.
 
-[7] K. P. Gaffney, M. Prammer, L. Brasfield, D. R. Hipp, D. Kennedy, and J. M. Patel, "SQLite: Past, present, and future," *Proceedings of the VLDB Endowment*, vol. 15, no. 12, pp. 3535–3547, 2022, doi: 10.14778/3554821.3554842.
+[7] H. Wickham, "The split-apply-combine strategy for data analysis," *Journal of Statistical Software*, vol. 40, no. 1, pp. 1–29, 2011, doi: 10.18637/jss.v040.i01.
 
-[8] J. Gray *et al.*, "Data cube: A relational aggregation operator generalizing group-by, cross-tab, and sub-totals," *Data Mining and Knowledge Discovery*, vol. 1, no. 1, pp. 29–53, 1997, doi: 10.1023/A:1009726021843.
+[8] K. P. Gaffney, M. Prammer, L. Brasfield, D. R. Hipp, D. Kennedy, and J. M. Patel, "SQLite: Past, present, and future," *Proceedings of the VLDB Endowment*, vol. 15, no. 12, pp. 3535–3547, 2022, doi: 10.14778/3554821.3554842.
 
-[9] P. G. Selinger, M. M. Astrahan, D. D. Chamberlin, R. A. Lorie, and T. G. Price, "Access path selection in a relational database management system," in *Proc. 1979 ACM SIGMOD Int. Conf. Management of Data*, Boston, MA, USA, 1979, pp. 23–34, doi: 10.1145/582095.582099.
+[9] J. Gray *et al.*, "Data cube: A relational aggregation operator generalizing group-by, cross-tab, and sub-totals," *Data Mining and Knowledge Discovery*, vol. 1, no. 1, pp. 29–53, 1997, doi: 10.1023/A:1009726021843.

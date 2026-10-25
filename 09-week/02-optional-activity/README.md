@@ -6,7 +6,7 @@
 
 **Julián Andrés Solano Ledesma**
 
-> Continuación del caso **Spotify — capacidad de streaming y curaduría regional**. Aquí se limpia con pandas el dataset de Kaggle *Spotify Global Streaming Data (2024)* [2]: se cuentan los nulos, se eliminan o imputan los faltantes, se quitan los duplicados, se corrigen los tipos y se normalizan los formatos de texto. Se documenta el antes y el después, y se comentan dos dimensiones de calidad que mejoraron. Es el paso **Transformar** de la ruta batch del pipeline de la [Semana 8](../../08-week/02-optional-activity/README.md).
+> Continuación del caso **Spotify — capacidad de streaming y curaduría regional**. Aquí se limpia con pandas el dataset de Kaggle *Spotify Global Streaming Data (2024)* [1]: se cuentan los nulos, se eliminan o imputan los faltantes, se quitan los duplicados, se corrigen los tipos y se normalizan los formatos de texto. Se documenta el antes y el después, y se comentan dos dimensiones de calidad que mejoraron. Es el paso **Transformar** de la ruta batch del pipeline de la [Semana 8](../../08-week/02-optional-activity/README.md).
 >
 > La actividad calificable del Corte 2 está aparte, en [`c2-activity/`](./c2-activity/README.md).
 
@@ -14,9 +14,9 @@
 
 ## 1. El dataset y por qué se ensució
 
-"Basura entra, basura sale": la calidad del análisis depende de la calidad de los datos, y la limpieza suele consumir la mayor parte del tiempo de un proyecto [1], [6]. Los problemas de calidad aparecen en los propios registros: valores faltantes, duplicados, errores de escritura y convenciones distintas para un mismo dato [5].
+"Basura entra, basura sale": la calidad del análisis depende de la calidad de los datos, y la limpieza suele consumir la mayor parte del tiempo de un proyecto [2], [3]. Los problemas de calidad aparecen en los propios registros: valores faltantes, duplicados, errores de escritura y convenciones distintas para un mismo dato [4].
 
-El CSV original de Kaggle [2] (500 filas × 12 columnas) **no tiene nulos ni duplicados**. Sí trae dos problemas reales: el año de lanzamiento de cada álbum aparece con 6 valores distintos, como ya mostró la Semana 6, y hay **2 filas imposibles**, con más streams en 30 días que en total. Para ejercitar toda la limpieza, la guía permite *ensuciar* el dataset. Se hizo con [`ensuciar_spotify.py`](./ensuciar_spotify.py), con **semilla fija (2026)** para que el archivo siempre sea el mismo:
+El CSV original de Kaggle [1] (500 filas × 12 columnas) **no tiene nulos ni duplicados**. Sí trae dos problemas reales: el año de lanzamiento de cada álbum aparece con 6 valores distintos, como ya mostró la Semana 6, y hay **2 filas imposibles**, con más streams en 30 días que en total. Para ejercitar toda la limpieza, la guía permite *ensuciar* el dataset. Se hizo con [`ensuciar_spotify.py`](./ensuciar_spotify.py), con **semilla fija (2026)** para que el archivo siempre sea el mismo:
 
 | Problema inyectado | Columna | Celdas o filas | Ejemplo |
 |---|---|---:|---|
@@ -32,7 +32,7 @@ El CSV original de Kaggle [2] (500 filas × 12 columnas) **no tiene nulos ni dup
 
 ## 2. Script de limpieza en pandas
 
-La limpieza está en [`limpieza_spotify.py`](./limpieza_spotify.py), escrita con pandas [7]. El cuaderno [`limpieza-spotify.ipynb`](./limpieza-spotify.ipynb) la ejecuta y muestra la evidencia. Cada paso queda registrado en una **bitácora**, porque no documentar las transformaciones hace que el trabajo no sea reproducible [1].
+La limpieza está en [`limpieza_spotify.py`](./limpieza_spotify.py), escrita con pandas [5]. El cuaderno [`limpieza-spotify.ipynb`](./limpieza-spotify.ipynb) la ejecuta y muestra la evidencia. Cada paso queda registrado en una **bitácora**, porque no documentar las transformaciones hace que el trabajo no sea reproducible [2].
 
 ![Limpieza del dataset de Spotify: antes, 7 pasos con pandas y después](./diagrama-limpieza.svg)
 
@@ -62,12 +62,12 @@ for col in ["pais", "artista", "album", "genero", "plan"]:
     df[col] = df[col].map(lambda v: oficial.get(clave(v), pd.NA) if pd.notna(v) else v)
 ```
 
-**¿Eliminar o imputar?** Eliminar filas con faltantes sin pensar es un error común; a veces conviene imputar [1]. Por eso se distinguió según el tipo de columna:
+**¿Eliminar o imputar?** Eliminar filas con faltantes sin pensar es un error común; a veces conviene imputar [2]. Por eso se distinguió según el tipo de columna:
 
 - **Claves** (país, género): sin ellas la fila no se puede asignar a un mercado ni cargar en el modelo, porque sus FK quedarían vacías. Se eliminan **10 filas**.
 - **Medidas** (oyentes, *skip rate*, duración, streams de 30 días): eliminar la fila perdería las otras 5 medidas válidas. Se imputan con la **mediana del álbum**, que no se deja arrastrar por valores extremos.
 
-Como los faltantes se inyectaron al azar, el caso equivale a datos *completamente ausentes al azar*. Bajo ese mecanismo, la ausencia no depende de los valores, así que imputar no introduce un sesgo sistemático [8]. Aun así, imputar con una mediana reduce la variabilidad de la columna, y debe tenerse en cuenta en análisis posteriores.
+Como los faltantes se inyectaron al azar, el caso equivale a datos *completamente ausentes al azar*. Bajo ese mecanismo, la ausencia no depende de los valores, así que imputar no introduce un sesgo sistemático [6]. Aun así, imputar con una mediana reduce la variabilidad de la columna, y debe tenerse en cuenta en análisis posteriores.
 
 ---
 
@@ -112,11 +112,11 @@ Este conteo es mayor que lo inyectado (67 frente a 65) porque algunas copias dup
 
 ## 4. Dos dimensiones de calidad que mejoraron
 
-La calidad de datos es multidimensional: un dato es de calidad cuando sirve para el uso que le da quien lo consume, y eso se mide en varias dimensiones a la vez [3]. El OVA define cinco: completitud, exactitud, consistencia, unicidad y vigencia [1]. Las dos que más mejoraron en este caso son **consistencia** y **unicidad**.
+La calidad de datos es multidimensional: un dato es de calidad cuando sirve para el uso que le da quien lo consume, y eso se mide en varias dimensiones a la vez [7]. El OVA define cinco: completitud, exactitud, consistencia, unicidad y vigencia [2]. Las dos que más mejoraron en este caso son **consistencia** y **unicidad**.
 
 ### 4.1 Consistencia: ¿los valores coinciden en formato y entre registros?
 
-La consistencia exige que un mismo dato se represente siempre igual y que no haya contradicciones entre registros [1], [4].
+La consistencia exige que un mismo dato se represente siempre igual y que no haya contradicciones entre registros [2], [8].
 
 | Antes | Después |
 |---|---|
@@ -125,11 +125,11 @@ La consistencia exige que un mismo dato se represente siempre igual y que no hay
 | **15** álbumes con 6 años de lanzamiento cada uno | **1** año por álbum (361 celdas unificadas) |
 | Nombres de columna en inglés con espacios y unidades | snake_case, iguales a las columnas del modelo de la Semana 6 |
 
-**Por qué importa para el caso:** con 63 formas de escribir el país, un `GROUP BY pais` como el de la Semana 7 habría repartido la demanda de Italia en varias filas distintas. Eso subestima el mercado y desordena el ranking que decide dónde escalar servidores. La regla del OVA lo resume: una sola forma de escribir cada categoría [1].
+**Por qué importa para el caso:** con 63 formas de escribir el país, un `GROUP BY pais` como el de la Semana 7 habría repartido la demanda de Italia en varias filas distintas. Eso subestima el mercado y desordena el ranking que decide dónde escalar servidores. La regla del OVA lo resume: una sola forma de escribir cada categoría [2].
 
 ### 4.2 Unicidad: ¿hay registros repetidos?
 
-La unicidad exige que cada observación del mundo real aparezca una sola vez [1], [9].
+La unicidad exige que cada observación del mundo real aparezca una sola vez [2], [9].
 
 | Antes | Después |
 |---|---|
@@ -175,20 +175,20 @@ jupyter notebook limpieza-spotify.ipynb   # ejecutar todas las celdas
 
 ## 6. Referencias (formato IEEE)
 
-[1] Corporación Universitaria del Huila (CORHUILA), "Ciencia de Datos · Semana 9 · Transformación y calidad de datos," Objeto Virtual de Aprendizaje (OVA), Neiva, Colombia, 2026. [Online]. Disponible: https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/09-week/01-session/
+[1] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
 
-[2] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
+[2] Corporación Universitaria del Huila (CORHUILA), "Ciencia de Datos · Semana 9 · Transformación y calidad de datos," Objeto Virtual de Aprendizaje (OVA), Neiva, Colombia, 2026. [Online]. Disponible: https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/09-week/01-session/
 
-[3] R. Y. Wang and D. M. Strong, "Beyond accuracy: What data quality means to data consumers," *Journal of Management Information Systems*, vol. 12, no. 4, pp. 5–33, 1996, doi: 10.1080/07421222.1996.11518099.
+[3] H. Wickham, "Tidy data," *Journal of Statistical Software*, vol. 59, no. 10, pp. 1–23, 2014, doi: 10.18637/jss.v059.i10.
 
-[4] C. Batini, C. Cappiello, C. Francalanci, and A. Maurino, "Methodologies for data quality assessment and improvement," *ACM Computing Surveys*, vol. 41, no. 3, pp. 1–52, 2009, doi: 10.1145/1541880.1541883.
+[4] E. Rahm and H. H. Do, "Data cleaning: Problems and current approaches," *IEEE Data Engineering Bulletin*, vol. 23, no. 4, pp. 3–13, 2000. [Online]. Disponible: https://old.dbs.uni-leipzig.de/file/TBDE2000.pdf
 
-[5] E. Rahm and H. H. Do, "Data cleaning: Problems and current approaches," *IEEE Data Engineering Bulletin*, vol. 23, no. 4, pp. 3–13, 2000. [Online]. Disponible: https://old.dbs.uni-leipzig.de/file/TBDE2000.pdf
+[5] W. McKinney, "Data structures for statistical computing in Python," in *Proc. 9th Python in Science Conf. (SciPy)*, Austin, TX, USA, 2010, pp. 56–61, doi: 10.25080/Majora-92bf1922-00a.
 
-[6] H. Wickham, "Tidy data," *Journal of Statistical Software*, vol. 59, no. 10, pp. 1–23, 2014, doi: 10.18637/jss.v059.i10.
+[6] D. B. Rubin, "Inference and missing data," *Biometrika*, vol. 63, no. 3, pp. 581–592, 1976, doi: 10.1093/biomet/63.3.581.
 
-[7] W. McKinney, "Data structures for statistical computing in Python," in *Proc. 9th Python in Science Conf. (SciPy)*, Austin, TX, USA, 2010, pp. 56–61, doi: 10.25080/Majora-92bf1922-00a.
+[7] R. Y. Wang and D. M. Strong, "Beyond accuracy: What data quality means to data consumers," *Journal of Management Information Systems*, vol. 12, no. 4, pp. 5–33, 1996, doi: 10.1080/07421222.1996.11518099.
 
-[8] D. B. Rubin, "Inference and missing data," *Biometrika*, vol. 63, no. 3, pp. 581–592, 1976, doi: 10.1093/biomet/63.3.581.
+[8] C. Batini, C. Cappiello, C. Francalanci, and A. Maurino, "Methodologies for data quality assessment and improvement," *ACM Computing Surveys*, vol. 41, no. 3, pp. 1–52, 2009, doi: 10.1145/1541880.1541883.
 
 [9] A. K. Elmagarmid, P. G. Ipeirotis, and V. S. Verykios, "Duplicate record detection: A survey," *IEEE Transactions on Knowledge and Data Engineering*, vol. 19, no. 1, pp. 1–16, 2007, doi: 10.1109/TKDE.2007.250581.

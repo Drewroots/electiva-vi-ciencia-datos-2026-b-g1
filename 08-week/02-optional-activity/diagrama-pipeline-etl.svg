@@ -39,14 +39,14 @@
   <!-- Fuente B1: histórico CSV -->
   <rect x="30" y="188" width="220" height="92" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
   <text x="140" y="210" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a8a">Histórico CSV</text>
-  <text x="44" y="230" font-size="11" fill="#334155">Kaggle [2] · 500 filas agregadas</text>
+  <text x="44" y="230" font-size="11" fill="#334155">Kaggle [3] · 500 filas agregadas</text>
   <text x="44" y="245" font-size="11" fill="#334155">país × álbum × plan</text>
   <text x="44" y="260" font-size="11" fill="#334155">Estructurado (Semana 6)</text>
 
   <!-- Fuente B2: API catálogo -->
   <rect x="30" y="296" width="220" height="92" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
   <text x="140" y="318" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a8a">API de catálogo musical</text>
-  <text x="44" y="338" font-size="11" fill="#334155">MusicBrainz [5] · REST/JSON [7]</text>
+  <text x="44" y="338" font-size="11" fill="#334155">MusicBrainz [4] · REST/JSON [5]</text>
   <text x="44" y="353" font-size="11" fill="#334155">artista, tipo, país, géneros</text>
   <text x="44" y="368" font-size="11" fill="#334155">Semiestructurado</text>
 
@@ -56,20 +56,20 @@
   <!-- Extraer batch -->
   <rect x="290" y="188" width="210" height="200" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
   <text x="395" y="212" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a8a">Python [1]</text>
-  <text x="395" y="229" text-anchor="middle" font-size="11" fill="#475569">pandas [8] · requests</text>
+  <text x="395" y="229" text-anchor="middle" font-size="11" fill="#475569">pandas [6] · requests</text>
   <text x="304" y="256" font-size="11" fill="#334155">• read_csv() del histórico</text>
   <text x="304" y="276" font-size="11" fill="#334155">• GET a la API → JSON</text>
   <text x="304" y="296" font-size="11" fill="#334155">• Extracción incremental:</text>
   <text x="316" y="311" font-size="11" fill="#334155">solo registros nuevos</text>
   <text x="304" y="331" font-size="11" fill="#334155">• Copia cruda en staging</text>
-  <text x="316" y="346" font-size="11" fill="#334155">antes de transformar [6]</text>
+  <text x="316" y="346" font-size="11" fill="#334155">antes de transformar [2]</text>
 
   <line x1="500" y1="288" x2="536" y2="288" stroke="#2563eb" stroke-width="2.5" marker-end="url(#aBlue)"/>
 
   <!-- Transformar batch -->
   <rect x="540" y="188" width="270" height="200" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-  <text x="675" y="212" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a8a">Python (pandas) + dbt [1], [8]</text>
-  <text x="675" y="229" text-anchor="middle" font-size="11" fill="#475569">limpiar · unir · calcular · validar [6]</text>
+  <text x="675" y="212" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a8a">Python (pandas) + dbt [1], [6]</text>
+  <text x="675" y="229" text-anchor="middle" font-size="11" fill="#475569">limpiar · unir · calcular · validar [2]</text>
   <text x="554" y="256" font-size="11" fill="#334155">• Quitar duplicados y nulos</text>
   <text x="554" y="276" font-size="11" fill="#334155">• País → código ISO + región</text>
   <text x="554" y="296" font-size="11" fill="#334155">• Normalizar a 3FN (modelo Semana 6)</text>
@@ -98,7 +98,7 @@
 
   <!-- Extraer streaming: Kafka -->
   <rect x="290" y="446" width="210" height="157" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
-  <text x="395" y="470" text-anchor="middle" font-size="13" font-weight="700" fill="#14532d">Apache Kafka [3]</text>
+  <text x="395" y="470" text-anchor="middle" font-size="13" font-weight="700" fill="#14532d">Apache Kafka [7]</text>
   <text x="395" y="487" text-anchor="middle" font-size="11" fill="#475569">ingesta de eventos</text>
   <text x="304" y="512" font-size="11" fill="#334155">• Recibe millones de eventos</text>
   <text x="316" y="527" font-size="11" fill="#334155">con baja latencia</text>
@@ -110,7 +110,7 @@
 
   <!-- Transformar streaming: Spark -->
   <rect x="540" y="446" width="270" height="157" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
-  <text x="675" y="470" text-anchor="middle" font-size="13" font-weight="700" fill="#14532d">Spark Structured Streaming [4]</text>
+  <text x="675" y="470" text-anchor="middle" font-size="13" font-weight="700" fill="#14532d">Spark Structured Streaming [8]</text>
   <text x="675" y="487" text-anchor="middle" font-size="11" fill="#475569">transformación incremental</text>
   <text x="554" y="512" font-size="11" fill="#334155">• Validar el esquema del JSON</text>
   <text x="554" y="532" font-size="11" fill="#334155">• Filtrar bots y duplicados:</text>

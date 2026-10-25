@@ -4,7 +4,7 @@
 **Unidad 1:** Fundamentos de Ciencia de Datos y Big Data · **Periodo:** 2026-B
 **Modalidad:** Individual/parejas · **Tipo:** Formativa (sin nota)
 
-> Continuación del caso **Spotify — capacidad de streaming y curaduría regional** (Semanas 1 a 3). Aquí se formula una pregunta por cada tipo de analítica, se justifica el enfoque de machine learning y se identifica un riesgo ético con su mitigación.
+> Continuación del caso **Spotify — capacidad de streaming y curaduría regional** (Semanas 1 a 3). Aquí se formula una pregunta por cada tipo de analítica, se justifica el enfoque de machine learning y se identifica un riesgo ético con su mitigación, a partir del material de la Semana 4 sobre aplicaciones modernas de Big Data [1].
 
 ---
 
@@ -48,6 +48,8 @@ Esta clasificación sigue la taxonomía estándar de analítica de negocio, que 
 **[`diagrama-analitica-etica.svg`](./diagrama-analitica-etica.svg)** — las 4 preguntas de analítica aplicadas al caso, la justificación de ML supervisado/no supervisado, y el riesgo ético con su mitigación.
 
 ![Analítica aplicada y ética de datos: caso Spotify](./diagrama-analitica-etica.svg)
+
+*Fig. 1. Tipos de analítica y riesgo ético aplicados al caso Spotify. Elaboración propia.*
 
 ---
 

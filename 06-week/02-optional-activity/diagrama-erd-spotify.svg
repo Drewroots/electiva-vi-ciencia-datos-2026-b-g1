@@ -2,7 +2,7 @@
 <title>ERD del caso Spotify: 6 entidades, PK/FK y relación N:M PAIS–ALBUM resuelta con METRICA_STREAMING</title>
 <rect width="1370" height="800" fill="#f8fafc"/>
 <text x="685.0" y="38" text-anchor="middle" font-size="23" font-weight="700" fill="#0f172a">Modelo entidad-relación (ERD) · caso Spotify</text>
-<text x="685.0" y="61" text-anchor="middle" font-size="13.5" font-weight="400" fill="#64748b">Spotify Global Streaming Data 2024 [2] · 500 filas planas → 6 tablas en 3FN · notación pata de gallo [3]</text>
+<text x="685.0" y="61" text-anchor="middle" font-size="13.5" font-weight="400" fill="#64748b">Spotify Global Streaming Data 2024 [1] · 500 filas planas → 6 tablas en 3FN · notación pata de gallo [3]</text>
 <rect x="60" y="120" width="300" height="114" rx="10" fill="#ffffff" stroke="#15803d" stroke-width="2"/>
 <path d="M60,130 a10,10 0 0 1 10,-10 h280 a10,10 0 0 1 10,10 v26 h-300 z" fill="#15803d"/>
 <text x="74" y="143" font-size="14" font-weight="700" fill="#ffffff" letter-spacing="0.5">ARTISTA</text>
@@ -163,7 +163,7 @@
 <text x="420" y="610" text-anchor="middle" font-size="10.5" font-weight="700" fill="#6d28d9">N:M  PAIS ↔ ALBUM</text>
 <text x="505" y="611" text-anchor="start" font-size="12" font-weight="400" fill="#3b0764">Un país escucha muchos álbumes (10 a 15) y un álbum se escucha en muchos países (14 a 19).</text>
 <text x="324" y="637" text-anchor="start" font-size="12" font-weight="400" fill="#3b0764">La relación no se puede guardar directamente: METRICA_STREAMING la divide en dos relaciones 1:N, lleva la FK de cada lado</text>
-<text x="324" y="657" text-anchor="start" font-size="12" font-weight="400" fill="#3b0764">y además sus propios atributos (oyentes, streams, horas, skip rate), que no pertenecen ni al país ni al álbum [1], [3].</text>
+<text x="324" y="657" text-anchor="start" font-size="12" font-weight="400" fill="#3b0764">y además sus propios atributos (oyentes, streams, horas, skip rate), que no pertenecen ni al país ni al álbum [2], [3].</text>
 <line x1="40" y1="705" x2="1330" y2="705" stroke="#e2e8f0"/>
 <rect x="60" y="727" width="26" height="16" rx="4" fill="#f59e0b"/>
 <text x="73" y="739" text-anchor="middle" font-size="9.5" font-weight="700" fill="#ffffff">PK</text>

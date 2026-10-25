@@ -9,7 +9,7 @@
 > Cierre del caso **Spotify — capacidad de streaming y curaduría regional** para el Corte 2. El mini-proyecto integra en un solo flujo reproducible todo lo construido en la unidad:
 >
 > - el **modelo de datos** de la Semana 6;
-> - la **carga** del dataset de Kaggle [2] y de la API de MusicBrainz [5] de la Semana 8;
+> - la **carga** del dataset de Kaggle [1] y de la API de MusicBrainz [2] de la Semana 8;
 > - la **limpieza** en pandas de la Semana 9;
 > - las **consultas** con filtro y agregación de la Semana 7.
 >
@@ -19,7 +19,7 @@
 
 ## 1. Flujo del mini-proyecto
 
-El Corte 2 recorre cuatro temas: modelamiento, herramientas de consulta, conexión de datos (APIs, ETL y pipelines) y calidad de datos [1]. Este mini-proyecto los encadena en el orden en que trabaja un proceso ETL: **extraer** de las fuentes, **transformar** (limpiar) y **cargar** en el almacén donde se analiza [4].
+El Corte 2 recorre cuatro temas: modelamiento, herramientas de consulta, conexión de datos (APIs, ETL y pipelines) y calidad de datos [3]. Este mini-proyecto los encadena en el orden en que trabaja un proceso ETL: **extraer** de las fuentes, **transformar** (limpiar) y **cargar** en el almacén donde se analiza [4].
 
 ![Flujo del mini-proyecto: extraer, limpiar, cargar y analizar](./diagrama-flujo.svg)
 
@@ -38,7 +38,7 @@ Todo el flujo corre con un solo comando, `python pipeline_spotify.py`, desde [`p
 
 ## 2. Modelo de datos
 
-El modelo es el ERD de la [Semana 6](../../06-week/02-optional-activity/README.md). Tiene 6 entidades con sus PK y FK, y la relación N:M entre país y álbum se resuelve con la tabla intermedia `METRICA_STREAMING`. Un ERD describe el dominio con entidades, atributos y relaciones [3], y aquí sirve como contrato: los datos solo entran a la base si respetan sus claves y restricciones.
+El modelo es el ERD de la [Semana 6](../../06-week/02-optional-activity/README.md). Tiene 6 entidades con sus PK y FK, y la relación N:M entre país y álbum se resuelve con la tabla intermedia `METRICA_STREAMING`. Un ERD describe el dominio con entidades, atributos y relaciones [5], y aquí sirve como contrato: los datos solo entran a la base si respetan sus claves y restricciones.
 
 ![ERD del caso Spotify](../../06-week/02-optional-activity/diagrama-erd-spotify.svg)
 
@@ -52,8 +52,8 @@ El modelo es el ERD de la [Semana 6](../../06-week/02-optional-activity/README.m
 
 ### 3.1 Extraer: CSV + API
 
-- **CSV de Kaggle [2]:** 500 filas × 12 columnas, leídas como texto. La conversión de tipos es parte de la limpieza.
-- **API de MusicBrainz [5]:** para cada artista se busca su identificador y se pide el género con más votos de la comunidad. Las 15 búsquedas coinciden al 100 %. El resultado se guarda en una **caché** (`datos/catalogo_musicbrainz.csv`), así el flujo se puede repetir sin depender de la red. `python pipeline_spotify.py --api` vuelve a consultarla.
+- **CSV de Kaggle [1]:** 500 filas × 12 columnas, leídas como texto. La conversión de tipos es parte de la limpieza.
+- **API de MusicBrainz [2]:** para cada artista se busca su identificador y se pide el género con más votos de la comunidad. Las 15 búsquedas coinciden al 100 %. El resultado se guarda en una **caché** (`datos/catalogo_musicbrainz.csv`), así el flujo se puede repetir sin depender de la red. `python pipeline_spotify.py --api` vuelve a consultarla.
 
 | Género (MusicBrainz) | Artistas |
 |---|---|
@@ -88,7 +88,7 @@ La limpieza ataca los problemas típicos que dejan un dato mal registrado: falta
 
 ### 3.3 Cargar: las 6 tablas del ERD en SQLite
 
-La tabla limpia se separa en las tablas del modelo, con los **mismos id de la Semana 6**, y se carga en una base SQLite [8] creada con [`esquema-spotify.sql`](../../06-week/02-optional-activity/esquema-spotify.sql).
+La tabla limpia se separa en las tablas del modelo, con los **mismos id de la Semana 6**, y se carga en una base SQLite [7] creada con [`esquema-spotify.sql`](../../06-week/02-optional-activity/esquema-spotify.sql).
 
 | Tabla | Filas |
 |---|---:|
@@ -105,7 +105,7 @@ La tabla limpia se separa en las tablas del modelo, con los **mismos id de la Se
 
 ## 4. Dos análisis con consultas
 
-Las consultas están en [`consultas-mini-proyecto.sql`](./consultas-mini-proyecto.sql). Cada una combina un **filtro** (`WHERE`) con una **agregación** (`GROUP BY`). El cuaderno las ejecuta sobre `spotify.db` y las reproduce en pandas [7]: los resultados coinciden, con una tolerancia de 0,01 porque SQLite y pandas redondean distinto los valores terminados en 5. Los gráficos se hicieron con Matplotlib [9].
+Las consultas están en [`consultas-mini-proyecto.sql`](./consultas-mini-proyecto.sql). Cada una combina un **filtro** (`WHERE`) con una **agregación** (`GROUP BY`). El cuaderno las ejecuta sobre `spotify.db` y las reproduce en pandas [8]: los resultados coinciden, con una tolerancia de 0,01 porque SQLite y pandas redondean distinto los valores terminados en 5. Los gráficos se hicieron con Matplotlib [9].
 
 ### Q1 · Capacidad: ¿qué regiones concentran la demanda Premium de los últimos 30 días?
 
@@ -221,7 +221,7 @@ jupyter notebook mini-proyecto-spotify.ipynb   # análisis y gráficos
 
 ## 6. Limitaciones
 
-- El dataset [2] tiene 500 filas **agregadas** y un número desigual de registros por país y artista (entre 2 y 8 por artista en Latinoamérica). Las sumas reflejan también cuántos registros hay de cada uno, no solo la demanda real.
+- El dataset [1] tiene 500 filas **agregadas** y un número desigual de registros por país y artista (entre 2 y 8 por artista en Latinoamérica). Las sumas reflejan también cuántos registros hay de cada uno, no solo la demanda real.
 - Como ya se vio en la Semana 6, los géneros y años del CSV no siempre corresponden a la realidad. Por eso Q2 usa el género de MusicBrainz, que sí describe al artista. Aun así, las conclusiones son indicativas y no deben leerse como una medición del mercado.
 - El año de lanzamiento se unificó con una regla (el más frecuente), no con una fuente verificada.
 
@@ -229,20 +229,20 @@ jupyter notebook mini-proyecto-spotify.ipynb   # análisis y gráficos
 
 ## 7. Referencias (formato IEEE)
 
-[1] Corporación Universitaria del Huila (CORHUILA), "Ciencia de Datos · Semana 10 · Repaso y evaluación del Corte 2," Objeto Virtual de Aprendizaje (OVA), Neiva, Colombia, 2026. [Online]. Disponible: https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/10-week/01-session/
+[1] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
 
-[2] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
+[2] A. Swartz, "MusicBrainz: A semantic Web service," *IEEE Intelligent Systems*, vol. 17, no. 1, pp. 76–77, 2002, doi: 10.1109/5254.988466.
 
-[3] P. P.-S. Chen, "The entity-relationship model—Toward a unified view of data," *ACM Transactions on Database Systems*, vol. 1, no. 1, pp. 9–36, 1976, doi: 10.1145/320434.320440.
+[3] Corporación Universitaria del Huila (CORHUILA), "Ciencia de Datos · Semana 10 · Repaso y evaluación del Corte 2," Objeto Virtual de Aprendizaje (OVA), Neiva, Colombia, 2026. [Online]. Disponible: https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/10-week/01-session/
 
 [4] P. Vassiliadis, "A survey of extract–transform–load technology," *International Journal of Data Warehousing and Mining*, vol. 5, no. 3, pp. 1–27, 2009, doi: 10.4018/jdwm.2009070101.
 
-[5] A. Swartz, "MusicBrainz: A semantic Web service," *IEEE Intelligent Systems*, vol. 17, no. 1, pp. 76–77, 2002, doi: 10.1109/5254.988466.
+[5] P. P.-S. Chen, "The entity-relationship model—Toward a unified view of data," *ACM Transactions on Database Systems*, vol. 1, no. 1, pp. 9–36, 1976, doi: 10.1145/320434.320440.
 
 [6] E. Rahm and H. H. Do, "Data cleaning: Problems and current approaches," *IEEE Data Engineering Bulletin*, vol. 23, no. 4, pp. 3–13, 2000. [Online]. Disponible: https://old.dbs.uni-leipzig.de/file/TBDE2000.pdf
 
-[7] W. McKinney, "Data structures for statistical computing in Python," in *Proc. 9th Python in Science Conf. (SciPy)*, Austin, TX, USA, 2010, pp. 56–61, doi: 10.25080/Majora-92bf1922-00a.
+[7] K. P. Gaffney, M. Prammer, L. Brasfield, D. R. Hipp, D. Kennedy, and J. M. Patel, "SQLite: Past, present, and future," *Proceedings of the VLDB Endowment*, vol. 15, no. 12, pp. 3535–3547, 2022, doi: 10.14778/3554821.3554842.
 
-[8] K. P. Gaffney, M. Prammer, L. Brasfield, D. R. Hipp, D. Kennedy, and J. M. Patel, "SQLite: Past, present, and future," *Proceedings of the VLDB Endowment*, vol. 15, no. 12, pp. 3535–3547, 2022, doi: 10.14778/3554821.3554842.
+[8] W. McKinney, "Data structures for statistical computing in Python," in *Proc. 9th Python in Science Conf. (SciPy)*, Austin, TX, USA, 2010, pp. 56–61, doi: 10.25080/Majora-92bf1922-00a.
 
 [9] J. D. Hunter, "Matplotlib: A 2D graphics environment," *Computing in Science & Engineering*, vol. 9, no. 3, pp. 90–95, 2007, doi: 10.1109/MCSE.2007.55.

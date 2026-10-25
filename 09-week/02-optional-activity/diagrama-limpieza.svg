@@ -3,7 +3,7 @@
 <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
 <rect width="1360" height="740" fill="#f8fafc"/>
 <text x="680.0" y="38" text-anchor="middle" font-size="23" font-weight="700" fill="#0f172a">Limpieza de datos con pandas · antes y después</text>
-<text x="680.0" y="61" text-anchor="middle" font-size="13.5" font-weight="400" fill="#64748b">Caso Spotify · Spotify Global Streaming Data 2024 [2] ensuciado de forma reproducible (semilla 2026) y limpiado con reglas generales</text>
+<text x="680.0" y="61" text-anchor="middle" font-size="13.5" font-weight="400" fill="#64748b">Caso Spotify · Spotify Global Streaming Data 2024 [1] ensuciado de forma reproducible (semilla 2026) y limpiado con reglas generales</text>
 <rect x="40" y="92" width="300" height="560" rx="12" fill="#ffffff" stroke="#b91c1c" stroke-width="2"/>
 <path d="M40,104 a12,12 0 0 1 12,-12 h276 a12,12 0 0 1 12,12 v28 h-300 z" fill="#b91c1c"/>
 <text x="190.0" y="117" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">ANTES · spotify_sucio.csv</text>
@@ -69,7 +69,7 @@
 <rect x="1034" y="590" width="272" height="48" rx="8" fill="#dcfce7" stroke="#16a34a"/>
 <text x="1046" y="610" text-anchor="start" font-size="11" font-weight="700" fill="#14532d">✓ Verificado contra el original</text>
 <text x="1046" y="627" text-anchor="start" font-size="10.8" font-weight="400" fill="#14532d">texto 100 % igual; solo cambian las 54 imputadas</text>
-<text x="680.0" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">7 PASOS · limpieza_spotify.py [7]</text>
+<text x="680.0" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">7 PASOS · limpieza_spotify.py [5]</text>
 <rect x="380" y="96" width="600" height="66" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
 <rect x="380" y="96" width="7" height="66" rx="3" fill="#6d28d9"/>
 <circle cx="414" cy="129" r="15" fill="#6d28d9"/>
@@ -149,7 +149,7 @@
 <line x1="340" y1="372" x2="376" y2="372" stroke="#475569" stroke-width="2.2" marker-end="url(#ar)"/>
 <line x1="980" y1="372" x2="1016" y2="372" stroke="#475569" stroke-width="2.2" marker-end="url(#ar)"/>
 <line x1="40" y1="672" x2="1320" y2="672" stroke="#e2e8f0"/>
-<text x="40" y="698" text-anchor="start" font-size="11.5" font-weight="700" fill="#334155">Dimensión de calidad que mejora cada paso [1], [3], [4]:</text>
+<text x="40" y="698" text-anchor="start" font-size="11.5" font-weight="700" fill="#334155">Dimensión de calidad que mejora cada paso [2], [7], [8]:</text>
 <rect x="380" y="688" width="14" height="14" rx="3" fill="#6d28d9"/>
 <text x="400" y="699" text-anchor="start" font-size="11.5" font-weight="400" fill="#334155">Consistencia</text>
 <rect x="510" y="688" width="14" height="14" rx="3" fill="#b45309"/>

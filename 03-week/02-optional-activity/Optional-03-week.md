@@ -35,6 +35,8 @@ El diagrama completo, con las dos rutas y sus etapas, está en **[`diagrama-arqu
 
 ![Arquitectura de datos: de las fuentes al BI](./diagrama-arquitectura-datos.svg)
 
+*Fig. 1. Arquitectura de datos del caso Spotify: de las fuentes al BI. Elaboración propia.*
+
 ---
 
 ## 2. ¿Data Lake o Data Warehouse?

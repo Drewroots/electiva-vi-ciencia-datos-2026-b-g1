@@ -56,6 +56,8 @@ Las tres primeras V (volumen, velocidad y variedad) son las originalmente propue
 
 ![Clasificación de datos y las 5V del Big Data](./diagrama-5v-clasificacion.svg)
 
+*Fig. 1. Clasificación de las fuentes de datos y las 5V del Big Data en el caso Spotify. Elaboración propia.*
+
 ---
 
 ## 5. Referencias (formato IEEE)

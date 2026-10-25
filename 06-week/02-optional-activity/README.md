@@ -6,19 +6,19 @@
 
 **Julián Andrés Solano Ledesma**
 
-> Continuación del caso **Spotify — capacidad de streaming y curaduría regional** del Corte 1. Aquí se convierte el dataset de Kaggle *Spotify Global Streaming Data (2024)* [2] en un **modelo entidad-relación (ERD)**. El modelo tiene claves PK/FK y una relación N:M resuelta con una tabla intermedia. Además se justifica la decisión relacional frente a NoSQL y se muestra, con los datos reales, dónde se aplicó la normalización.
+> Continuación del caso **Spotify — capacidad de streaming y curaduría regional** del Corte 1. Aquí se convierte el dataset de Kaggle *Spotify Global Streaming Data (2024)* [1] en un **modelo entidad-relación (ERD)**. El modelo tiene claves PK/FK y una relación N:M resuelta con una tabla intermedia. Además se justifica la decisión relacional frente a NoSQL y se muestra, con los datos reales, dónde se aplicó la normalización.
 
 ---
 
 ## 1. Punto de partida: qué debe responder el modelo
 
-Modelar sin saber qué preguntas se responderán con los datos es un error común [1]. Por eso el ERD se deriva de la pregunta de negocio del Corte 1: *¿en qué países y en qué momentos aumentará la demanda de streaming, para escalar la infraestructura y priorizar el contenido por región?* El modelo debe permitir, como mínimo:
+Modelar sin saber qué preguntas se responderán con los datos es un error común [2]. Por eso el ERD se deriva de la pregunta de negocio del Corte 1: *¿en qué países y en qué momentos aumentará la demanda de streaming, para escalar la infraestructura y priorizar el contenido por región?* El modelo debe permitir, como mínimo:
 
 - sumar **streams y horas de escucha por país**, para la decisión de capacidad;
 - identificar los **artistas y álbumes más escuchados por país**, para la decisión de curaduría;
 - comparar el comportamiento por **género** y por **plan** (Free/Premium), por ejemplo el *skip rate*.
 
-El dataset [2] es un archivo plano de **500 filas × 12 columnas**, sin celdas nulas ni filas duplicadas. Cada fila es una observación de métricas de un álbum en un país, para un plan y un género.
+El dataset [1] es un archivo plano de **500 filas × 12 columnas**, sin celdas nulas ni filas duplicadas. Cada fila es una observación de métricas de un álbum en un país, para un plan y un género.
 
 ---
 
@@ -58,7 +58,7 @@ Cada cardinalidad se comprobó sobre los datos en [`normalizacion-spotify.ipynb`
 
 ### 2.3 La relación N:M y su tabla intermedia
 
-Una relación N:M no se puede guardar directamente en una tabla: se resuelve con una **tabla intermedia** [1]. En el modelo entidad-relación, la relación misma puede tener atributos propios, y al pasarla a tablas se convierte en una tabla con las claves de ambas entidades [3].
+Una relación N:M no se puede guardar directamente en una tabla: se resuelve con una **tabla intermedia** [2]. En el modelo entidad-relación, la relación misma puede tener atributos propios, y al pasarla a tablas se convierte en una tabla con las claves de ambas entidades [3].
 
 **METRICA_STREAMING** cumple ese papel:
 
@@ -100,31 +100,31 @@ CREATE TABLE metrica_streaming (
 
 **Decisión: modelo relacional** (PostgreSQL en producción, SQLite para la validación local).
 
-Las bases relacionales organizan los datos en tablas con esquema fijo e integridad, mientras que las NoSQL usan documentos o pares clave-valor con estructura flexible y escalan horizontalmente [1]. El modelo relacional separa la estructura lógica de los datos de su almacenamiento físico y expresa los vínculos entre tablas mediante claves [4]. Los sistemas NoSQL, en cambio, están pensados para repartir operaciones simples sobre muchos servidores y para admitir esquemas cambiantes. A cambio, suelen relajar las garantías de consistencia de las transacciones [6].
+Las bases relacionales organizan los datos en tablas con esquema fijo e integridad, mientras que las NoSQL usan documentos o pares clave-valor con estructura flexible y escalan horizontalmente [2]. El modelo relacional separa la estructura lógica de los datos de su almacenamiento físico y expresa los vínculos entre tablas mediante claves [4]. Los sistemas NoSQL, en cambio, están pensados para repartir operaciones simples sobre muchos servidores y para admitir esquemas cambiantes. A cambio, suelen relajar las garantías de consistencia de las transacciones [5].
 
 | Criterio | Relacional | NoSQL | Qué pide el caso |
 |---|---|---|---|
-| **Estructura del dato** | Esquema fijo y declarado [4] | Esquema flexible, cada documento puede variar [6] | 12 columnas estables, sin nulos y con tipos fijos → **relacional** |
-| **Integridad** | PK, FK y restricciones `CHECK` | La aplicación debe garantizar la coherencia [6] | La normalización detectó años contradictorios (sección 4.3); las FK y los `CHECK` impiden que vuelva a pasar → **relacional** |
-| **Consultas** | `JOIN` y agregaciones nativas | Acceso eficiente a un documento o clave completos [6] | Las preguntas del negocio son agregaciones por país, artista, género y plan → **relacional** |
-| **Transacciones** | Propiedades ACID: atomicidad, consistencia, aislamiento y durabilidad [7] | Garantías más débiles a cambio de escalabilidad [6] | Una recarga del catálogo debe aplicarse completa o no aplicarse → **relacional** |
-| **Escala** | Suficiente para miles o millones de filas en un servidor | Escalado horizontal en muchos nodos [6] | 500 filas y 6 tablas: no hay un problema de escala que justifique NoSQL |
+| **Estructura del dato** | Esquema fijo y declarado [4] | Esquema flexible, cada documento puede variar [5] | 12 columnas estables, sin nulos y con tipos fijos → **relacional** |
+| **Integridad** | PK, FK y restricciones `CHECK` | La aplicación debe garantizar la coherencia [5] | La normalización detectó años contradictorios (sección 4.3); las FK y los `CHECK` impiden que vuelva a pasar → **relacional** |
+| **Consultas** | `JOIN` y agregaciones nativas | Acceso eficiente a un documento o clave completos [5] | Las preguntas del negocio son agregaciones por país, artista, género y plan → **relacional** |
+| **Transacciones** | Propiedades ACID: atomicidad, consistencia, aislamiento y durabilidad [6] | Garantías más débiles a cambio de escalabilidad [5] | Una recarga del catálogo debe aplicarse completa o no aplicarse → **relacional** |
+| **Escala** | Suficiente para miles o millones de filas en un servidor | Escalado horizontal en muchos nodos [5] | 500 filas y 6 tablas: no hay un problema de escala que justifique NoSQL |
 
-En síntesis, los datos son **estructurados, estables y se consultan cruzando tablas**: es el escenario para el que fue diseñado el modelo relacional [4]. Elegir NoSQL sin necesidad es otro de los errores comunes del modelamiento [1]. NoSQL solo tendría sentido en una fase posterior, si se ingirieran los eventos individuales de reproducción en JSON a gran escala. Aun así, quedaría como capa de ingesta previa y no reemplazaría este modelo curado.
+En síntesis, los datos son **estructurados, estables y se consultan cruzando tablas**: es el escenario para el que fue diseñado el modelo relacional [4]. Elegir NoSQL sin necesidad es otro de los errores comunes del modelamiento [2]. NoSQL solo tendría sentido en una fase posterior, si se ingirieran los eventos individuales de reproducción en JSON a gran escala. Aun así, quedaría como capa de ingesta previa y no reemplazaría este modelo curado.
 
 ---
 
 ## 4. Normalización aplicada
 
-La normalización organiza las tablas para que **cada dato viva en un solo lugar**, reduciendo la redundancia y los errores de actualización [1]. Su regla práctica es que todo atributo que no sea clave debe describir *la clave, toda la clave y nada más que la clave*. Cuando esto no se cumple aparecen la redundancia y las anomalías de actualización, inserción y borrado [5].
+La normalización organiza las tablas para que **cada dato viva en un solo lugar**, reduciendo la redundancia y los errores de actualización [2]. Su regla práctica es que todo atributo que no sea clave debe describir *la clave, toda la clave y nada más que la clave*. Cuando esto no se cumple aparecen la redundancia y las anomalías de actualización, inserción y borrado [7].
 
 ### 4.1 El punto de partida: una tabla plana
 
-El CSV [2] guarda todo en una sola tabla. Los nombres de país, artista, álbum, género y plan se repiten en cada una de las 500 filas, es decir, **2 500 celdas de texto** para apenas **62 valores distintos**.
+El CSV [1] guarda todo en una sola tabla. Los nombres de país, artista, álbum, género y plan se repiten en cada una de las 500 filas, es decir, **2 500 celdas de texto** para apenas **62 valores distintos**.
 
 ### 4.2 Dependencias funcionales encontradas en los datos
 
-Antes de separar tablas se comprobó qué depende de qué. `X → Y` significa que cada valor de `X` tiene un único valor de `Y`. El resultado decide dónde vive cada atributo [5]:
+Antes de separar tablas se comprobó qué depende de qué. `X → Y` significa que cada valor de `X` tiene un único valor de `Y`. El resultado decide dónde vive cada atributo [7]:
 
 | Dependencia | ¿Se cumple? | Consecuencia en el modelo |
 |---|:---:|---|
@@ -136,13 +136,13 @@ Antes de separar tablas se comprobó qué depende de qué. `X → Y` significa q
 
 ### 4.3 La anomalía que la normalización hace visible
 
-En la tabla plana, el álbum *1989 (Taylor's Version)* aparece con los años 2018, 2019, 2020, 2021, 2022 y 2023, y **lo mismo ocurre con los 15 álbumes**. Es justamente la anomalía de actualización que describe la teoría: si un dato del álbum se copia en cada fila, nada impide que las copias se contradigan [5].
+En la tabla plana, el álbum *1989 (Taylor's Version)* aparece con los años 2018, 2019, 2020, 2021, 2022 y 2023, y **lo mismo ocurre con los 15 álbumes**. Es justamente la anomalía de actualización que describe la teoría: si un dato del álbum se copia en cada fila, nada impide que las copias se contradigan [7].
 
 Al normalizar, el año pasa a vivir **una sola vez** en ALBUM, y la contradicción ya no puede repetirse. Para elegir ese único valor se aplicó una regla reproducible: el **año más frecuente** de cada álbum, y en caso de empate el menor. Es una decisión de limpieza documentada, no una verificación del año real. Ninguno de los 6 valores del archivo puede tomarse como cierto sin una fuente de catálogo. Del mismo modo, los géneros del CSV no siempre corresponden a la discografía real: Taylor Swift aparece, por ejemplo, como K-pop. El modelo representa lo que dicen los datos, sin corregirlos por fuera de ellos.
 
 ### 4.4 Formas normales aplicadas
 
-| Forma normal | Qué exige [5] | Cómo se aplicó |
+| Forma normal | Qué exige [7] | Cómo se aplicó |
 |---|---|---|
 | **1FN** | Valores atómicos, sin listas ni grupos repetidos | El CSV ya la cumple: cada celda tiene un solo valor. Se conserva una observación por fila en METRICA_STREAMING |
 | **2FN** | Ningún atributo depende solo de *una parte* de la clave | Del identificador natural (país, álbum, plan), el título, el artista y el año dependen **solo del álbum** → pasan a ALBUM. El nombre del país depende solo del país → pasa a PAIS |
@@ -204,19 +204,19 @@ jupyter notebook normalizacion-spotify.ipynb   # ejecutar todas las celdas
 
 ## 6. Referencias (formato IEEE)
 
-[1] Corporación Universitaria del Huila (CORHUILA), "Ciencia de Datos · Semana 6 · Modelamiento de datos," Objeto Virtual de Aprendizaje (OVA), Neiva, Colombia, 2026. [Online]. Disponible: https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/06-week/01-session/
+[1] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
 
-[2] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
+[2] Corporación Universitaria del Huila (CORHUILA), "Ciencia de Datos · Semana 6 · Modelamiento de datos," Objeto Virtual de Aprendizaje (OVA), Neiva, Colombia, 2026. [Online]. Disponible: https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/06-week/01-session/
 
 [3] P. P.-S. Chen, "The entity-relationship model—Toward a unified view of data," *ACM Transactions on Database Systems*, vol. 1, no. 1, pp. 9–36, 1976, doi: 10.1145/320434.320440.
 
 [4] E. F. Codd, "A relational model of data for large shared data banks," *Communications of the ACM*, vol. 13, no. 6, pp. 377–387, 1970, doi: 10.1145/362384.362685.
 
-[5] W. Kent, "A simple guide to five normal forms in relational database theory," *Communications of the ACM*, vol. 26, no. 2, pp. 120–125, 1983, doi: 10.1145/358024.358054.
+[5] R. Cattell, "Scalable SQL and NoSQL data stores," *ACM SIGMOD Record*, vol. 39, no. 4, pp. 12–27, 2011, doi: 10.1145/1978915.1978919.
 
-[6] R. Cattell, "Scalable SQL and NoSQL data stores," *ACM SIGMOD Record*, vol. 39, no. 4, pp. 12–27, 2011, doi: 10.1145/1978915.1978919.
+[6] T. Haerder and A. Reuter, "Principles of transaction-oriented database recovery," *ACM Computing Surveys*, vol. 15, no. 4, pp. 287–317, 1983, doi: 10.1145/289.291.
 
-[7] T. Haerder and A. Reuter, "Principles of transaction-oriented database recovery," *ACM Computing Surveys*, vol. 15, no. 4, pp. 287–317, 1983, doi: 10.1145/289.291.
+[7] W. Kent, "A simple guide to five normal forms in relational database theory," *Communications of the ACM*, vol. 26, no. 2, pp. 120–125, 1983, doi: 10.1145/358024.358054.
 
 [8] W. McKinney, "Data structures for statistical computing in Python," in *Proc. 9th Python in Science Conf. (SciPy)*, Austin, TX, USA, 2010, pp. 56–61, doi: 10.25080/Majora-92bf1922-00a.
 

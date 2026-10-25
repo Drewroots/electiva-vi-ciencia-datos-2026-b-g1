@@ -7,7 +7,7 @@
 > Este dossier integra y mejora, en un solo documento, el trabajo desarrollado durante el Corte 1 sobre el caso **Spotify — capacidad de streaming y curaduría regional**: encuadre del proyecto (S1), datos y Big Data (S2), arquitectura (S3) y analítica con ética (S4) [1].
 
 ![Dossier de fundamentos — Mapa del Corte 1](./diagrama-dossier-corte1.svg)
-*Fig. 1. Diagrama generado con asistencia de inteligencia artificial (Claude, Anthropic) [6], a partir del contenido y las fuentes desarrolladas en este dossier.*
+*Fig. 1. Diagrama generado con asistencia de inteligencia artificial (Claude, Anthropic) [2], a partir del contenido y las fuentes desarrolladas en este dossier.*
 
 ---
 
@@ -32,7 +32,7 @@ El caso reúne **siete fuentes de datos**, clasificadas por su nivel de estructu
 
 | Fuente | Tipo |
 |---|---|
-| Histórico de streaming (CSV, Kaggle) [2] | Estructurado |
+| Histórico de streaming (CSV, Kaggle) [3] | Estructurado |
 | Encuestas de satisfacción al usuario | Estructurado |
 | Eventos de reproducción en tiempo real (JSON) | Semiestructurado |
 | Metadatos de catálogo musical (API) | Semiestructurado |
@@ -40,7 +40,7 @@ El caso reúne **siete fuentes de datos**, clasificadas por su nivel de estructu
 | Reseñas y comentarios de usuarios | No estructurado |
 | Archivos de audio de las canciones | No estructurado |
 
-**V del Big Data críticas para el caso** [3]:
+**V del Big Data críticas para el caso** [4]:
 
 | V | Criticidad | Por qué |
 |---|---|---|
@@ -61,7 +61,7 @@ El reto de calidad más relevante es la **veracidad**: se mitiga validando que l
 El flujo va de las fuentes a la ingesta, el almacenamiento, el procesamiento y el análisis/BI, combinando dos rutas que convergen en el mismo repositorio:
 
 - **Ruta streaming:** eventos de reproducción → **Apache Kafka** (ingesta de alto throughput) → **Spark Structured Streaming** (agregación casi en tiempo real) → Data Lake.
-- **Ruta batch:** histórico CSV [2] → **Airflow** (orquestación de ETL) → **Spark batch** (forecast trimestral) → Data Warehouse curado.
+- **Ruta batch:** histórico CSV [3] → **Airflow** (orquestación de ETL) → **Spark batch** (forecast trimestral) → Data Warehouse curado.
 
 Un **Data Lake** conserva la variedad de datos crudos (audio, texto, logs, eventos) sin perder información, mientras que un **Data Warehouse** curado alimenta los reportes de BI con datos limpios y consistentes; por eso se opta por una arquitectura híbrida en la que el lake alimenta al warehouse mediante curación/ETL [1]. De igual forma, la capacidad de infraestructura exige reacción en segundos (streaming), mientras que el forecast trimestral y la curaduría de contenido se resuelven mejor con procesamiento por lotes (batch), lo que justifica una arquitectura tipo Lambda que combina ambas rutas. La capa de **BI (Power BI)** cierra el flujo con dashboards de capacidad regional y reportes de artistas/álbumes top.
 
@@ -69,7 +69,7 @@ Un **Data Lake** conserva la variedad de datos crudos (audio, texto, logs, event
 
 ## 4. Tipos de analítica objetivo y un riesgo ético (S4)
 
-**Analítica objetivo** [4]:
+**Analítica objetivo** [5]:
 
 | Tipo | Pregunta aplicada al caso |
 |---|---|
@@ -79,15 +79,15 @@ Un **Data Lake** conserva la variedad de datos crudos (audio, texto, logs, event
 
 La predictiva usa **ML supervisado**, porque se dispone de un histórico etiquetado (horas reales por país y periodo); la prescriptiva, de explorarse, usaría **ML no supervisado** (clustering de países por patrón de consumo), ya que no existe una etiqueta previa de "dónde invertir primero".
 
-**Riesgo ético identificado — sesgo geográfico:** el histórico de streaming está dominado por mercados grandes y con más datos (EE. UU., Reino Unido, Europa Occidental). Un modelo entrenado principalmente con esos mercados puede generalizar mal a países emergentes con menor volumen histórico, subestimando su crecimiento real y postergando la inversión en infraestructura allí, lo que perpetuaría una brecha de calidad de servicio entre regiones "ricas en datos" y "pobres en datos" [5].
+**Riesgo ético identificado — sesgo geográfico:** el histórico de streaming está dominado por mercados grandes y con más datos (EE. UU., Reino Unido, Europa Occidental). Un modelo entrenado principalmente con esos mercados puede generalizar mal a países emergentes con menor volumen histórico, subestimando su crecimiento real y postergando la inversión en infraestructura allí, lo que perpetuaría una brecha de calidad de servicio entre regiones "ricas en datos" y "pobres en datos" [6].
 
-**Mitigación:** muestreo estratificado por región al entrenar el modelo, evaluación del error desagregada por país (no solo el error global) y auditoría periódica de las predicciones contra datos reales por mercado [5].
+**Mitigación:** muestreo estratificado por región al entrenar el modelo, evaluación del error desagregada por país (no solo el error global) y auditoría periódica de las predicciones contra datos reales por mercado [6].
 
 ---
 
 ## 5. Diagrama
 
-**[`diagrama-dossier-corte1.svg`](./diagrama-dossier-corte1.svg)** — mapa visual de las cuatro partes del corte (encuadre, datos/V's, arquitectura, analítica/ética) alrededor del caso integrador. Diagrama generado con asistencia de inteligencia artificial [6].
+**[`diagrama-dossier-corte1.svg`](./diagrama-dossier-corte1.svg)** — mapa visual de las cuatro partes del corte (encuadre, datos/V's, arquitectura, analítica/ética) alrededor del caso integrador. Diagrama generado con asistencia de inteligencia artificial [2].
 
 ---
 
@@ -95,12 +95,12 @@ La predictiva usa **ML supervisado**, porque se dispone de un histórico etiquet
 
 [1] Corporación Universitaria del Huila (CORHUILA), "Ciencia de Datos · Semana 5 · Repaso y evaluación del Corte 1," Objeto Virtual de Aprendizaje (OVA), Neiva, Colombia, 2026. [Online]. Disponible: https://code-corhuila.github.io/ova-web/2026-B/ciencia-datos/05-week/01-session/
 
-[2] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
+[2] Anthropic, "Claude" (modelo de lenguaje asistido por IA), 2026. Usado para generar el diagrama `diagrama-dossier-corte1.svg` a partir del contenido de este documento. [Online]. Disponible: https://www.anthropic.com/claude
 
-[3] Ishwarappa and J. Anuradha, "A brief introduction on big data 5Vs characteristics and Hadoop technology," *Procedia Computer Science*, vol. 48, pp. 319–324, 2015.
+[3] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
 
-[4] T. H. Davenport and J. G. Harris, *Competing on Analytics: The New Science of Winning*. Boston, MA, USA: Harvard Business School Press, 2007.
+[4] Ishwarappa and J. Anuradha, "A brief introduction on big data 5Vs characteristics and Hadoop technology," *Procedia Computer Science*, vol. 48, pp. 319–324, 2015.
 
-[5] N. Mehrabi, F. Morstatter, N. Saxena, K. Lerman, and A. Galstyan, "A survey on bias and fairness in machine learning," *ACM Computing Surveys*, vol. 54, no. 6, pp. 1–35, 2021.
+[5] T. H. Davenport and J. G. Harris, *Competing on Analytics: The New Science of Winning*. Boston, MA, USA: Harvard Business School Press, 2007.
 
-[6] Anthropic, "Claude" (modelo de lenguaje asistido por IA), 2026. Usado para generar el diagrama `diagrama-dossier-corte1.svg` a partir del contenido de este documento. [Online]. Disponible: https://www.anthropic.com/claude
+[6] N. Mehrabi, F. Morstatter, N. Saxena, K. Lerman, and A. Galstyan, "A survey on bias and fairness in machine learning," *ACM Computing Surveys*, vol. 54, no. 6, pp. 1–35, 2021.

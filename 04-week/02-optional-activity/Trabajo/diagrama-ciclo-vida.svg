@@ -73,7 +73,7 @@
     <text x="546" y="700" font-size="11" fill="#334155">Descriptiva: ranking actual</text>
     <text x="546" y="715" font-size="11" fill="#334155">de países/artistas.</text>
     <text x="546" y="735" font-size="11" fill="#334155">Predictiva: forecast</text>
-    <text x="546" y="750" font-size="11" fill="#334155">trimestral por país [3][4]</text>
+    <text x="546" y="750" font-size="11" fill="#334155">trimestral por país [4][3]</text>
   </g>
 
   <!-- ===== Node 5: Visualizar ===== -->
@@ -103,5 +103,5 @@
   <!-- Footer -->
   <line x1="40" y1="835" x2="1260" y2="835" stroke="#e2e8f0" stroke-width="1"/>
   <text x="40" y="858" font-size="11.5" fill="#64748b">Elaboración propia a partir del ciclo de vida de un proyecto de datos [1], el conjunto de datos usado como caso [2],</text>
-  <text x="40" y="874" font-size="11.5" fill="#64748b">la caracterización de Big Data por sus V [3] y la clasificación de analítica de negocio [4].</text>
+  <text x="40" y="874" font-size="11.5" fill="#64748b">la caracterización de Big Data por sus V [4] y la clasificación de analítica de negocio [3].</text>
 </svg>

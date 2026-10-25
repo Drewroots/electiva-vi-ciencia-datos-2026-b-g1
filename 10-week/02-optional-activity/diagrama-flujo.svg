@@ -9,11 +9,11 @@
 <text x="56" y="124" text-anchor="start" font-size="15" font-weight="700" fill="#ffffff">1 · EXTRAER</text>
 <text x="324" y="124" text-anchor="end" font-size="11.5" font-weight="700" fill="#ffffff">Semana 8</text>
 <circle cx="62" cy="162" r="4" fill="#0369a1"/>
-<text x="74" y="166" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">CSV de Kaggle [2]</text>
+<text x="74" y="166" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">CSV de Kaggle [1]</text>
 <text x="74" y="196" text-anchor="start" font-size="12" font-weight="400" fill="#475569">500 filas × 12 columnas</text>
 <line x1="56" y1="214" x2="324" y2="214" stroke="#e2e8f0"/>
 <circle cx="62" cy="232" r="4" fill="#0369a1"/>
-<text x="74" y="236" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">API MusicBrainz [5]</text>
+<text x="74" y="236" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">API MusicBrainz [2]</text>
 <text x="74" y="266" text-anchor="start" font-size="12" font-weight="400" fill="#475569">15 artistas · género</text>
 <text x="74" y="292" text-anchor="start" font-size="12" font-weight="400" fill="#475569">coincidencia 100 % · caché</text>
 <line x1="340" y1="236.0" x2="376" y2="236.0" stroke="#475569" stroke-width="2.4" marker-end="url(#ar)"/>
@@ -36,11 +36,11 @@
 <text x="736" y="124" text-anchor="start" font-size="15" font-weight="700" fill="#ffffff">3 · CARGAR</text>
 <text x="1004" y="124" text-anchor="end" font-size="11.5" font-weight="700" fill="#ffffff">Semana 6</text>
 <circle cx="742" cy="162" r="4" fill="#6d28d9"/>
-<text x="754" y="166" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">ERD: 6 tablas · PK/FK [3]</text>
+<text x="754" y="166" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">ERD: 6 tablas · PK/FK [5]</text>
 <text x="754" y="196" text-anchor="start" font-size="12" font-weight="400" fill="#475569">esquema-spotify.sql</text>
 <line x1="736" y1="214" x2="1004" y2="214" stroke="#e2e8f0"/>
 <circle cx="742" cy="232" r="4" fill="#6d28d9"/>
-<text x="754" y="236" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">SQLite: spotify.db [8]</text>
+<text x="754" y="236" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">SQLite: spotify.db [7]</text>
 <text x="754" y="266" text-anchor="start" font-size="12" font-weight="400" fill="#475569">0 violaciones de FK</text>
 <text x="754" y="292" text-anchor="start" font-size="12" font-weight="400" fill="#475569">género de la API en artista</text>
 <line x1="1020" y1="236.0" x2="1056" y2="236.0" stroke="#475569" stroke-width="2.4" marker-end="url(#ar)"/>
@@ -50,7 +50,7 @@
 <text x="1344" y="124" text-anchor="end" font-size="11.5" font-weight="700" fill="#ffffff">Semana 7</text>
 <circle cx="1082" cy="162" r="4" fill="#15803d"/>
 <text x="1094" y="166" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">SQL: filtro + agregación</text>
-<text x="1094" y="196" text-anchor="start" font-size="12" font-weight="400" fill="#475569">verificado en pandas [7]</text>
+<text x="1094" y="196" text-anchor="start" font-size="12" font-weight="400" fill="#475569">verificado en pandas [8]</text>
 <line x1="1076" y1="214" x2="1344" y2="214" stroke="#e2e8f0"/>
 <circle cx="1082" cy="232" r="4" fill="#15803d"/>
 <text x="1094" y="236" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">Q1 · WHERE plan = Premium</text>

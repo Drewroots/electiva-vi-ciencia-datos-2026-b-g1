@@ -43,11 +43,11 @@ Un dato es **estructurado** cuando se ajusta a un esquema tabular fijo, **semies
 | **Predictiva** *(foco principal)* | ¿Qué va a pasar? | ¿Cuánto crecerá el streaming el próximo trimestre, por país? |
 | **Prescriptiva** *(extensión opcional)* | ¿Qué debería hacerse? | ¿En qué región conviene invertir primero en más capacidad de servidor? |
 
-Se avanza de lo descriptivo (necesario para entender el estado actual) hacia lo predictivo (necesario para anticipar la demanda), siguiendo la taxonomía estándar de analítica de negocio, en la que cada nivel aporta mayor valor de decisión que el anterior [4].
+Se avanza de lo descriptivo (necesario para entender el estado actual) hacia lo predictivo (necesario para anticipar la demanda), siguiendo la taxonomía estándar de analítica de negocio, en la que cada nivel aporta mayor valor de decisión que el anterior [3].
 
 ### ¿Es un caso de Big Data?
 
-**Sí.** El caso cumple con las propiedades que caracterizan al Big Data [3]:
+**Sí.** El caso cumple con las propiedades que caracterizan al Big Data [4]:
 
 | V | Evidencia en el caso |
 |---|---|
@@ -65,12 +65,14 @@ Se avanza de lo descriptivo (necesario para entender el estado actual) hacia lo 
 
 ![Ciclo de vida del proyecto de datos aplicado al caso Spotify](./diagrama-ciclo-vida.svg)
 
+*Fig. 1. Ciclo de vida del proyecto de datos aplicado al caso Spotify. Elaboración propia.*
+
 | Etapa | Aplicación en el caso |
 |---|---|
 | **1. Pregunta** | ¿En qué países/meses crecerá la demanda, para escalar servidores y priorizar contenido? |
 | **2. Obtener** | Extraer el histórico CSV de Kaggle [2] e ingerir los eventos de reproducción en tiempo real |
 | **3. Limpiar** | Eliminar duplicados y reproducciones de bots, validar duración de escucha, normalizar códigos de país |
-| **4. Analizar** | Analítica descriptiva (ranking actual) y predictiva (forecast trimestral por país) [3][4] |
+| **4. Analizar** | Analítica descriptiva (ranking actual) y predictiva (forecast trimestral por país) [4][3] |
 | **5. Visualizar** | Dashboards por región: horas por país, artistas top y proyección de crecimiento |
 | **6. Decidir** | Escalar servidores/CDN por región y priorizar curaduría de playlists y campañas |
 
@@ -80,7 +82,7 @@ El resultado de "Decidir" retroalimenta la siguiente iteración del ciclo, ya qu
 
 ## 5. Problem & data (English)
 
-Spotify needs to anticipate regional spikes in streaming demand so that the infrastructure team can scale server and CDN capacity ahead of time, and the content team can decide which artists and albums to promote in each market. The core data question is: in which countries and at which times of the year will streaming hours grow the most over the next quarter? To answer this, the project uses the *Spotify Global Streaming Data (2024)* dataset from Kaggle [2], which reports listening hours, top countries, top artists and albums, and user behavior patterns; this historical, structured data is complemented with near-real-time playback events (user, track, country, device, timestamp) that capture the speed and variety typical of a Big Data problem [3]. Given that a labeled historical target — actual streaming hours per country and period — is available, the main analytics type applied is **predictive analytics**, built on top of a **descriptive** baseline that first summarizes the countries and artists currently leading the market [4]. Data quality is a real concern, since bot plays or duplicated events could distort the demand attributed to a given country, so a cleaning step is included before any modeling takes place. Ultimately, the value of this pipeline depends entirely on whether its output is translated into the two business decisions it was designed for: infrastructure capacity planning and regional content curation.
+Spotify needs to anticipate regional spikes in streaming demand so that the infrastructure team can scale server and CDN capacity ahead of time, and the content team can decide which artists and albums to promote in each market. The core data question is: in which countries and at which times of the year will streaming hours grow the most over the next quarter? To answer this, the project uses the *Spotify Global Streaming Data (2024)* dataset from Kaggle [2], which reports listening hours, top countries, top artists and albums, and user behavior patterns; this historical, structured data is complemented with near-real-time playback events (user, track, country, device, timestamp) that capture the speed and variety typical of a Big Data problem [4]. Given that a labeled historical target — actual streaming hours per country and period — is available, the main analytics type applied is **predictive analytics**, built on top of a **descriptive** baseline that first summarizes the countries and artists currently leading the market [3]. Data quality is a real concern, since bot plays or duplicated events could distort the demand attributed to a given country, so a cleaning step is included before any modeling takes place. Ultimately, the value of this pipeline depends entirely on whether its output is translated into the two business decisions it was designed for: infrastructure capacity planning and regional content curation.
 
 ---
 
@@ -90,6 +92,6 @@ Spotify needs to anticipate regional spikes in streaming demand so that the infr
 
 [2] A. Soundankar, "Spotify Global Streaming Data (2024)," Kaggle, 2024. [Online]. Disponible: https://www.kaggle.com/datasets/atharvasoundankar/spotify-global-streaming-data-2024
 
-[3] Ishwarappa and J. Anuradha, "A brief introduction on big data 5Vs characteristics and Hadoop technology," *Procedia Computer Science*, vol. 48, pp. 319–324, 2015.
+[3] T. H. Davenport and J. G. Harris, *Competing on Analytics: The New Science of Winning*. Boston, MA, USA: Harvard Business School Press, 2007.
 
-[4] T. H. Davenport and J. G. Harris, *Competing on Analytics: The New Science of Winning*. Boston, MA, USA: Harvard Business School Press, 2007.
+[4] Ishwarappa and J. Anuradha, "A brief introduction on big data 5Vs characteristics and Hadoop technology," *Procedia Computer Science*, vol. 48, pp. 319–324, 2015.

@@ -59,7 +59,7 @@
     <text x="720" y="181" font-size="11" fill="#334155">2 no estructuradas (CSV, JSON, logs,</text>
     <text x="720" y="197" font-size="11" fill="#334155">audio, reseñas)</text>
 
-    <text x="720" y="228" font-size="11.5" font-weight="700" fill="#0e7490">V críticas [3]</text>
+    <text x="720" y="228" font-size="11.5" font-weight="700" fill="#0e7490">V críticas [4]</text>
     <g font-size="10">
       <rect x="720" y="238" width="88" height="22" rx="5" fill="#fee2e2" stroke="#dc2626"/>
       <text x="764" y="253" text-anchor="middle" fill="#7f1d1d" font-weight="700">Volumen</text>
@@ -110,13 +110,13 @@
     <rect x="700" y="568" width="540" height="20" fill="#d97706"/>
     <text x="970" y="575" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">S4 · Analítica objetivo y riesgo ético</text>
 
-    <text x="720" y="615" font-size="11.5" font-weight="700" fill="#92400e">Analítica objetivo [4]</text>
+    <text x="720" y="615" font-size="11.5" font-weight="700" fill="#92400e">Analítica objetivo [5]</text>
     <text x="720" y="635" font-size="11" fill="#334155">Descriptiva: ranking actual de países</text>
     <text x="720" y="651" font-size="11" fill="#334155">Predictiva (foco): forecast trimestral</text>
     <text x="720" y="667" font-size="11" fill="#334155">Prescriptiva (opcional): priorizar inversión</text>
 
     <rect x="720" y="690" width="500" height="160" rx="6" fill="#fff1f2" stroke="#dc2626" stroke-width="1.5"/>
-    <text x="734" y="710" font-size="11.5" font-weight="700" fill="#9f1239">Riesgo ético: sesgo geográfico [5]</text>
+    <text x="734" y="710" font-size="11.5" font-weight="700" fill="#9f1239">Riesgo ético: sesgo geográfico [6]</text>
     <text x="734" y="728" font-size="10.5" fill="#334155">El histórico está dominado por mercados</text>
     <text x="734" y="744" font-size="10.5" fill="#334155">grandes; el modelo puede subestimar el</text>
     <text x="734" y="760" font-size="10.5" fill="#334155">crecimiento de mercados emergentes y</text>
@@ -128,6 +128,6 @@
 
   <!-- Footer -->
   <line x1="60" y1="900" x2="1240" y2="900" stroke="#e2e8f0" stroke-width="1"/>
-  <text x="60" y="922" font-size="11" fill="#64748b">Elaboración propia, síntesis del Corte 1 a partir de [1]–[5]. Ver referencias completas en README.md.</text>
-  <text x="60" y="938" font-size="10" fill="#94a3b8" font-style="italic">Diagrama generado con asistencia de inteligencia artificial (Claude, Anthropic) [6].</text>
+  <text x="60" y="922" font-size="11" fill="#64748b">Elaboración propia, síntesis del Corte 1 a partir de [1]–[6]. Ver referencias completas en README.md.</text>
+  <text x="60" y="938" font-size="10" fill="#94a3b8" font-style="italic">Diagrama generado con asistencia de inteligencia artificial (Claude, Anthropic) [2].</text>
 </svg>
