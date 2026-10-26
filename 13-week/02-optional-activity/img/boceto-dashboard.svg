@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+<title>Boceto del dashboard: filtros, 3 KPI, tendencia y comparaciones, con su jerarquía visual</title>
+<rect width="1400" height="900" fill="#f8fafc"/>
+<text x="40" y="42" text-anchor="start" font-size="22" font-weight="700" fill="#0f172a">Boceto del dashboard · jerarquía visual por zonas</text>
+<text x="40" y="66" text-anchor="start" font-size="13" font-weight="400" fill="#475569">Caso Spotify · cada zona numerada indica el orden de lectura (de arriba a la izquierda hacia abajo a la derecha)</text>
+<rect x="40" y="90" width="960" height="780" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+<text x="60" y="124" text-anchor="start" font-size="16" font-weight="700" fill="#0f172a">Tablero de operación · Spotify</text>
+<text x="60" y="144" text-anchor="start" font-size="11" font-weight="400" fill="#475569" font-style="italic">fuente de datos · fecha de actualización · metas del periodo</text>
+<circle cx="60" cy="178" r="15" fill="#2a78d6"/>
+<text x="60" y="183" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">1</text>
+<rect x="85" y="162" width="128" height="32" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="97" y="183" text-anchor="start" font-size="12" font-weight="400" fill="#0f172a">Fecha ▾</text>
+<rect x="225" y="162" width="128" height="32" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="237" y="183" text-anchor="start" font-size="12" font-weight="400" fill="#0f172a">Región ▾</text>
+<rect x="365" y="162" width="128" height="32" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="377" y="183" text-anchor="start" font-size="12" font-weight="400" fill="#0f172a">País ▾</text>
+<rect x="505" y="162" width="128" height="32" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="517" y="183" text-anchor="start" font-size="12" font-weight="400" fill="#0f172a">Plan ▾</text>
+<rect x="645" y="162" width="128" height="32" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="657" y="183" text-anchor="start" font-size="12" font-weight="400" fill="#0f172a">Género ▾</text>
+<rect x="785" y="162" width="128" height="32" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="797" y="183" text-anchor="start" font-size="12" font-weight="400" fill="#0f172a">Artista ▾</text>
+<circle cx="60" cy="240" r="15" fill="#2a78d6"/>
+<text x="60" y="245" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">2</text>
+<rect x="85" y="215" width="285" height="120" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="99" y="240" text-anchor="start" font-size="12.5" font-weight="700" fill="#475569">KPI 1 · Demanda</text>
+<rect x="275" y="227" width="82" height="20" rx="10" fill="#e2e8f0"/>
+<text x="316" y="241" text-anchor="middle" font-size="10.5" font-weight="400" fill="#475569">semáforo</text>
+<text x="99" y="287" text-anchor="start" font-size="34" font-weight="700" fill="#0f172a">−19,5 %</text>
+<text x="99" y="318" text-anchor="start" font-size="11.5" font-weight="400" fill="#475569">meta ≥ 0 % · número grande</text>
+<rect x="385" y="215" width="285" height="120" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="399" y="240" text-anchor="start" font-size="12.5" font-weight="700" fill="#475569">KPI 2 · Curaduría</text>
+<rect x="575" y="227" width="82" height="20" rx="10" fill="#e2e8f0"/>
+<text x="616" y="241" text-anchor="middle" font-size="10.5" font-weight="400" fill="#475569">semáforo</text>
+<text x="399" y="287" text-anchor="start" font-size="34" font-weight="700" fill="#0f172a">20,3 %</text>
+<text x="399" y="318" text-anchor="start" font-size="11.5" font-weight="400" fill="#475569">meta ≤ 20 % · número grande</text>
+<rect x="685" y="215" width="285" height="120" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="699" y="240" text-anchor="start" font-size="12.5" font-weight="700" fill="#475569">KPI 3 · Monetización</text>
+<rect x="875" y="227" width="82" height="20" rx="10" fill="#e2e8f0"/>
+<text x="916" y="241" text-anchor="middle" font-size="10.5" font-weight="400" fill="#475569">semáforo</text>
+<text x="699" y="287" text-anchor="start" font-size="34" font-weight="700" fill="#0f172a">51,0 %</text>
+<text x="699" y="318" text-anchor="start" font-size="11.5" font-weight="400" fill="#475569">meta ≥ 53 % · número grande</text>
+<circle cx="60" cy="380" r="15" fill="#2a78d6"/>
+<text x="60" y="385" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">3</text>
+<rect x="85" y="355" width="885" height="230" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="100" y="380" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">Título con conclusión (KPI 1)</text>
+<text x="100" y="398" text-anchor="start" font-size="11.5" font-weight="400" fill="#475569">Gráfico de líneas: interés mensual frente al mismo mes del año anterior</text>
+<polyline fill="none" stroke="#2a78d6" stroke-width="3" points="130,480 190,495 250,515 310,505 370,530 430,520 490,540 550,532 610,550 670,538 730,560 790,548 850,570 910,562"/>
+<polyline fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 4" points="130,455 190,470 250,490 310,480 370,505 430,495 490,515 550,507 610,525 670,513 730,535 790,523 850,545 910,537"/>
+<line x1="130" y1="570" x2="930" y2="570" stroke="#cbd5e1"/>
+<circle cx="60" cy="630" r="15" fill="#2a78d6"/>
+<text x="60" y="635" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">4</text>
+<rect x="85" y="605" width="435" height="245" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="100" y="630" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">Título con conclusión (KPI 2)</text>
+<text x="100" y="648" text-anchor="start" font-size="11" font-weight="400" fill="#475569">Barras horizontales: skip rate por artista + línea de meta</text>
+<rect x="115" y="668" width="300" height="14" rx="3" fill="#2a78d6"/>
+<rect x="115" y="692" width="270" height="14" rx="3" fill="#2a78d6"/>
+<rect x="115" y="716" width="250" height="14" rx="3" fill="#2a78d6"/>
+<rect x="115" y="740" width="215" height="14" rx="3" fill="#cbd5e1"/>
+<rect x="115" y="764" width="190" height="14" rx="3" fill="#cbd5e1"/>
+<rect x="115" y="788" width="160" height="14" rx="3" fill="#cbd5e1"/>
+<rect x="115" y="812" width="130" height="14" rx="3" fill="#cbd5e1"/>
+<line x1="345" y1="660" x2="345" y2="840" stroke="#0f172a" stroke-dasharray="5 4"/>
+<text x="351" y="672" text-anchor="start" font-size="10.5" font-weight="400" fill="#0f172a">meta</text>
+<rect x="535" y="605" width="435" height="245" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="550" y="630" text-anchor="start" font-size="13" font-weight="700" fill="#0f172a">Título con conclusión (KPI 3)</text>
+<text x="550" y="648" text-anchor="start" font-size="11" font-weight="400" fill="#475569">Barras horizontales: % Premium por región + línea de meta</text>
+<rect x="565" y="668" width="300" height="14" rx="3" fill="#2a78d6"/>
+<rect x="565" y="692" width="270" height="14" rx="3" fill="#2a78d6"/>
+<rect x="565" y="716" width="250" height="14" rx="3" fill="#2a78d6"/>
+<rect x="565" y="740" width="215" height="14" rx="3" fill="#2a78d6"/>
+<rect x="565" y="764" width="190" height="14" rx="3" fill="#cbd5e1"/>
+<rect x="565" y="788" width="160" height="14" rx="3" fill="#cbd5e1"/>
+<rect x="565" y="812" width="130" height="14" rx="3" fill="#cbd5e1"/>
+<line x1="795" y1="660" x2="795" y2="840" stroke="#0f172a" stroke-dasharray="5 4"/>
+<text x="801" y="672" text-anchor="start" font-size="10.5" font-weight="400" fill="#0f172a">meta</text>
+<path d="M60,193 L60,223" stroke="#2a78d6" stroke-width="2" fill="none" opacity="0.5"/>
+<rect x="1030" y="90" width="330" height="780" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="1050" y="122" text-anchor="start" font-size="16" font-weight="700" fill="#0f172a">Por qué este orden</text>
+<circle cx="1065" cy="160" r="15" fill="#2a78d6"/>
+<text x="1065" y="165" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">1</text>
+<text x="1090" y="165" text-anchor="start" font-size="13.5" font-weight="700" fill="#0f172a">Filtros arriba</text>
+<text x="1090" y="187" text-anchor="start" font-size="12" font-weight="400" fill="#475569">Afectan a todo el tablero: se</text>
+<text x="1090" y="205" text-anchor="start" font-size="12" font-weight="400" fill="#475569">eligen antes de leer los datos.</text>
+<circle cx="1065" cy="266" r="15" fill="#2a78d6"/>
+<text x="1065" y="271" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">2</text>
+<text x="1090" y="271" text-anchor="start" font-size="13.5" font-weight="700" fill="#0f172a">KPI en la primera fila</text>
+<text x="1090" y="293" text-anchor="start" font-size="12" font-weight="400" fill="#475569">La zona superior izquierda se lee</text>
+<text x="1090" y="311" text-anchor="start" font-size="12" font-weight="400" fill="#475569">primero: ahí va el «¿cómo vamos?»</text>
+<text x="1090" y="329" text-anchor="start" font-size="12" font-weight="400" fill="#475569">con número grande, meta y semáforo.</text>
+<circle cx="1065" cy="390" r="15" fill="#2a78d6"/>
+<text x="1065" y="395" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">3</text>
+<text x="1090" y="395" text-anchor="start" font-size="13.5" font-weight="700" fill="#0f172a">Tendencia al centro, a lo ancho</text>
+<text x="1090" y="417" text-anchor="start" font-size="12" font-weight="400" fill="#475569">Explica el KPI más crítico (fuera de</text>
+<text x="1090" y="435" text-anchor="start" font-size="12" font-weight="400" fill="#475569">meta) y su evolución en el tiempo.</text>
+<circle cx="1065" cy="496" r="15" fill="#2a78d6"/>
+<text x="1065" y="501" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">4</text>
+<text x="1090" y="501" text-anchor="start" font-size="13.5" font-weight="700" fill="#0f172a">Comparaciones abajo</text>
+<text x="1090" y="523" text-anchor="start" font-size="12" font-weight="400" fill="#475569">Responden «¿dónde está el</text>
+<text x="1090" y="541" text-anchor="start" font-size="12" font-weight="400" fill="#475569">problema?» para los KPI 2 y 3.</text>
+<line x1="1050" y1="592" x2="1340" y2="592" stroke="#e2e8f0"/>
+<text x="1050" y="618" text-anchor="start" font-size="13.5" font-weight="700" fill="#0f172a">Reglas aplicadas</text>
+<text x="1050" y="644" text-anchor="start" font-size="12" font-weight="400" fill="#475569">• 3 KPI, no 20 gráficos</text>
+<text x="1050" y="666" text-anchor="start" font-size="12" font-weight="400" fill="#475569">• Cada KPI con meta y semáforo</text>
+<text x="1050" y="688" text-anchor="start" font-size="12" font-weight="400" fill="#475569">• Un título con conclusión por vista</text>
+<text x="1050" y="710" text-anchor="start" font-size="12" font-weight="400" fill="#475569">• Azul = fuera de meta; gris = contexto</text>
+<text x="1050" y="732" text-anchor="start" font-size="12" font-weight="400" fill="#475569">• Semáforo con ícono y texto, no solo color</text>
+</svg>
