@@ -1,0 +1,3 @@
+# Tabla de 2 millones de eventos (~150 MB): se regenera con python optimizacion_sql.py
+eventos.db
+eventos.db-journal
