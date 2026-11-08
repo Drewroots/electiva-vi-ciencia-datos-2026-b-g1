@@ -1,0 +1,5 @@
+versión,ms,filas_devueltas,mismo_resultado,plan,veces_mas_rapida
+Antes: SELECT * + función en WHERE + suma en Python,1753.8,524910,True,SCAN reproduccion,1.0
+"Rango y GROUP BY en SQL, sin índice",558.4,6,True,SCAN reproduccion | USE TEMP B-TREE FOR GROUP BY,3.1
+Rango + índice simple (fecha_hora),3410.2,6,True,SEARCH reproduccion USING INDEX idx_c3_fecha (fecha_hora>? AND fecha_hora<?) | USE TEMP B-TREE FOR GROUP BY,0.5
+Después: rango + índice de cobertura,281.2,6,True,SEARCH reproduccion USING COVERING INDEX idx_c3_cubre (fecha_hora>? AND fecha_hora<?) | USE TEMP B-TREE FOR GROUP BY,6.2
